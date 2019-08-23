@@ -22,7 +22,8 @@ public class EmailExample {
         EmailMessage emailMessage = new EmailMessage();
         emailMessage.setSubject("精彩古语")
                 .to("1253950375@qq.com")
-                .setContent(new EmailMessage.Content().setTextContent("学而时习之，温故而知新"));
+                .content()
+                .setTextContent("唧唧复唧唧，木兰当户织");
         return emailService.send(emailMessage);
     }
 }

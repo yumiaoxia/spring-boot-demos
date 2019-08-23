@@ -57,7 +57,7 @@ public class EmailSender {
         message.setSentDate(new Date());
         Multipart multipart = new MimeMultipart();
         BodyPart textPart = new MimeBodyPart();
-        String textContent = emailMessage.getContent().getTextContent();
+        String textContent = emailMessage.content().getTextContent();
         log.info("send content："+textContent);
         textPart.setContent(textContent,"text/html; charset=utf-8");
         multipart.addBodyPart(textPart);

@@ -48,13 +48,11 @@ public class EmailMessage {
         return collect;
     }
 
-    public Content getContent() {
-        return content;
-    }
-
-    public EmailMessage setContent(Content content) {
-        this.content = content;
-        return this;
+    public Content content() {
+        if (this.content == null) {
+            this.content = new Content();
+        }
+        return this.content;
     }
 
     public List<String> getToAddresses() {
@@ -65,7 +63,7 @@ public class EmailMessage {
         this.toAddresses = toAddresses;
     }
 
-    public static class Content{
+    public class Content {
 
         private String textContent;
         private File attachment;
