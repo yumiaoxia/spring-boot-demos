@@ -39,4 +39,9 @@ public class CommonEmailApplicationTests {
         }
     }
 
+    @Test
+    public void sendAttachmentEmail() {
+        emailExample.sendAttachmentEmail();
+    }
+
 }

@@ -4,9 +4,7 @@ import javax.mail.Address;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * <p> </p>
@@ -66,7 +64,7 @@ public class EmailMessage {
     public class Content {
 
         private String textContent;
-        private File attachment;
+        private Map<String, File> attachmentMap = new HashMap<>();
 
         public String getTextContent() {
             return textContent;
@@ -77,13 +75,13 @@ public class EmailMessage {
             return this;
         }
 
-        public File getAttachment() {
-            return attachment;
+        public Content addAttachment(String fileName, File file) {
+            this.attachmentMap.put(fileName, file);
+            return this;
         }
 
-        public Content setAttachment(File attachment) {
-            this.attachment = attachment;
-            return this;
+        public Map<String, File> getAttachmentMap() {
+            return this.attachmentMap;
         }
     }
 }

@@ -7,13 +7,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
 import javax.mail.*;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
-import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
+import javax.mail.internet.*;
+import java.io.File;
+import java.io.UnsupportedEncodingException;
 import java.util.Date;
+import java.util.Map;
 
 /**
  * <p> </p>
@@ -41,13 +45,13 @@ public class EmailSender {
             transport.sendMessage(message, message.getAllRecipients());
             resultMsg = new ResultMessage(true, "Email Sending","SUCCESS", "Send Successfully!");
             transport.close();
-        }catch (MessagingException e){
+        } catch (MessagingException | UnsupportedEncodingException e) {
             e.printStackTrace();
         }
         return resultMsg;
     }
 
-    private MimeMessage buildEmailMessage(EmailMessage emailMessage,Session session,String from) throws MessagingException {
+    private MimeMessage buildEmailMessage(EmailMessage emailMessage, Session session, String from) throws MessagingException, UnsupportedEncodingException {
         MimeMessage message = new MimeMessage(session);
         message.setFrom(new InternetAddress(from));
         message.setSubject(emailMessage.getSubject());
@@ -56,11 +60,25 @@ public class EmailSender {
         message.addRecipient(Message.RecipientType.CC, new InternetAddress(from));
         message.setSentDate(new Date());
         Multipart multipart = new MimeMultipart();
-        BodyPart textPart = new MimeBodyPart();
+        //发送文本内容
         String textContent = emailMessage.content().getTextContent();
-        log.info("send content："+textContent);
-        textPart.setContent(textContent,"text/html; charset=utf-8");
-        multipart.addBodyPart(textPart);
+        if (!StringUtils.isEmpty(textContent)) {
+            BodyPart textPart = new MimeBodyPart();
+            log.info("send content：" + textContent);
+            textPart.setContent(textContent, "text/html; charset=utf-8");
+            multipart.addBodyPart(textPart);
+        }
+        // 发送附件
+        Map<String, File> attachmentMap = emailMessage.content().getAttachmentMap();
+        if (attachmentMap != null && attachmentMap.size() > 0) {
+            for (Map.Entry<String, File> attachmentEntry : attachmentMap.entrySet()) {
+                BodyPart attachmentPart = new MimeBodyPart();
+                DataSource dataSource = new FileDataSource(attachmentEntry.getValue());
+                attachmentPart.setDataHandler(new DataHandler(dataSource));
+                attachmentPart.setFileName(MimeUtility.encodeText(attachmentEntry.getKey()));
+                multipart.addBodyPart(attachmentPart);
+            }
+        }
         message.setContent(multipart);
         message.saveChanges();
         return message;
