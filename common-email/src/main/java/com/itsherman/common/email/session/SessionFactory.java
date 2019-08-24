@@ -32,11 +32,10 @@ public class SessionFactory {
         prop.setProperty(PopKeyConstants.TRANSPORT_PROTOCAL,emailProtocal.getValue());
         prop.put(PopKeyConstants.NO_SSL_SMTP_HOST,serverInfo.getHost());
         if(!sessionPropertity.getUseSsl()){
+            prop.put(PopKeyConstants.SMTP_PORT, serverInfo.getPort());
             prop.put(PopKeyConstants.NO_SSL_SMTP_AUTH,true);
         }else{
-            prop.put("mail.smtp.port", serverInfo.getSslPort());
-            prop.put("mail.smtp.ssl.enable", "true");
-            prop.put("mail.smtp.auth",true);
+            prop.put(PopKeyConstants.SMTP_SSL_ENABLE, "true");
             prop.put(PopKeyConstants.SSL_SMTP_CLASS,SOCKETFACTORY_CLASS);
             prop.put(PopKeyConstants.SSL_SMTP_FALLBACK,"false");
             prop.put(PopKeyConstants.SSL_SMTP_PORT,serverInfo.getSslPort());
