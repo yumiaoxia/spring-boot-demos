@@ -53,7 +53,7 @@ public class DemoAssembler {
 
         TransformerFactory tf = TransformerFactory.newInstance();
         Transformer t = tf.newTransformer();
-        t.setOutputProperty("encoding", "UTF-8");
+        t.setOutputProperty("encoding", "UTF8");
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         t.transform(new DOMSource(document), new StreamResult(bos));
         String xmlStr = bos.toString();
