@@ -1,4 +1,4 @@
-package com.itsherman.common.email.domain;
+package com.itsherman.common.email.domain.send;
 
 import javax.mail.Address;
 import javax.mail.internet.AddressException;

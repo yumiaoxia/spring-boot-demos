@@ -1,8 +1,8 @@
 package com.itsherman.common.email.session;
 
-import com.itsherman.common.email.constants.PopKeyConstants;
 import com.itsherman.common.email.domain.EmailServerInfo;
 import com.itsherman.common.email.domain.SessionPropertity;
+import com.itsherman.common.email.domain.SessionPropertyKey;
 import com.itsherman.common.email.enums.EmailProtocal;
 import com.itsherman.common.email.enums.EmailServerType;
 
@@ -22,23 +22,26 @@ public class SessionFactory {
 
     public static Session openSession(SessionPropertity sessionPropertity){
         String account = sessionPropertity.getAuth().getUsername();
-        EmailProtocal emailProtocal = Arrays.stream(EmailProtocal.values()).filter(protocal -> protocal.getValue().equals(sessionPropertity.getProtocal())).findFirst().orElse(EmailProtocal.SMTP);
+        EmailProtocal emailProtocal = Arrays.stream(EmailProtocal.values()).filter(protocal -> protocal.getValue().equals(sessionPropertity.getProtocal())).findFirst().orElse(null);
         EmailServerType emailServerType = Arrays.stream(EmailServerType.values()).filter(serverType->account.contains(serverType.getFlagKey())).findFirst().orElse(null);
         if(emailServerType == null){
-            throw new IllegalArgumentException("The address of From is incorrect");
+            throw new IllegalArgumentException("The pattern of email is incorrect");
         }
         EmailServerInfo serverInfo = new EmailServerInfo(emailServerType,emailProtocal);
+
+        SessionPropertyKey sessionPropertyKey = new SessionPropertyKey();
+        SessionPropertyKey.emailProtocal = emailProtocal;
         Properties prop = new Properties();
-        prop.setProperty(PopKeyConstants.TRANSPORT_PROTOCAL,emailProtocal.getValue());
-        prop.put(PopKeyConstants.NO_SSL_SMTP_HOST,serverInfo.getHost());
+        prop.setProperty(sessionPropertyKey.getProtocal(), emailProtocal.getValue());
+        prop.put(sessionPropertyKey.getHost(), serverInfo.getHost());
         if(!sessionPropertity.getUseSsl()){
-            prop.put(PopKeyConstants.SMTP_PORT, serverInfo.getPort());
-            prop.put(PopKeyConstants.NO_SSL_SMTP_AUTH,true);
+            prop.put(sessionPropertyKey.getPort(), serverInfo.getPort());
+            prop.put(sessionPropertyKey.getAuth(), true);
         }else{
-            prop.put(PopKeyConstants.SMTP_SSL_ENABLE, "true");
-            prop.put(PopKeyConstants.SSL_SMTP_CLASS,SOCKETFACTORY_CLASS);
-            prop.put(PopKeyConstants.SSL_SMTP_FALLBACK,"false");
-            prop.put(PopKeyConstants.SSL_SMTP_PORT,serverInfo.getSslPort());
+            prop.put(sessionPropertyKey.getSslEnable(), "true");
+            prop.put(sessionPropertyKey.getSslClass(), SOCKETFACTORY_CLASS);
+            prop.put(sessionPropertyKey.getSslFallback(), "false");
+            prop.put(sessionPropertyKey.getSslPort(), serverInfo.getSslPort());
         }
         return Session.getDefaultInstance(prop);
     }

@@ -1,6 +1,6 @@
 package com.itsherman.common.email.example;
 
-import com.itsherman.common.email.domain.EmailMessage;
+import com.itsherman.common.email.domain.send.EmailMessage;
 import com.itsherman.common.email.response.ResultMessage;
 import com.itsherman.common.email.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;

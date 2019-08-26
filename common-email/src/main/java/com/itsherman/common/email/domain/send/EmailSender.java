@@ -1,6 +1,7 @@
-package com.itsherman.common.email.domain;
+package com.itsherman.common.email.domain.send;
 
 import com.itsherman.common.email.config.EmailSenderConfigProperties;
+import com.itsherman.common.email.domain.SessionPropertity;
 import com.itsherman.common.email.response.ResultMessage;
 import com.itsherman.common.email.session.SessionFactory;
 import org.slf4j.Logger;

@@ -1,6 +1,6 @@
 package com.itsherman.common.email.config;
 
-import com.itsherman.common.email.domain.EmailSender;
+import com.itsherman.common.email.domain.send.EmailSender;
 import com.itsherman.common.email.service.EmailService;
 import com.itsherman.common.email.service.impl.EmailServiceImpl;
 import com.itsherman.common.email.session.SessionFactory;

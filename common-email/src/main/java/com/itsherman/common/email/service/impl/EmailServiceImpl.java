@@ -1,7 +1,7 @@
 package com.itsherman.common.email.service.impl;
 
-import com.itsherman.common.email.domain.EmailMessage;
-import com.itsherman.common.email.domain.EmailSender;
+import com.itsherman.common.email.domain.send.EmailMessage;
+import com.itsherman.common.email.domain.send.EmailSender;
 import com.itsherman.common.email.response.ResultMessage;
 import com.itsherman.common.email.service.EmailService;
 
