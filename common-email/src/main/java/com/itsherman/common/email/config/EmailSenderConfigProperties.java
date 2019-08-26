@@ -1,5 +1,6 @@
 package com.itsherman.common.email.config;
 
+import com.itsherman.common.email.domain.UsernamePasswordToken;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
@@ -17,13 +18,13 @@ public class EmailSenderConfigProperties {
 
     private String protocal = "smtp";
 
-    private Auth auth;
+    public SendUsernamePasswordToken auth;
 
-    public Auth getAuth() {
+    public SendUsernamePasswordToken getAuth() {
         return auth;
     }
 
-    public void setAuth(Auth auth) {
+    public void setAuth(SendUsernamePasswordToken auth) {
         this.auth = auth;
     }
 
@@ -43,34 +44,6 @@ public class EmailSenderConfigProperties {
         this.protocal = protocal;
     }
 
-   public static class Auth{
-
-        private String account;
-
-        private String password;
-
-        public String getAccount() {
-            return account;
-        }
-
-        public void setAccount(String account) {
-            this.account = account;
-        }
-
-        public String getPassword() {
-            return password;
-        }
-
-        public void setPassword(String password) {
-            this.password = password;
-        }
-
-       @Override
-       public String toString() {
-           return "Auth{" +
-                   "account='" + account + '\'' +
-                   ", password='" + password + '\'' +
-                   '}';
-       }
-   }
+    public static class SendUsernamePasswordToken extends UsernamePasswordToken {
+    }
 }

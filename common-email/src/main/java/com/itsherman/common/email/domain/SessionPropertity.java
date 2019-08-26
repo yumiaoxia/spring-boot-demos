@@ -1,7 +1,5 @@
 package com.itsherman.common.email.domain;
 
-import com.itsherman.common.email.config.EmailSenderConfigProperties;
-
 /**
  * <p> </p>
  *
@@ -13,13 +11,13 @@ public class SessionPropertity {
 
     private String protocal;
 
-   private EmailSenderConfigProperties.Auth auth;
+    private UsernamePasswordToken auth;
 
-    public EmailSenderConfigProperties.Auth getAuth() {
+    public UsernamePasswordToken getAuth() {
         return auth;
     }
 
-    public void setAuth(EmailSenderConfigProperties.Auth auth) {
+    public void setAuth(UsernamePasswordToken auth) {
         this.auth = auth;
     }
 

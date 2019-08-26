@@ -21,7 +21,7 @@ public class SessionFactory {
     private static final String SOCKETFACTORY_CLASS = "javax.net.ssl.SSLSocketFactory";
 
     public static Session openSession(SessionPropertity sessionPropertity){
-        String account = sessionPropertity.getAuth().getAccount();
+        String account = sessionPropertity.getAuth().getUsername();
         EmailProtocal emailProtocal = Arrays.stream(EmailProtocal.values()).filter(protocal -> protocal.getValue().equals(sessionPropertity.getProtocal())).findFirst().orElse(EmailProtocal.SMTP);
         EmailServerType emailServerType = Arrays.stream(EmailServerType.values()).filter(serverType->account.contains(serverType.getFlagKey())).findFirst().orElse(null);
         if(emailServerType == null){

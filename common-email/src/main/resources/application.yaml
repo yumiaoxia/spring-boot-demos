@@ -3,5 +3,5 @@ email:
     use-ssl: true
     protocal: smtp
     auth:
-      account: yumiaoxia132@163.com
+      username: yumiaoxia132@163.com
       password: yuzi940710

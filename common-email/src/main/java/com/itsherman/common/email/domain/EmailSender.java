@@ -39,9 +39,9 @@ public class EmailSender {
         log.info("connect message: {}",sessionPropertity);
         Session session = SessionFactory.openSession(sessionPropertity);
         try {
-            MimeMessage message = buildEmailMessage(emailMessage, session, sessionPropertity.getAuth().getAccount());
+            MimeMessage message = buildEmailMessage(emailMessage, session, sessionPropertity.getAuth().getUsername());
             Transport transport = session.getTransport();
-            transport.connect(sessionPropertity.getAuth().getAccount(),sessionPropertity.getAuth().getPassword());
+            transport.connect(sessionPropertity.getAuth().getUsername(), sessionPropertity.getAuth().getPassword());
             transport.sendMessage(message, message.getAllRecipients());
             resultMsg = new ResultMessage(true, "Email Sending","SUCCESS", "Send Successfully!");
             transport.close();
