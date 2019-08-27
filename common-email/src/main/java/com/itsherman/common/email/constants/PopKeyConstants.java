@@ -16,6 +16,6 @@ public interface PopKeyConstants {
     String SMTP_PORT = "mail.smtp.port";
     String SSL_SMTP_CLASS = "mail.smtp.socketFactory.class";
     String SSL_SMTP_FALLBACK = "mail.smtp.socketFactory.fallback";
-    String SSL_SMTP_PORT = "mail.smtp.socketFactory,port";
+    String SSL_SMTP_PORT = "mail.smtp.socketFactory.port";
 
 }

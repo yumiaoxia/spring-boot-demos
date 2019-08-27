@@ -11,14 +11,14 @@ import com.itsherman.common.email.enums.EmailProtocal;
 public class SessionPropertyKey {
     public static EmailProtocal emailProtocal;
 
-    private String host = "email.%s.host";
-    private String auth = "email.%s.auth";
-    private String port = "email.%s.port";
+    private String host = "mail.%s.host";
+    private String auth = "mail.%s.auth";
+    private String port = "mail.%s.port";
     private String protocal = "mail.transport.protocol";
-    private String sslEnable = "email.%s.ssl.enabled";
-    private String sslClass = "email.%s.ssl.class";
-    private String sslFallback = "email.%s.ssl.fallback";
-    private String sslPort = "ssl.%s.ssl.port";
+    private String sslEnable = "mail.%s.ssl.enable";
+    private String sslClass = "mail.%s.socketFactory.class";
+    private String sslFallback = "mail.%s.socketFactory.fallback";
+    private String sslPort = "mail.%s.socketFactory.port";
 
     public String getHost() {
         return String.format(host, emailProtocal.getValue());
