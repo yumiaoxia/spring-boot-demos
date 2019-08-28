@@ -1,5 +1,7 @@
 package com.itsherman.common.email.domain;
 
+import com.itsherman.common.email.enums.SendOrReceiveEnum;
+
 /**
  * <p> </p>
  *
@@ -11,7 +13,17 @@ public class SessionPropertity {
 
     private String protocal;
 
+    private SendOrReceiveEnum sendOrReceiveEnum;
+
     private UsernamePasswordToken auth;
+
+    public SendOrReceiveEnum getSendOrReceiveEnum() {
+        return sendOrReceiveEnum;
+    }
+
+    public void setSendOrReceiveEnum(SendOrReceiveEnum sendOrReceiveEnum) {
+        this.sendOrReceiveEnum = sendOrReceiveEnum;
+    }
 
     public UsernamePasswordToken getAuth() {
         return auth;

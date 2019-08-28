@@ -1,11 +1,12 @@
 package com.itsherman.common.email.config;
 
+import com.itsherman.common.email.domain.receive.EmailReceiver;
 import com.itsherman.common.email.domain.send.EmailSender;
+import com.itsherman.common.email.pool.MessagePool;
 import com.itsherman.common.email.service.EmailService;
 import com.itsherman.common.email.service.impl.EmailServiceImpl;
 import com.itsherman.common.email.session.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,7 +22,6 @@ import org.springframework.context.annotation.Configuration;
 public class EmailConfig {
 
     @Bean
-    @ConditionalOnMissingBean(name="emailSender")
     public EmailSender emailSender(){
         EmailSender emailSender = new EmailSender();
         return emailSender;
@@ -37,6 +37,17 @@ public class EmailConfig {
     public EmailService emailService(){
         EmailServiceImpl emailService = new EmailServiceImpl();
         emailService.setEmailSender(emailSender());
+        emailService.setEmailReceiver(emailReceiver());
         return emailService;
+    }
+
+    @Bean
+    public MessagePool messagePool(){
+        return new MessagePool();
+    }
+
+    @Bean
+    public EmailReceiver emailReceiver(){
+        return new EmailReceiver();
     }
 }

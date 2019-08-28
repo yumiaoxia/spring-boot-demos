@@ -2,6 +2,7 @@ package com.itsherman.common.email.domain.send;
 
 import com.itsherman.common.email.config.EmailSenderConfigProperties;
 import com.itsherman.common.email.domain.SessionPropertity;
+import com.itsherman.common.email.enums.SendOrReceiveEnum;
 import com.itsherman.common.email.response.ResultMessage;
 import com.itsherman.common.email.session.SessionFactory;
 import org.slf4j.Logger;
@@ -28,6 +29,7 @@ import java.util.Map;
  */
 public class EmailSender {
     private static final Logger log = LoggerFactory.getLogger(EmailSender.class);
+    private static final SendOrReceiveEnum SEND_OR_RECEIVE_ENUM = SendOrReceiveEnum.SEND;
 
     @Autowired
     private EmailSenderConfigProperties emailSenderConfigProperties;
@@ -37,6 +39,7 @@ public class EmailSender {
         ResultMessage resultMsg = new ResultMessage(false,"Email Sending","Exception","Unknown Exception");
         SessionPropertity sessionPropertity = new SessionPropertity();
         BeanUtils.copyProperties(emailSenderConfigProperties,sessionPropertity);
+        sessionPropertity.setSendOrReceiveEnum(SEND_OR_RECEIVE_ENUM);
         log.info("connect message: {}",sessionPropertity);
         Session session = SessionFactory.openSession(sessionPropertity);
         try {

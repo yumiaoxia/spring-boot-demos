@@ -12,4 +12,6 @@ import com.itsherman.common.email.response.ResultMessage;
 public interface EmailService {
 
    ResultMessage send(EmailMessage emailMessage);
+
+   ResultMessage receive();
 }

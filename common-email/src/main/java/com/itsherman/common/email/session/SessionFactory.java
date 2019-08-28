@@ -29,14 +29,14 @@ public class SessionFactory {
         }
         EmailServerInfo serverInfo = new EmailServerInfo(emailServerType,emailProtocal);
 
-        SessionPropertyKey sessionPropertyKey = new SessionPropertyKey();
+        SessionPropertyKey sessionPropertyKey = new SessionPropertyKey(sessionPropertity.getSendOrReceiveEnum());
         SessionPropertyKey.emailProtocal = emailProtocal;
         Properties prop = new Properties();
-        prop.setProperty(sessionPropertyKey.getProtocal(), emailProtocal.getValue());
+        prop.setProperty(sessionPropertyKey.getProtocol(), emailProtocal.getValue());
         prop.put(sessionPropertyKey.getHost(), serverInfo.getHost());
         if(!sessionPropertity.getUseSsl()){
             prop.put(sessionPropertyKey.getPort(), serverInfo.getPort());
-            prop.put(sessionPropertyKey.getAuth(), true);
+            prop.put(sessionPropertyKey.getAuth(), "true");
         }else{
             prop.put(sessionPropertyKey.getSslEnable(), "true");
             prop.put(sessionPropertyKey.getSslClass(), SOCKETFACTORY_CLASS);

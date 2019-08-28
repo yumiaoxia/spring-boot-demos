@@ -1,5 +1,6 @@
 package com.itsherman.common.email.service.impl;
 
+import com.itsherman.common.email.domain.receive.EmailReceiver;
 import com.itsherman.common.email.domain.send.EmailMessage;
 import com.itsherman.common.email.domain.send.EmailSender;
 import com.itsherman.common.email.response.ResultMessage;
@@ -15,6 +16,8 @@ public class EmailServiceImpl implements EmailService {
 
     private EmailSender emailSender;
 
+    private EmailReceiver emailReceiver;
+
     public EmailSender getEmailSender() {
         return emailSender;
     }
@@ -23,9 +26,21 @@ public class EmailServiceImpl implements EmailService {
         this.emailSender = emailSender;
     }
 
+    public EmailReceiver getEmailReceiver() {
+        return emailReceiver;
+    }
+
+    public void setEmailReceiver(EmailReceiver emailReceiver) {
+        this.emailReceiver = emailReceiver;
+    }
 
     @Override
     public ResultMessage send(EmailMessage emailMessage) {
         return emailSender.send(emailMessage);
+    }
+
+    @Override
+    public ResultMessage receive() {
+        return emailReceiver.receive();
     }
 }

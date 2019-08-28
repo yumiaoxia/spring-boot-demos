@@ -71,4 +71,8 @@ public class EmailExample {
                 .addAttachment("技术推送.rar", file2);
         return emailService.send(emailMessage);
     }
+
+    public ResultMessage receiveEmails(){
+        return emailService.receive();
+    }
 }

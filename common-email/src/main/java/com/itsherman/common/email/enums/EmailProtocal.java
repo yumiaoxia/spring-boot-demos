@@ -7,7 +7,7 @@ package com.itsherman.common.email.enums;
  * @since 2019-08-23
  */
 public enum  EmailProtocal {
-    SMTP("smtp"),POP3("pop"),IMAP("imap");
+    SMTP("smtp"),POP3("pop3"),IMAP("imap");
 
     EmailProtocal(String value) {
         this.value = value;

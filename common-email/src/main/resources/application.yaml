@@ -6,7 +6,7 @@ email:
       username: yumiaoxia132@163.com
       password: yuzi940710
   receive:
-    user-ssl: true
+    use-ssl: false
     protocal: imap
     auth:
       username: yumiaoxia132@163.com

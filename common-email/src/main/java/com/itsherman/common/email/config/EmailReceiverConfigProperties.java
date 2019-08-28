@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @Component
 @ConfigurationProperties(prefix = "email.receive")
 public class EmailReceiverConfigProperties {
-    private Boolean userSsl;
+    private Boolean useSsl;
 
     private String protocal = "imap";
 
@@ -27,12 +27,12 @@ public class EmailReceiverConfigProperties {
         this.auth = auth;
     }
 
-    public Boolean getUserSsl() {
-        return userSsl;
+    public Boolean getUseSsl() {
+        return useSsl;
     }
 
-    public void setUserSsl(Boolean userSsl) {
-        this.userSsl = userSsl;
+    public void setUseSsl(Boolean useSsl) {
+        this.useSsl = useSsl;
     }
 
     public String getProtocal() {

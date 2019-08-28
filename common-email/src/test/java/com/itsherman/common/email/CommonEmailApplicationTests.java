@@ -1,6 +1,8 @@
 package com.itsherman.common.email;
 
 import com.itsherman.common.email.example.EmailExample;
+import com.itsherman.common.email.pool.MessagePool;
+import com.itsherman.common.email.response.ResultMessage;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,9 @@ public class CommonEmailApplicationTests {
 
     @Autowired
     private EmailExample emailExample;
+
+    @Autowired
+    private MessagePool messagePool;
 
     @Test
     public void sendSimpleEmail() {
@@ -42,6 +47,14 @@ public class CommonEmailApplicationTests {
     @Test
     public void sendAttachmentEmail() {
         emailExample.sendAttachmentEmail();
+    }
+
+
+    @Test
+    public void receiveEmails(){
+        ResultMessage resultMessage = emailExample.receiveEmails();
+        System.out.println(resultMessage);
+        System.out.println("messages: "+messagePool.loadAllMessage().size());
     }
 
 }
