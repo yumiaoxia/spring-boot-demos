@@ -8,7 +8,7 @@ import com.itsherman.common.email.enums.SendOrReceiveEnum;
  * @author 俞淼霞
  * @since 2019-08-23
  */
-public class SessionPropertity {
+public class SessionProperty {
     private Boolean useSsl;
 
     private String protocal;

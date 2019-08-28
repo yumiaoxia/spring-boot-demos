@@ -1,7 +1,7 @@
 package com.itsherman.common.email.domain.send;
 
 import com.itsherman.common.email.config.EmailSenderConfigProperties;
-import com.itsherman.common.email.domain.SessionPropertity;
+import com.itsherman.common.email.domain.SessionProperty;
 import com.itsherman.common.email.enums.SendOrReceiveEnum;
 import com.itsherman.common.email.response.ResultMessage;
 import com.itsherman.common.email.session.SessionFactory;
@@ -37,15 +37,15 @@ public class EmailSender {
 
     public ResultMessage send(EmailMessage emailMessage){
         ResultMessage resultMsg = new ResultMessage(false,"Email Sending","Exception","Unknown Exception");
-        SessionPropertity sessionPropertity = new SessionPropertity();
-        BeanUtils.copyProperties(emailSenderConfigProperties,sessionPropertity);
-        sessionPropertity.setSendOrReceiveEnum(SEND_OR_RECEIVE_ENUM);
-        log.info("connect message: {}",sessionPropertity);
-        Session session = SessionFactory.openSession(sessionPropertity);
+        SessionProperty sessionProperty = new SessionProperty();
+        BeanUtils.copyProperties(emailSenderConfigProperties, sessionProperty);
+        sessionProperty.setSendOrReceiveEnum(SEND_OR_RECEIVE_ENUM);
+        log.info("connect message: {}", sessionProperty);
+        Session session = SessionFactory.openSession(sessionProperty);
         try {
-            MimeMessage message = buildEmailMessage(emailMessage, session, sessionPropertity.getAuth().getUsername());
+            MimeMessage message = buildEmailMessage(emailMessage, session, sessionProperty.getAuth().getUsername());
             Transport transport = session.getTransport();
-            transport.connect(sessionPropertity.getAuth().getUsername(), sessionPropertity.getAuth().getPassword());
+            transport.connect(sessionProperty.getAuth().getUsername(), sessionProperty.getAuth().getPassword());
             transport.sendMessage(message, message.getAllRecipients());
             resultMsg = new ResultMessage(true, "Email Sending","SUCCESS", "Send Successfully!");
             transport.close();

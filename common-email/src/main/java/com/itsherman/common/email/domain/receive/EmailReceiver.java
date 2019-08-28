@@ -1,11 +1,7 @@
 package com.itsherman.common.email.domain.receive;
 
 import com.itsherman.common.email.config.EmailReceiverConfigProperties;
-import com.itsherman.common.email.domain.EmailServerInfo;
-import com.itsherman.common.email.domain.SessionPropertity;
-import com.itsherman.common.email.domain.send.EmailSender;
-import com.itsherman.common.email.enums.EmailProtocal;
-import com.itsherman.common.email.enums.EmailServerType;
+import com.itsherman.common.email.domain.SessionProperty;
 import com.itsherman.common.email.enums.SendOrReceiveEnum;
 import com.itsherman.common.email.pool.MessagePool;
 import com.itsherman.common.email.response.ResultMessage;
@@ -16,9 +12,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.mail.*;
-import javax.print.DocFlavor;
-import java.util.Arrays;
-import java.util.Properties;
 
 /**
  * <p> </p>
@@ -58,13 +51,13 @@ public class EmailReceiver {
 
 
     public Folder getInbox() throws MessagingException {
-        SessionPropertity sessionPropertity = new SessionPropertity();
-        BeanUtils.copyProperties(emailReceiverConfigProperties, sessionPropertity);
-        sessionPropertity.setSendOrReceiveEnum(SEND_OR_RECEIVE_ENUM);
-        log.info("connect message: {}", sessionPropertity);
-        Session session = SessionFactory.openSession(sessionPropertity);
+        SessionProperty sessionProperty = new SessionProperty();
+        BeanUtils.copyProperties(emailReceiverConfigProperties, sessionProperty);
+        sessionProperty.setSendOrReceiveEnum(SEND_OR_RECEIVE_ENUM);
+        log.info("connect message: {}", sessionProperty);
+        Session session = SessionFactory.openSession(sessionProperty);
         Store store = session.getStore();
-        store.connect(sessionPropertity.getAuth().getUsername(),sessionPropertity.getAuth().getPassword());
+        store.connect(sessionProperty.getAuth().getUsername(), sessionProperty.getAuth().getPassword());
         return store.getFolder("INBOX");
     }
 }
