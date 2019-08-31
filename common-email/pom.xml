@@ -13,6 +13,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>common-email</name>
 
+
     <properties>
         <java.version>1.8</java.version>
     </properties>
@@ -31,6 +32,11 @@
             <groupId>com.sun.mail</groupId>
             <artifactId>javax.mail</artifactId>
             <version>1.6.2</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>4.6.4</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

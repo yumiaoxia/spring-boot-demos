@@ -35,19 +35,21 @@ public class MessagePool {
     public void init(Message[] messages) throws MessagingException {
         if(messages != null){
             for (Message message : messages) {
-                messageMap.put(message.getSubject(),message);
-                for (Flags.Flag flag : FLAGS) {
-                    if(message.getFlags().contains(flag)){
-                        Collection<Message> messageCollection = flagMessagesMap.get(flag);
-                        messageCollection.add(message);
-                    }
-                }
+                registerMessage(message);
             }
         }
     }
 
     public void registerMessage(Message message) throws MessagingException {
-        messageMap.put(message.getSubject(),message);
+        if (message == null) {
+            throw new NullPointerException("Message must not be null");
+        }
+        messageMap.put(message.getSubject() + message.getReceivedDate(), message);
+        for (Flags.Flag flag : FLAGS) {
+            if (message.getFlags().contains(flag)) {
+                flagMessagesMap.get(flag).add(message);
+            }
+        }
     }
 
     public void registerFlagMessages(Flags.Flag flag,Collection<Message> messages){
@@ -71,4 +73,18 @@ public class MessagePool {
         }
         return messages;
     }
+
+    public Collection<Message> loadMessageIgnoreFlags(Flags.Flag... flags) throws MessagingException {
+        Collection<Message> oldMessages = loadAllMessage();
+        Collection<Message> messages = new ArrayList<>(oldMessages);
+        for (Message message : messages) {
+            for (Flags.Flag flag : flags) {
+                if (message.getFlags().contains(flag)) {
+                    messages.remove(flag);
+                }
+            }
+        }
+        return messages;
+    }
+
 }

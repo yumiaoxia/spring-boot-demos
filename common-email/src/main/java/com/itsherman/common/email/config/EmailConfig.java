@@ -38,6 +38,7 @@ public class EmailConfig {
         EmailServiceImpl emailService = new EmailServiceImpl();
         emailService.setEmailSender(emailSender());
         emailService.setEmailReceiver(emailReceiver());
+        emailService.setMessagePool(messagePool());
         return emailService;
     }
 

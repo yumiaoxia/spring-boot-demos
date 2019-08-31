@@ -69,7 +69,7 @@ public class EmailSender {
         if (!StringUtils.isEmpty(textContent)) {
             BodyPart textPart = new MimeBodyPart();
             log.info("send content：" + textContent);
-            textPart.setContent(textContent, "text/html; charset=utf-8");
+            textPart.setContent(textContent, "Text/html; charset=utf-8");
             multipart.addBodyPart(textPart);
         }
         // 发送附件
