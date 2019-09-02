@@ -1,6 +1,7 @@
 package com.itsherman.common.email.service.impl;
 
 import com.itsherman.common.email.domain.EmailInfo;
+import com.itsherman.common.email.domain.explain.EmailExplainer;
 import com.itsherman.common.email.domain.receive.EmailReceiver;
 import com.itsherman.common.email.domain.send.EmailMessage;
 import com.itsherman.common.email.domain.send.EmailSender;
@@ -9,12 +10,8 @@ import com.itsherman.common.email.response.ResultMessage;
 import com.itsherman.common.email.service.EmailService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.util.CollectionUtils;
 
-import javax.mail.Flags;
-import javax.mail.Folder;
-import javax.mail.Message;
-import javax.mail.Store;
+import javax.mail.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +27,8 @@ public class EmailServiceImpl implements EmailService {
     private EmailSender emailSender;
 
     private EmailReceiver emailReceiver;
+
+    private EmailExplainer emailExplainer;
 
     private MessagePool messagePool;
 
@@ -49,6 +48,14 @@ public class EmailServiceImpl implements EmailService {
         return emailReceiver;
     }
 
+    public EmailExplainer getEmailExplainer() {
+        return emailExplainer;
+    }
+
+    public void setEmailExplainer(EmailExplainer emailExplainer) {
+        this.emailExplainer = emailExplainer;
+    }
+
     public void setEmailReceiver(EmailReceiver emailReceiver) {
         this.emailReceiver = emailReceiver;
     }
@@ -60,42 +67,66 @@ public class EmailServiceImpl implements EmailService {
 
     @Override
     public ResultMessage receiveAll() {
-        return emailReceiver.receive();
-    }
-
-    @Override
-    public ResultMessage<List<EmailInfo>> loadAll() {
-        List<EmailInfo> emailInfos = new ArrayList<>();
-        List<Message> messages = new ArrayList<>(messagePool.loadAllMessage());
-        ResultMessage<List<EmailInfo>> msg = new ResultMessage<>(true, "List Messages", "SUCCESS", "", emailInfos);
-        if (CollectionUtils.isEmpty(messages)) {
-            ResultMessage receiveResult = emailReceiver.receive();
-            if (receiveResult.getSuccess()) {
-                messages.addAll(messagePool.loadAllMessage());
-            } else {
-                return new ResultMessage<>(false, "List Messages", "RECEIVE FAILED", "", emailInfos);
-            }
-        }
-        List<EmailInfo> returnEmailInfos = explainEmail(messages);
-        if (returnEmailInfos != null) {
-            emailInfos.addAll(returnEmailInfos);
+        ResultMessage msg = null;
+        try {
+            msg = emailReceiver.receive();
+        } catch (MessagingException e) {
+            e.printStackTrace();
         }
         return msg;
     }
 
     @Override
-    public ResultMessage<List<Message>> loadUndeleted() {
-        List<Message> messages = new ArrayList<>();
-        ResultMessage<List<Message>> msg = new ResultMessage<>(true, "List Messages", "SUCCESS", "", messages);
+    public ResultMessage<List<EmailInfo>> loadAll() {
+        List<EmailInfo> emailInfos = new ArrayList<>();
+        ResultMessage<List<EmailInfo>> msg = new ResultMessage<>(false, "LOAD ALL EMAILINFOS", "SYSTEM ERROR", "Unknown Exception", emailInfos);
         try {
-            messages.addAll(messagePool.loadMessageIgnoreFlags(Flags.Flag.DELETED));
+            List<Message> messages = new ArrayList<>(messagePool.loadAllMessage());
             if (messages.size() == 0) {
-                ResultMessage receiveResult = emailReceiver.receive();
-                if (receiveResult.getSuccess()) {
-                    messages.addAll(messagePool.loadMessageIgnoreFlags(Flags.Flag.DELETED));
+                ResultMessage receive = emailReceiver.receive();
+                if (receive.getSuccess()) {
+                    messages.addAll(messagePool.loadAllMessage());
+                    ResultMessage<List<EmailInfo>> explain = emailExplainer.explain(messages);
+                    if (explain.getSuccess()) {
+                        emailInfos.addAll(explain.getData());
+                        msg = new ResultMessage<>(true, "LOAD ALL EMAILINFOS", "SUCCESS", "", emailInfos);
+                    } else {
+                        msg = new ResultMessage<>(false, "LOAD ALL EMAILINFOS", "EXPLAIN FAILED", "", emailInfos);
+                    }
                 } else {
-                    msg = new ResultMessage<>(false, "List Messages", "RECEIVE FAILED", "", messages);
+                    msg = new ResultMessage<>(false, "LOAD ALL EMAILINFOS", "RECEIVE FAILED", "", emailInfos);
                 }
+            } else {
+                msg = new ResultMessage<>(true, "LOAD ALL EMAILINFOS", "SUCCESS", "", emailInfos);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return msg;
+    }
+
+    @Override
+    public ResultMessage<List<EmailInfo>> loadUndeleted() {
+        List<EmailInfo> emailInfos = new ArrayList<>();
+        ResultMessage<List<EmailInfo>> msg = new ResultMessage<>(false, "LOAD UNDELETED EMAILINFOS", "SYSTEM ERROR", "Unknown Exception", emailInfos);
+        try {
+            List<Message> messages = new ArrayList<>(messagePool.loadMessageIgnoreFlags(Flags.Flag.DELETED));
+            if (messages.size() == 0) {
+                ResultMessage receive = emailReceiver.receive();
+                if (receive.getSuccess()) {
+                    messages.addAll(messagePool.loadMessageIgnoreFlags(Flags.Flag.DELETED));
+                    ResultMessage<List<EmailInfo>> explain = emailExplainer.explain(messages);
+                    if (explain.getSuccess()) {
+                        emailInfos.addAll(explain.getData());
+                        msg = new ResultMessage<>(true, "LOAD UNDELETED EMAILINFOS", "SUCCESS", "", emailInfos);
+                    } else {
+                        msg = new ResultMessage<>(false, "LOAD UNDELETED EMAILINFOS", "EXPLAIN FAILED", "", emailInfos);
+                    }
+                } else {
+                    msg = new ResultMessage<>(false, "LOAD UNDELETED EMAILINFOS", "RECEIVE FAILED", "", emailInfos);
+                }
+            } else {
+                msg = new ResultMessage<>(true, "LOAD UNDELETED EMAILINFOS", "SUCCESS", "", emailInfos);
             }
         } catch (Exception e) {
             e.printStackTrace();

@@ -7,12 +7,11 @@ import com.itsherman.common.email.response.ResultMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.mail.BodyPart;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Multipart;
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeUtility;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -22,18 +21,54 @@ import java.util.List;
  * @author 俞淼霞
  * @since 2019-08-31
  */
-public class Explainer {
-    private static Logger log = LoggerFactory.getLogger(Explainer.class);
+public class EmailExplainer {
 
-    public ResultMessage<List<EmailInfo>> explain(Collection<Message> messages) {
+    private static Logger log = LoggerFactory.getLogger(EmailExplainer.class);
+
+    public ResultMessage<List<EmailInfo>> explain(Collection<Message> messages) throws MessagingException, IOException {
         if (messages == null) {
             throw new NullPointerException("messages must be not null");
         }
+        List<EmailInfo> emailInfos = new ArrayList<>();
+        ResultMessage<List<EmailInfo>> msg = new ResultMessage<>(false, "Explain Messages", "SYSTEM ERROR", "Unknown Exception", emailInfos);
+        Folder folder = null;
+        Store store = null;
+        int i = 0;
+        for (Message message : messages) {
+            folder = message.getFolder();
+            store = folder.getStore();
+            if (!folder.isOpen()) {
+                folder.open(Folder.READ_WRITE);
+            }
+            if (!store.isConnected()) {
+                store.connect();
+            }
+            InternetAddress fromAddress = (InternetAddress) message.getFrom()[0];
+            String from = fromAddress.getAddress();
+            EmailInfo emailInfo = new EmailInfo();
+            emailInfo.setSubject(message.getSubject());
+            emailInfo.setFrom(from);
+            emailInfo.setSendDate(message.getSentDate());
+            emailInfo.setReceiveDate(message.getReceivedDate());
 
-        List<EmailInfo> returnEmailInfos = doExplain(messages);
-        if (returnEmailInfos != null) {
-            emailInfos.addAll(returnEmailInfos);
+            if (message.isMimeType("multipart/*")) {
+                Multipart rootPart = (Multipart) message.getContent();
+                doExplain(rootPart, emailInfo, String.valueOf(i));
+            } else if (message.isMimeType("text/*")) {
+                emailInfo.setTextContent((String) message.getContent());
+            } else {
+                log.warn("can'not explain the part,contentType: {}, NO: {}", message.getContentType(), i);
+            }
+            emailInfos.add(emailInfo);
+            i++;
         }
+        if (folder.isOpen()) {
+            folder.close(true);
+        }
+        if (store.isConnected()) {
+            store.close();
+        }
+        msg = new ResultMessage<>(true, "Explain Messages", "SUCCESS", "", emailInfos);
         return msg;
     }
 

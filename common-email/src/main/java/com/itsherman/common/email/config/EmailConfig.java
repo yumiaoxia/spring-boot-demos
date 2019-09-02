@@ -1,5 +1,6 @@
 package com.itsherman.common.email.config;
 
+import com.itsherman.common.email.domain.explain.EmailExplainer;
 import com.itsherman.common.email.domain.receive.EmailReceiver;
 import com.itsherman.common.email.domain.send.EmailSender;
 import com.itsherman.common.email.pool.MessagePool;
@@ -38,6 +39,7 @@ public class EmailConfig {
         EmailServiceImpl emailService = new EmailServiceImpl();
         emailService.setEmailSender(emailSender());
         emailService.setEmailReceiver(emailReceiver());
+        emailService.setEmailExplainer(emailExplainer());
         emailService.setMessagePool(messagePool());
         return emailService;
     }
@@ -50,5 +52,10 @@ public class EmailConfig {
     @Bean
     public EmailReceiver emailReceiver(){
         return new EmailReceiver();
+    }
+
+    @Bean
+    public EmailExplainer emailExplainer() {
+        return new EmailExplainer();
     }
 }

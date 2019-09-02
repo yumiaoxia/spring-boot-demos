@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.xml.sax.SAXException;
 
-import javax.mail.Message;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import java.io.File;
@@ -91,23 +90,12 @@ public class EmailExample {
         return emailService.receiveAll();
     }
 
-    public ResultMessage receiveUndeletedEmails() {
-        return emailService.loadUndeleted();
-    }
-
-    public ResultMessage deleteAll() {
-        ResultMessage<List<Message>> resultMessage = receiveUndeletedEmails();
-        ResultMessage<Integer> msg = new ResultMessage(false, "DELETE", "SYSTEM ERROR", "KNOWN EXCEPTION", 0);
-        if (resultMessage.getSuccess()) {
-            List<Message> messages = resultMessage.getData();
-            Message[] messageArray = messages.toArray(new Message[messages.size()]);
-            msg = emailService.delete(messageArray);
-        }
-        return msg;
-    }
-
     public ResultMessage<List<EmailInfo>> loadALl() {
         return emailService.loadAll();
+    }
+
+    public ResultMessage<List<EmailInfo>> loadUndeleted() {
+        return emailService.loadUndeleted();
     }
 
 }

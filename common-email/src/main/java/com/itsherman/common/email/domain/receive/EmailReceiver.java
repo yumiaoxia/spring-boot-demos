@@ -11,7 +11,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.mail.*;
+import javax.mail.Folder;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Store;
 
 /**
  * <p> </p>
@@ -30,9 +33,8 @@ public class EmailReceiver {
     @Autowired
     private MessagePool messagePool;
 
-    public ResultMessage receive() {
+    public ResultMessage receive() throws MessagingException {
         ResultMessage resultMsg = new ResultMessage(false, "Email Receiving", "Exception", "Unknown Exception");
-        try{
             //获取连接
             Folder inbox = getInbox();
             inbox.open(Folder.READ_WRITE);
@@ -41,11 +43,6 @@ public class EmailReceiver {
             inbox.close(false);
             inbox.getStore().close();
             resultMsg = new ResultMessage(true,"Email Receive","OK",String.format("Received %s messages",inbox.getMessageCount()));
-        }catch (MessagingException e){
-            log.error("mail connect failed! message: {}",e.getMessage());
-            e.printStackTrace();
-        }
-
         return resultMsg;
     }
 

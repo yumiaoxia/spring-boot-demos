@@ -21,7 +21,7 @@ public interface EmailService {
 
     ResultMessage<List<EmailInfo>> loadAll();
 
-    ResultMessage<List<Message>> loadUndeleted();
+    ResultMessage<List<EmailInfo>> loadUndeleted();
 
     ResultMessage<Integer> delete(Message... messages);
 }
