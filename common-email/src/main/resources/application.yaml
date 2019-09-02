@@ -9,5 +9,7 @@ email:
     use-ssl: false
     protocal: imap
     auth:
-      username: yumiaoxia132@163.com
-      password: yuzi940710
+      #      username: yumiaoxia132@163.com
+      #      password: yuzi940710
+      username: 1253950375@qq.com
+      password: cftqmaqtgjrxjdga

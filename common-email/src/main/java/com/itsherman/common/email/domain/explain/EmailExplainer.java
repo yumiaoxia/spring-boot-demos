@@ -1,5 +1,6 @@
 package com.itsherman.common.email.domain.explain;
 
+import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.io.FileUtil;
 import com.itsherman.common.email.domain.Attachment;
 import com.itsherman.common.email.domain.EmailInfo;
@@ -43,21 +44,27 @@ public class EmailExplainer {
             if (!store.isConnected()) {
                 store.connect();
             }
+            log.info("EXPLAIN: no: {}, subject:{}", i, message.getSubject());
             InternetAddress fromAddress = (InternetAddress) message.getFrom()[0];
             String from = fromAddress.getAddress();
             EmailInfo emailInfo = new EmailInfo();
+            emailInfo.setId(String.valueOf(i));
             emailInfo.setSubject(message.getSubject());
             emailInfo.setFrom(from);
             emailInfo.setSendDate(message.getSentDate());
             emailInfo.setReceiveDate(message.getReceivedDate());
-
-            if (message.isMimeType("multipart/*")) {
-                Multipart rootPart = (Multipart) message.getContent();
-                doExplain(rootPart, emailInfo, String.valueOf(i));
-            } else if (message.isMimeType("text/*")) {
-                emailInfo.setTextContent((String) message.getContent());
-            } else {
-                log.warn("can'not explain the part,contentType: {}, NO: {}", message.getContentType(), i);
+            try {
+                if (message.getContent() instanceof Multipart) {
+                    Multipart rootPart = (Multipart) message.getContent();
+                    doExplain(rootPart, emailInfo, String.valueOf(i));
+                } else if (CollectionUtil.isNotEmpty(message.getAllHeaders()) && message.isMimeType("text/*")) {
+                    emailInfo.getTextContents().add((String) message.getContent());
+                } else {
+                    log.warn("can'not explain the part,contentType: {}, NO: {}", message.getContentType(), i);
+                }
+            } catch (MessagingException e) {
+                i++;
+                continue;
             }
             emailInfos.add(emailInfo);
             i++;
@@ -83,8 +90,8 @@ public class EmailExplainer {
                 doExplain(part, emailInfo, emailInfoId);
             } else if (bodyPart.isMimeType("Text/*")) {
                 String textContent = (String) bodyPart.getContent();
-                emailInfo.setTextContent(textContent);
-            } else if (bodyPart.getContentType().startsWith("application/octet-stream")) {
+                emailInfo.getTextContents().add(textContent);
+            } else if (bodyPart.isMimeType("application/octet-stream")) {
                 Attachment attachment = new Attachment();
                 attachment.setFileName(MimeUtility.decodeText(bodyPart.getFileName()));
                 attachment.setAutualSize(bodyPart.getSize());
@@ -93,7 +100,7 @@ public class EmailExplainer {
                 attachment.setInputStream(bodyPart.getInputStream());
                 emailInfo.getAttachments().add(attachment);
             } else {
-                log.info("其他内容无法解析，contentType:{}, content: {}", bodyPart.getContentType(), bodyPart.getContent());
+                log.info("the content can not explain，emailInfoId: {},contentType:{}, content: {}", emailInfoId, bodyPart.getContentType(), bodyPart.getContent());
             }
         }
     }

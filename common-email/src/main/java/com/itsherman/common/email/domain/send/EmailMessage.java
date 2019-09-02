@@ -63,15 +63,15 @@ public class EmailMessage {
 
     public class Content {
 
-        private String textContent;
+        private List<String> textContents = new ArrayList<>();
         private Map<String, File> attachmentMap = new HashMap<>();
 
-        public String getTextContent() {
-            return textContent;
+        public List<String> getTextContents() {
+            return textContents;
         }
 
-        public Content setTextContent(String textContent) {
-            this.textContent = textContent;
+        public Content addTextContent(String textContent) {
+            this.textContents.add(textContent);
             return this;
         }
 

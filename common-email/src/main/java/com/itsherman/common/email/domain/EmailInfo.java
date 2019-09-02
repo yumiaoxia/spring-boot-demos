@@ -14,12 +14,11 @@ import java.util.List;
 public class EmailInfo implements Serializable {
     private String id;
     private String subject;
-    private String textContent;
     private Date sendDate;
     private Date receiveDate;
     private String from;
-    private String to;
 
+    private List<String> textContents = new ArrayList<>();
     private List<Attachment> attachments = new ArrayList<>();
 
     public String getId() {
@@ -38,12 +37,8 @@ public class EmailInfo implements Serializable {
         this.subject = subject;
     }
 
-    public String getTextContent() {
-        return textContent;
-    }
-
-    public void setTextContent(String textContent) {
-        this.textContent = textContent;
+    public List<String> getTextContents() {
+        return textContents;
     }
 
     public Date getSendDate() {
@@ -70,14 +65,6 @@ public class EmailInfo implements Serializable {
         this.from = from;
     }
 
-    public String getTo() {
-        return to;
-    }
-
-    public void setTo(String to) {
-        this.to = to;
-    }
-
     public List<Attachment> getAttachments() {
         return attachments;
     }
@@ -87,11 +74,10 @@ public class EmailInfo implements Serializable {
         return "EmailInfo{" +
                 "id='" + id + '\'' +
                 ", subject='" + subject + '\'' +
-                ", textContent='" + textContent + '\'' +
                 ", sendDate=" + sendDate +
                 ", receiveDate=" + receiveDate +
                 ", from='" + from + '\'' +
-                ", to='" + to + '\'' +
+                ", textContents=" + textContents +
                 ", attachments=" + attachments +
                 '}';
     }
