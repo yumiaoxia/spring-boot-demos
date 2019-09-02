@@ -1,5 +1,6 @@
 package com.itsherman.common.email.domain.send;
 
+import cn.hutool.core.collection.CollectionUtil;
 import com.itsherman.common.email.config.EmailSenderConfigProperties;
 import com.itsherman.common.email.domain.SessionProperty;
 import com.itsherman.common.email.enums.SendOrReceiveEnum;
@@ -9,7 +10,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.StringUtils;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
@@ -19,6 +19,7 @@ import javax.mail.internet.*;
 import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -65,12 +66,14 @@ public class EmailSender {
         message.setSentDate(new Date());
         Multipart multipart = new MimeMultipart();
         //发送文本内容
-        String textContent = emailMessage.content().getTextContent();
-        if (!StringUtils.isEmpty(textContent)) {
-            BodyPart textPart = new MimeBodyPart();
-            log.info("send content：" + textContent);
-            textPart.setContent(textContent, "Text/html; charset=utf-8");
-            multipart.addBodyPart(textPart);
+        List<String> textContents = emailMessage.content().getTextContents();
+        if (CollectionUtil.isNotEmpty(textContents)) {
+            for (String textContent : textContents) {
+                BodyPart textPart = new MimeBodyPart();
+                log.info("send content：" + textContent);
+                textPart.setContent(textContent, "Text/html; charset=utf-8");
+                multipart.addBodyPart(textPart);
+            }
         }
         // 发送附件
         Map<String, File> attachmentMap = emailMessage.content().getAttachmentMap();

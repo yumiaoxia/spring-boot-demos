@@ -58,7 +58,9 @@ public class EmailExplainer {
                     Multipart rootPart = (Multipart) message.getContent();
                     doExplain(rootPart, emailInfo, String.valueOf(i));
                 } else if (CollectionUtil.isNotEmpty(message.getAllHeaders()) && message.isMimeType("text/*")) {
-                    emailInfo.getTextContents().add((String) message.getContent());
+                    String textContent = (String) message.getContent();
+                    textContent = MimeUtility.decodeText(textContent);
+                    emailInfo.getTextContents().add(textContent);
                 } else {
                     log.warn("can'not explain the part,contentType: {}, NO: {}", message.getContentType(), i);
                 }
@@ -90,7 +92,7 @@ public class EmailExplainer {
                 doExplain(part, emailInfo, emailInfoId);
             } else if (bodyPart.isMimeType("Text/*")) {
                 String textContent = (String) bodyPart.getContent();
-                emailInfo.getTextContents().add(textContent);
+                emailInfo.getTextContents().add(MimeUtility.decodeText(textContent));
             } else if (bodyPart.isMimeType("application/octet-stream")) {
                 Attachment attachment = new Attachment();
                 attachment.setFileName(MimeUtility.decodeText(bodyPart.getFileName()));
