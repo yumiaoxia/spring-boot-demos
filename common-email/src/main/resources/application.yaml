@@ -3,13 +3,11 @@ email:
     use-ssl: true
     protocal: smtp
     auth:
-      username: yumiaoxia132@163.com
-      password: yuzi940710
+      username: xxxx@163.com
+      password: XXXXX
   receive:
     use-ssl: false
     protocal: imap
     auth:
-      #      username: yumiaoxia132@163.com
-      #      password: yuzi940710
-      username: 1253950375@qq.com
-      password: cftqmaqtgjrxjdga
+      username: xxx@163.com
+      password: xxx
