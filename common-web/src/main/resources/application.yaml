@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: localeApp
+  messages:
+    basename: il8n/messages
+    encoding: UTF-8

@@ -2,6 +2,8 @@ package com.itsherman.commonweb.response;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 import java.time.LocalDateTime;
 
@@ -11,33 +13,39 @@ import java.time.LocalDateTime;
  * @author 俞淼霞
  * @since 2019-09-03
  */
+@ApiModel
 public class ApiResponse<T> {
 
+    @ApiModelProperty
     @JsonProperty
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime responseTime;
 
+    @ApiModelProperty
     @JsonProperty
     private Boolean success;
 
+    @ApiModelProperty
     @JsonProperty
     private String message;
 
+    @ApiModelProperty
     @JsonProperty
     private T data;
 
+    @ApiModelProperty
     @JsonProperty
     private String code;
 
-    public static <T> ApiResponse createSuccess() {
+    public static <T> ApiResponse<T> createSuccess() {
         return createSuccess(null);
     }
 
-    public static <T> ApiResponse createSuccess(T t) {
+    public static <T> ApiResponse<T> createSuccess(T t) {
         return createSuccess("0", "", t);
     }
 
-    public static <T> ApiResponse createSuccess(String code, String message, T t) {
+    public static <T> ApiResponse<T> createSuccess(String code, String message, T t) {
         ApiResponse<T> apiResponse = new ApiResponse<>();
         apiResponse.setSuccess(true);
         apiResponse.setCode(code);

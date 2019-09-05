@@ -1,6 +1,7 @@
 package com.itsherman.commonweb.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.annotations.ApiModelProperty;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -20,12 +21,13 @@ public class ApiPageRequest<T> extends ApiRequest<T> {
 
     @Min(0)
     @JsonProperty
-    @NotNull
+    @ApiModelProperty("页码")
     private Integer pageNo;
 
     @Min(0)
     @JsonProperty
     @NotNull
+    @ApiModelProperty("每页记录数")
     private Integer pageSize;
 
     @JsonProperty
