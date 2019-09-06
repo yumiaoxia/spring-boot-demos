@@ -31,7 +31,7 @@ public class ExceptionController {
     @ExceptionHandler(Exception.class)
     public ApiResponse handleException(HttpServletRequest request, Exception ex) {
         log.error("Exception Occurred: {}, requestURL: {},params: {}", ex.getMessage(), request.getRequestURL(), getRequestParams(request));
-        ex.printStackTrace();
+        log.error(ex.getMessage(), ex);
         return ApiResponse.createError();
     }
 

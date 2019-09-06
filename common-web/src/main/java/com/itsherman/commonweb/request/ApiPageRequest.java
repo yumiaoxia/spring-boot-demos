@@ -88,5 +88,13 @@ public class ApiPageRequest<T> extends ApiRequest<T> {
         return sort;
     }
 
-
+    @Override
+    public String toString() {
+        return "ApiPageRequest{" +
+                "pageNo=" + pageNo +
+                ", pageSize=" + pageSize +
+                ", directions=" + directions +
+                ", sortProperties=" + sortProperties +
+                '}';
+    }
 }

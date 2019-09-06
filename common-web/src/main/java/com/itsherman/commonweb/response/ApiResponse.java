@@ -2,9 +2,11 @@ package com.itsherman.commonweb.response;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.itsherman.commonweb.constants.CommonConstants;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
@@ -14,26 +16,28 @@ import java.time.LocalDateTime;
  * @since 2019-09-03
  */
 @ApiModel
-public class ApiResponse<T> {
+public class ApiResponse<T> implements Serializable {
 
-    @ApiModelProperty
+    private static final long serialVersionUID = -7416528189137018359L;
+
+    @ApiModelProperty(value = "响应时间", example = CommonConstants.DATETIME_NOW)
     @JsonProperty
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime responseTime;
+    private LocalDateTime responseTime = LocalDateTime.now();
 
-    @ApiModelProperty
-    @JsonProperty
+    @ApiModelProperty("请求是否成功")
+    @JsonProperty(defaultValue = "true")
     private Boolean success;
 
-    @ApiModelProperty
+    @ApiModelProperty("响应结果消息")
     @JsonProperty
     private String message;
 
-    @ApiModelProperty
+    @ApiModelProperty("返回数据主体，载荷")
     @JsonProperty
     private T data;
 
-    @ApiModelProperty
+    @ApiModelProperty("响应结果编码")
     @JsonProperty
     private String code;
 
@@ -42,31 +46,25 @@ public class ApiResponse<T> {
     }
 
     public static <T> ApiResponse<T> createSuccess(T t) {
-        return createSuccess("0", "", t);
+        return createSuccess("0", t);
     }
 
-    public static <T> ApiResponse<T> createSuccess(String code, String message, T t) {
+    public static <T> ApiResponse<T> createSuccess(String code, T t) {
         ApiResponse<T> apiResponse = new ApiResponse<>();
         apiResponse.setSuccess(true);
         apiResponse.setCode(code);
         apiResponse.setData(t);
-        apiResponse.setMessage(message);
         return apiResponse;
     }
 
-    public static ApiResponse createError() {
-        ApiResponse apiResponse = new ApiResponse();
-        apiResponse.setSuccess(false);
-        apiResponse.setCode("9999");
-        apiResponse.setMessage("系统错误");
-        return apiResponse;
+    public static <T> ApiResponse<T> createError() {
+        return createError("9999");
     }
 
-    public static ApiResponse createError(String code, String message) {
-        ApiResponse apiResponse = new ApiResponse();
+    public static <T> ApiResponse<T> createError(String code) {
+        ApiResponse<T> apiResponse = new ApiResponse<>();
         apiResponse.setSuccess(false);
         apiResponse.setCode(code);
-        apiResponse.setMessage(message);
         return apiResponse;
     }
 
@@ -108,5 +106,16 @@ public class ApiResponse<T> {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    @Override
+    public String toString() {
+        return "ApiResponse{" +
+                "responseTime=" + responseTime +
+                ", success=" + success +
+                ", message='" + message + '\'' +
+                ", data=" + data +
+                ", code='" + code + '\'' +
+                '}';
     }
 }

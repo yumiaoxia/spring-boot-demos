@@ -2,10 +2,10 @@ package com.itsherman.commonweb.request;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.itsherman.commonweb.constants.CommonConstants;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -17,13 +17,13 @@ import java.time.LocalDateTime;
  */
 @ApiModel
 public class ApiRequest<T> implements Serializable {
+    private static final long serialVersionUID = 7373793858406747388L;
 
     /**
      * 请求时间
      */
-    @ApiModelProperty("请求时间")
+    @ApiModelProperty(value = "请求时间", example = CommonConstants.DATETIME_NOW)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @NotNull
     @JsonProperty
     private LocalDateTime requestTime = LocalDateTime.now();
 
@@ -31,7 +31,6 @@ public class ApiRequest<T> implements Serializable {
      * 请求参数载荷
      */
     @ApiModelProperty("请求参数体，载荷")
-    @NotNull
     @JsonProperty("data")
     private T commend;
 
@@ -49,5 +48,13 @@ public class ApiRequest<T> implements Serializable {
 
     public void setCommend(T commend) {
         this.commend = commend;
+    }
+
+    @Override
+    public String toString() {
+        return "ApiRequest{" +
+                "requestTime=" + requestTime +
+                ", commend=" + commend +
+                '}';
     }
 }

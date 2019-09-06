@@ -1,4 +1,4 @@
-package com.itsherman.commonweb.example.controller;
+package com.itsherman.commonweb.example.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
@@ -21,7 +21,8 @@ public class Person {
     private String name;
     @ApiModelProperty
     private Integer age;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     @ApiModelProperty
     private LocalDateTime birthday;
 

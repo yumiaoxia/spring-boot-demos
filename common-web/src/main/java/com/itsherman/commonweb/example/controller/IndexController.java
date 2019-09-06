@@ -1,12 +1,11 @@
 package com.itsherman.commonweb.example.controller;
 
+import com.itsherman.commonweb.example.domain.Person;
+import com.itsherman.commonweb.request.ApiRequest;
 import com.itsherman.commonweb.response.ApiResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 
@@ -30,5 +29,15 @@ public class IndexController {
         person.setBirthday(LocalDateTime.now());
         person.setName("Sherman");
         return ApiResponse.createSuccess(person);
+    }
+
+
+    @ApiOperation("创建")
+    @PostMapping("/exception")
+    public ApiResponse<Person> exception(@RequestBody ApiRequest<Person> request) {
+        if (request.getCommend() == null) {
+            throw new NullPointerException("person must be not null!");
+        }
+        return ApiResponse.createSuccess(request.getCommend());
     }
 }
