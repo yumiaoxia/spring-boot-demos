@@ -2,6 +2,7 @@ package com.itsherman.commonweb.exception;
 
 import com.itsherman.commonweb.request.RequestWrapper;
 import com.itsherman.commonweb.response.ApiResponse;
+import com.itsherman.commonweb.utils.IPUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -16,6 +17,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * <p> </p>
@@ -31,7 +33,7 @@ public class ExceptionController {
     @ResponseBody
     @ExceptionHandler(Exception.class)
     public ApiResponse handleException(HttpServletRequest request, Exception ex) {
-        log.error("Exception Occurred! requestURL: {}, params: {}", request.getRequestURL(), getRequestParams(request), ex);
+        log.error("\nException Occurred! \nrequestURL: {}, \nparams: {}, \nuserIP: {}", request.getRequestURL(), getRequestParams(request), IPUtil.getUserIP(request), ex);
         return ApiResponse.createError();
     }
 
@@ -53,6 +55,7 @@ public class ExceptionController {
                     sb.append(line);
                 }
                 result = result.append(sb);
+                result = result.append(", ");
                 bufferedReader.close();
                 reader.close();
                 inputStream.close();
@@ -61,7 +64,28 @@ public class ExceptionController {
             }
         }
         Map<String, String[]> parameterMap = request.getParameterMap();
-        result = result.append(parameterMap);
+        Set<Map.Entry<String, String[]>> entries = parameterMap.entrySet();
+        StringBuilder paramBuilder = new StringBuilder("paramMap: {");
+        int i = 0;
+        for (Map.Entry<String, String[]> entry : entries) {
+            if (i != 0) {
+                paramBuilder.append(",");
+            }
+            paramBuilder.append(entry.getKey());
+            paramBuilder.append(": '");
+            int j = 0;
+            for (String value : entry.getValue()) {
+                if (j != 0) {
+                    paramBuilder.append(",");
+                }
+                paramBuilder.append(value);
+                j++;
+            }
+            paramBuilder.append("'");
+            i++;
+        }
+        paramBuilder.append("}");
+        result = result.append(paramBuilder);
         return result.toString();
     }
 }
