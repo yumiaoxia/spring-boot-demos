@@ -16,6 +16,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
+import java.util.Enumeration;
 import java.util.Map;
 import java.util.Set;
 
@@ -33,7 +34,7 @@ public class ExceptionController {
     @ResponseBody
     @ExceptionHandler(Exception.class)
     public ApiResponse handleException(HttpServletRequest request, Exception ex) {
-        log.error("\nException Occurred! \nrequestURL: {}, \nparams: {}, \nuserIP: {}", request.getRequestURL(), getRequestParams(request), IPUtil.getUserIP(request), ex);
+        log.error("\nException Occurred! \nrequestURL: {},\nheaders:{}, \nparams: {}, \nuserIP: {}", request.getRequestURL(), getRequestHeaders(request), getRequestParams(request), IPUtil.getUserIP(request), ex);
         return ApiResponse.createError();
     }
 
@@ -87,5 +88,23 @@ public class ExceptionController {
         paramBuilder.append("}");
         result = result.append(paramBuilder);
         return result.toString();
+    }
+
+    protected String getRequestHeaders(HttpServletRequest request) {
+        Enumeration<String> headerNames = request.getHeaderNames();
+        StringBuilder headerSb = new StringBuilder();
+        headerSb.append("{");
+        int i = 0;
+        while (headerNames.hasMoreElements()) {
+            String headerName = headerNames.nextElement();
+            String headerValue = request.getHeader(headerName);
+            if (i != 0) {
+                headerSb.append(",");
+            }
+            headerSb.append(headerName).append(": ").append("'").append(headerValue).append("'");
+            i++;
+        }
+        headerSb.append("}");
+        return headerSb.toString();
     }
 }
