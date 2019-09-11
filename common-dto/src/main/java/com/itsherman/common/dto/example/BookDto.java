@@ -9,7 +9,7 @@ import com.itsherman.common.dto.annotations.DtoProperty;
  * @author 俞淼霞
  * @since 2019-09-10
  */
-@DtoMapping
+@DtoMapping(from = Book.class)
 public class BookDto {
 
     @DtoProperty

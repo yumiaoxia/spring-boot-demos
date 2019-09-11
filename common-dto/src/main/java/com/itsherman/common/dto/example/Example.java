@@ -14,14 +14,17 @@ import java.time.Instant;
 public class Example {
 
     public void doTransform() {
+        Role role = new Role();
+        role.setRole("admin");
         Person person = new Person();
         person.setName("Sherman");
+        person.setTag("tall");
         person.setAge(18);
-        person.setTag("Tall");
+        Book book = new Book();
+        book.setName("Java 实战");
+        person.setBook(book);
         Instant start = Instant.now();
-        //PersonDto result = new PersonDto();
-        //BeanUtils.copyProperties(person,result);
-        PersonDto result = (PersonDto) DtoAssembler.builder().select(PersonDto.class).from(person).transform();
+        PersonDto result = (PersonDto) DtoAssembler.builder().select(PersonDto.class).from(person, role).transform();
         long l = Duration.between(start, Instant.now()).toMillis();
         System.out.println("转换结果：" + result + ",共耗时：" + l + " ms");
     }

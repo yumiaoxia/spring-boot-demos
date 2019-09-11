@@ -9,7 +9,7 @@ import com.itsherman.common.dto.annotations.DtoProperty;
  * @author 俞淼霞
  * @since 2019-09-10
  */
-@DtoMapping(from = {Person.class})
+@DtoMapping(from = {Person.class, Role.class})
 public class PersonDto {
 
     @DtoProperty(value = "tag", sourceClass = Person.class)
@@ -20,6 +20,9 @@ public class PersonDto {
 
     @DtoProperty(sourceClass = Person.class)
     private BookDto book;
+
+    @DtoProperty
+    private String role;
 
     public String getName() {
         return name;
@@ -37,6 +40,14 @@ public class PersonDto {
         this.age = age;
     }
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     public BookDto getBook() {
         return book;
     }
@@ -51,6 +62,7 @@ public class PersonDto {
                 "name='" + name + '\'' +
                 ", age=" + age +
                 ", book=" + book +
+                ", role='" + role + '\'' +
                 '}';
     }
 }

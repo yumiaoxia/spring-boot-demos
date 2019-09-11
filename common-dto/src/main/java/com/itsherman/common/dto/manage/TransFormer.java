@@ -1,7 +1,6 @@
 package com.itsherman.common.dto.manage;
 
 import com.itsherman.common.dto.annotations.DtoProperty;
-import com.sun.xml.internal.txw2.IllegalAnnotationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,10 +28,10 @@ public class TransFormer {
 
     public Object transform() {
         Selector selector = fromer.getSelector();
-        Object srcObject = fromer.getSrcObject();
+        Object[] sources = fromer.getSources();
         Object returnObject = getInstance(selector.getClazz());
         try {
-            dtoTransform(srcObject, returnObject);
+            dtoTransform(sources, returnObject);
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         }
@@ -49,15 +48,28 @@ public class TransFormer {
         return instance;
     }
 
-    private void dtoTransform(Object src, Object dest) throws NoSuchMethodException {
+    private void dtoTransform(Object[] srcs, Object dest) throws NoSuchMethodException {
         Class destClazz = dest.getClass();
         Map<Method, DtoProperty> methodAnnotationMap = selectWriteMethods(destClazz);
-        Map<Method, Method> methodMap = suitMethods(methodAnnotationMap, src);
+        Map<Method, Method> methodMap = suitMethods(methodAnnotationMap, srcs);
         Set<Map.Entry<Method, Method>> entries = methodMap.entrySet();
         try {
             for (Map.Entry<Method, Method> entry : entries) {
-                Object result = entry.getKey().invoke(src, null);
-                entry.getValue().invoke(dest, result);
+                Method readMethod = entry.getKey();
+                for (Object src : srcs) {
+                    if (readMethod.getDeclaringClass().equals(src.getClass())) {
+                        Object result = entry.getKey().invoke(src, null);
+                        if (result != null && !Modifier.isFinal(result.getClass().getModifiers())) {
+                            Method writeMethod = entry.getValue();
+                            Class<?>[] parameterTypes = writeMethod.getParameterTypes();
+                            if (parameterTypes.length == 1) {
+                                Class clazz = parameterTypes[0];
+                                result = DtoAssembler.builder().select(clazz).from(result).transform();
+                            }
+                        }
+                        entry.getValue().invoke(dest, result);
+                    }
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -69,34 +81,31 @@ public class TransFormer {
         Map<Method, Method> methodMap = new HashMap<>();
         for (Map.Entry<Method, DtoProperty> entry : entries) {
             Method writeMethod = entry.getKey();
-            DtoProperty annotion = entry.getValue();
-            Class sourceClazz = annotion.sourceClass();
-            String propertyName = annotion.value().equals("") ? writeMethod.getName().substring(3, 4).toLowerCase() + writeMethod.getName().substring(4) : annotion.value();
+            DtoProperty annotation = entry.getValue();
+            Class sourceClazz = annotation.sourceClass();
+            String propertyName = annotation.value().equals("") ? writeMethod.getName().substring(3, 4).toLowerCase() + writeMethod.getName().substring(4) : annotation.value();
             String readMethodName = GET + propertyName.substring(0, 1).toUpperCase() + propertyName.substring(1);
-            boolean flag = false;
             for (Object srcObject : srcObjects) {
-                if (Void.class.equals(sourceClazz) || sourceClazz.isInstance(srcObject)) {
-                    flag = true;
-                    Method[] methods = sourceClazz.getDeclaredMethods();
-                    Optional<Method> methodOptional = Arrays.stream(methods).filter(method -> method.getName().equals(readMethodName)).findFirst();
-                    if (!methodOptional.isPresent()) {
+                Method[] methods = srcObject.getClass().getMethods();
+                Optional<Method> methodOptional = Arrays.stream(methods).filter(method -> method.getName().equals(readMethodName)).findFirst();
+                if (!methodOptional.isPresent()) {
+                    if (Void.class.equals(sourceClazz)) {
+                        continue;
+                    }
+                    if (sourceClazz.isInstance(srcObject)) {
                         NoSuchMethodException ex = new NoSuchMethodException("method is not found,name is " + readMethodName);
                         log.error(ex.getMessage(), ex);
+                    }
+                } else {
+                    Method readMethod = methodOptional.get();
+                    int modifiers = readMethod.getModifiers();
+                    if (Modifier.isPublic(modifiers)) {
+                        methodMap.put(methodOptional.get(), writeMethod);
                     } else {
-                        Method readMethod = methodOptional.get();
-                        int modifiers = readMethod.getModifiers();
-                        if (Modifier.isPublic(modifiers)) {
-                            methodMap.put(methodOptional.get(), writeMethod);
-                        } else {
-                            IllegalAccessException ex = new IllegalAccessException("method is not public,name is " + readMethodName);
-                            log.error(ex.getMessage(), ex);
-                        }
+                        IllegalAccessException ex = new IllegalAccessException("method is not public,name is " + readMethodName);
+                        log.error(ex.getMessage(), ex);
                     }
                 }
-            }
-            if (!flag) {
-                IllegalAnnotationException ex = new IllegalAnnotationException("property of annotation can not matched,element target is " + propertyName);
-                log.error(ex.getMessage(), ex);
             }
         }
         return methodMap;
