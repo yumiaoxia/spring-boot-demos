@@ -15,6 +15,7 @@ import java.util.*;
  * @since 2019-09-27
  */
 public class DtoDefinitionHolder {
+
     private static final Logger log = LoggerFactory.getLogger(DtoDefinitionHolder.class);
 
     public static Map<Class, DtoDefinition> dtoDefinitions = new HashMap<>();
@@ -24,8 +25,10 @@ public class DtoDefinitionHolder {
 
     public DtoDefinitionHolder(Collection<Class> classes) {
         if (!classes.isEmpty()) {
+            int dtoId = 1;
             for (Class clazz : classes) {
                 DtoDefinition dd = new DtoDefinition(clazz);
+                dd.setId(dtoId++);
                 DtoModel dtoModel = (DtoModel) clazz.getAnnotation(DtoModel.class);
                 Class[] fromClass = dtoModel.from();
                 dd.setFromClass(fromClass);
@@ -39,10 +42,8 @@ public class DtoDefinitionHolder {
                     for (ValidMessage validMessage : validMessages) {
                         log.error(validMessage.getMessage());
                     }
-                } else {
-                    dtoDefinitions.put(clazz, dd);
                 }
-
+                dtoDefinitions.put(clazz, dd);
             }
         }
     }

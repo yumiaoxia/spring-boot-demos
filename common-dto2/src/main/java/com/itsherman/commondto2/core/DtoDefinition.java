@@ -11,6 +11,10 @@ import java.util.Set;
  */
 public class DtoDefinition {
 
+    private Integer id;
+
+    private Set<Integer> childIds = new HashSet<>();
+
     private Class<?> dtoClass;
 
     private Set<DtoPropertyDefinition> validPropertyDefinition = new HashSet<>();
@@ -19,6 +23,22 @@ public class DtoDefinition {
 
     public DtoDefinition(Class clazz) {
         this.dtoClass = clazz;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Set<Integer> getChildIds() {
+        return childIds;
+    }
+
+    public void setChildIds(Set<Integer> childIds) {
+        this.childIds = childIds;
     }
 
     public Class<?> getDtoClass() {

@@ -1,6 +1,7 @@
 package com.itsherman.commondto2.example.model;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * <p> </p>
@@ -13,7 +14,25 @@ public class Person {
     private String name;
     private String nickName;
     private Integer age;
+    private long weight;
     private LocalDateTime birthday;
+    private List<Book> books;
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
+    }
+
+    public long getWeight() {
+        return weight;
+    }
+
+    public void setWeight(long weight) {
+        this.weight = weight;
+    }
 
     public String getName() {
         return name;

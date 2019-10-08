@@ -2,9 +2,11 @@ package com.itsherman.commondto2.example.dto;
 
 import com.itsherman.commondto2.annotations.DtoModel;
 import com.itsherman.commondto2.annotations.DtoProperty;
+import com.itsherman.commondto2.example.dto.dto2.BookDto;
 import com.itsherman.commondto2.example.model.Person;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * <p> </p>
@@ -25,7 +27,29 @@ public class PersonDto {
     private Integer age;
 
     @DtoProperty
+    private long weight;
+
+    @DtoProperty
     private LocalDateTime birthday;
+
+    @DtoProperty
+    private List<BookDto> books;
+
+    public List<BookDto> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<BookDto> books) {
+        this.books = books;
+    }
+
+    public long getWeight() {
+        return weight;
+    }
+
+    public void setWeight(long weight) {
+        this.weight = weight;
+    }
 
     public String getName() {
         return name;
@@ -57,5 +81,17 @@ public class PersonDto {
 
     public void setBirthday(LocalDateTime birthday) {
         this.birthday = birthday;
+    }
+
+    @Override
+    public String toString() {
+        return "PersonDto{" +
+                "name='" + name + '\'' +
+                ", nickName='" + nickName + '\'' +
+                ", age=" + age +
+                ", weight=" + weight +
+                ", birthday=" + birthday +
+                ", books=" + books +
+                '}';
     }
 }
