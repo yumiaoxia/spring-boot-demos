@@ -7,10 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.*;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * <p> </p>
@@ -52,9 +49,7 @@ public class DtoAssembler {
 
     private static void propertyAssemble(DtoPropertyDefinition dtoPropertyDefinition, Object source, Object dest, Map<Class, DtoDefinition> dtoDefinitions) {
         Field field = dtoPropertyDefinition.getField();
-        ParameterizedType type = (ParameterizedType) field.getGenericType();
-        Class actualType = (Class) type.getActualTypeArguments()[0];
-        Class fieldClazz = null;
+        Class fieldClazz = field.getType();
         Method readMethod = dtoPropertyDefinition.getReadMethod();
         Method writeMethod = dtoPropertyDefinition.getWriteMethod();
         Object value = null;
@@ -64,25 +59,40 @@ public class DtoAssembler {
             e.printStackTrace();
         }
         if (Modifier.isFinal(fieldClazz.getModifiers()) || fieldClazz.isPrimitive()) {
-            try {
-                writeMethod.invoke(dest, value);
-            } catch (IllegalAccessException | InvocationTargetException e) {
-                e.printStackTrace();
-            }
-        } else if (Collection.class.isAssignableFrom(fieldClazz)) {
-            ParameterizedType pt = (ParameterizedType) fieldClazz.getGenericSuperclass();
-            Type[] types = pt.getActualTypeArguments();
-            Collection sourceCollection = (Collection) value;
-            DtoDefinition dtoDefinition = dtoDefinitions.get(actualType);
-            if (dtoDefinition != null) {
-                List<?> destCollection = DtoTransFormer.asList(actualType).apply(sourceCollection);
+            if (fieldClazz.isArray()) {
+                Object[] values = (Object[]) value;
+                Class fieldGenericType = (Class) field.getGenericType();
+                Class clazz = fieldGenericType.getComponentType();
+                Object[] dtoValues = new Object[values.length];
+                int record = 0;
+                for (Object o : values) {
+                    dtoValues[record++] = ((Optional) DtoTransFormer.as(clazz).apply(o)).get();
+                }
                 try {
-                    writeMethod.invoke(dest, destCollection);
+                    writeMethod.invoke(dest, dtoValues);
+                } catch (IllegalAccessException | InvocationTargetException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                try {
+                    writeMethod.invoke(dest, value);
                 } catch (IllegalAccessException | InvocationTargetException e) {
                     e.printStackTrace();
                 }
             }
-
+        } else if (Collection.class.isAssignableFrom(fieldClazz)) {
+            Collection sourceCollection = (Collection) value;
+            ParameterizedType pt = (ParameterizedType) field.getGenericType();
+            Class actualType = (Class) pt.getActualTypeArguments()[0];
+            List<?> destCollection = DtoTransFormer.asList(actualType).apply(sourceCollection);
+            try {
+                writeMethod.invoke(dest, destCollection);
+            } catch (IllegalAccessException | InvocationTargetException e) {
+                e.printStackTrace();
+            }
+        } else if (fieldClazz.isArray()) {
+            Type type = field.getGenericType();
+            String t = null;
         }
     }
 }

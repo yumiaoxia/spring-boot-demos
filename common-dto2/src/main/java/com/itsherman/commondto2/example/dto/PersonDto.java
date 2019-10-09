@@ -5,8 +5,7 @@ import com.itsherman.commondto2.annotations.DtoProperty;
 import com.itsherman.commondto2.example.dto.dto2.BookDto;
 import com.itsherman.commondto2.example.model.Person;
 
-import java.time.LocalDateTime;
-import java.util.List;
+import java.util.Arrays;
 
 /**
  * <p> </p>
@@ -21,35 +20,10 @@ public class PersonDto {
     private String name;
 
     @DtoProperty
-    private String nickName;
+    private String[] hobbys;
 
     @DtoProperty
-    private Integer age;
-
-    @DtoProperty
-    private long weight;
-
-    @DtoProperty
-    private LocalDateTime birthday;
-
-    @DtoProperty
-    private List<BookDto> books;
-
-    public List<BookDto> getBooks() {
-        return books;
-    }
-
-    public void setBooks(List<BookDto> books) {
-        this.books = books;
-    }
-
-    public long getWeight() {
-        return weight;
-    }
-
-    public void setWeight(long weight) {
-        this.weight = weight;
-    }
+    private BookDto[] books;
 
     public String getName() {
         return name;
@@ -59,39 +33,28 @@ public class PersonDto {
         this.name = name;
     }
 
-    public String getNickName() {
-        return nickName;
+    public String[] getHobbys() {
+        return hobbys;
     }
 
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
+    public void setHobbys(String[] hobbys) {
+        this.hobbys = hobbys;
     }
 
-    public Integer getAge() {
-        return age;
+    public BookDto[] getBooks() {
+        return books;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
-    public LocalDateTime getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(LocalDateTime birthday) {
-        this.birthday = birthday;
+    public void setBooks(BookDto[] books) {
+        this.books = books;
     }
 
     @Override
     public String toString() {
         return "PersonDto{" +
                 "name='" + name + '\'' +
-                ", nickName='" + nickName + '\'' +
-                ", age=" + age +
-                ", weight=" + weight +
-                ", birthday=" + birthday +
-                ", books=" + books +
+                ", hobbys=" + Arrays.toString(hobbys) +
+                ", books=" + Arrays.toString(books) +
                 '}';
     }
 }

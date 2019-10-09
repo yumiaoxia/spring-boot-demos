@@ -2,6 +2,7 @@ package com.itsherman.commondto2.example.dto.dto2;
 
 import com.itsherman.commondto2.annotations.DtoModel;
 import com.itsherman.commondto2.annotations.DtoProperty;
+import com.itsherman.commondto2.example.model.Book;
 
 /**
  * <p> </p>
@@ -9,7 +10,7 @@ import com.itsherman.commondto2.annotations.DtoProperty;
  * @author 俞淼霞
  * @since 2019-09-27
  */
-@DtoModel
+@DtoModel(from = Book.class)
 public class BookDto {
 
     @DtoProperty
