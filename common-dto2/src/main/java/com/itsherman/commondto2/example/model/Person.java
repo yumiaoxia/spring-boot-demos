@@ -10,17 +10,7 @@ public class Person {
 
     private String name;
 
-    private String[] hobbys;
-
     private Book[] books;
-
-    public String[] getHobbys() {
-        return hobbys;
-    }
-
-    public void setHobbys(String[] hobbys) {
-        this.hobbys = hobbys;
-    }
 
     public String getName() {
         return name;

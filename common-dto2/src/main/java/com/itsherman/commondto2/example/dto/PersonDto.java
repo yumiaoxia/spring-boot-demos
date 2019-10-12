@@ -16,30 +16,11 @@ import java.util.Arrays;
 @DtoModel(from = Person.class)
 public class PersonDto {
 
-    @DtoProperty
-    private String name;
-
-    @DtoProperty
-    private String[] hobbys;
 
     @DtoProperty
     private BookDto[] books;
 
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String[] getHobbys() {
-        return hobbys;
-    }
-
-    public void setHobbys(String[] hobbys) {
-        this.hobbys = hobbys;
-    }
 
     public BookDto[] getBooks() {
         return books;
@@ -52,8 +33,6 @@ public class PersonDto {
     @Override
     public String toString() {
         return "PersonDto{" +
-                "name='" + name + '\'' +
-                ", hobbys=" + Arrays.toString(hobbys) +
                 ", books=" + Arrays.toString(books) +
                 '}';
     }

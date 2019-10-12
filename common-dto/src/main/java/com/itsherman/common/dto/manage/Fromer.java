@@ -5,6 +5,11 @@ import com.itsherman.common.dto.exception.DtoAssembleFromException;
 import com.itsherman.common.dto.message.ValidMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.CollectionUtils;
+
+import java.lang.reflect.Array;
+import java.util.Collection;
+import java.util.List;
 
 /**
  * <p> </p>
@@ -15,7 +20,7 @@ import org.slf4j.LoggerFactory;
 public class Fromer {
     private static final Logger log = LoggerFactory.getLogger(Fromer.class);
 
-    private Object[] sources;
+    private Object sources;
 
     private Selector selector;
 
@@ -34,40 +39,59 @@ public class Fromer {
         return new TransFormer(this);
     }
 
+    public TransFormer fromList(List<Object> list) {
+        this.sources = list;
+        return new TransFormer(this);
+    }
+
 
     private ValidMessage valid() {
         ValidMessage msg = new ValidMessage(true, "SUCCESS");
-        if (sources == null && sources.length == 0) {
+        Class<?> sourceClazz = sources.getClass();
+        boolean isArray = sourceClazz.isArray();
+        boolean isCollection = Collection.class.isInstance(sources);
+
+        if (isArray && (sources == null || Array.getLength(sources) == 0)) {
             msg = new ValidMessage(false, "source object must not be blank,can not transform!");
+        }
+        if (isCollection && CollectionUtils.isEmpty((Collection<?>) sources)) {
+            msg = new ValidMessage(false, "source object must not be blank,can not transform!");
+
         }
         if (selector == null) {
             msg = new ValidMessage(false, "seletor must not be null,missing target to transform");
         }
         Class clazz = selector.getClazz();
 
-
         DtoMapping dtoMapping = (DtoMapping) clazz.getAnnotation(DtoMapping.class);
         Class[] froms = dtoMapping.from();
         for (Class from : froms) {
             boolean flag = false;
-            for (Object srcObject : sources) {
-                if (from.isInstance(srcObject)) {
-                    flag = true;
-                    break;
+            if (isArray) {
+                Object[] array = (Object[]) sources;
+                for (Object srcObject : array) {
+                    if (from.isInstance(srcObject)) {
+                        flag = true;
+                        break;
+                    }
                 }
+                if (!flag) {
+                    msg = new ValidMessage(true, "missing an source: " + from.getName());
+                }
+            } else if (isCollection) {
+
             }
-            if (!flag) {
-                msg = new ValidMessage(true, "missing an source: " + from.getName());
-            }
+
         }
         return msg;
     }
 
-    public Object[] getSources() {
+
+    public Object getSources() {
         return sources;
     }
 
-    public void setSources(Object[] sources) {
+    public void setSources(Object sources) {
         this.sources = sources;
     }
 

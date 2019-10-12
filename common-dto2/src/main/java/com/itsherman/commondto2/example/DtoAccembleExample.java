@@ -22,7 +22,6 @@ public class DtoAccembleExample {
         Book book = new Book();
         book.setName("java 实战");
         book.setVersion(1);
-        person.setHobbys(new String[]{"足球", "游泳"});
         Book book1 = new Book();
         book1.setName("java 基础");
         book1.setVersion(3);

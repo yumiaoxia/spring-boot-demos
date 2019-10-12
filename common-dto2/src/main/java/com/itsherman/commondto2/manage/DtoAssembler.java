@@ -3,11 +3,18 @@ package com.itsherman.commondto2.manage;
 import com.itsherman.commondto2.core.DtoDefinition;
 import com.itsherman.commondto2.core.DtoDefinitionHolder;
 import com.itsherman.commondto2.core.DtoPropertyDefinition;
+import com.itsherman.commondto2.example.dto.dto2.BookDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.lang.reflect.*;
-import java.util.*;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+import java.lang.reflect.ParameterizedType;
+import java.util.Collection;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
 
 /**
  * <p> </p>
@@ -55,44 +62,29 @@ public class DtoAssembler {
         Object value = null;
         try {
             value = readMethod.invoke(source);
-        } catch (IllegalAccessException | InvocationTargetException e) {
-            e.printStackTrace();
-        }
-        if (Modifier.isFinal(fieldClazz.getModifiers()) || fieldClazz.isPrimitive()) {
-            if (fieldClazz.isArray()) {
-                Object[] values = (Object[]) value;
-                Class fieldGenericType = (Class) field.getGenericType();
-                Class clazz = fieldGenericType.getComponentType();
-                Object[] dtoValues = new Object[values.length];
-                int record = 0;
-                for (Object o : values) {
-                    dtoValues[record++] = ((Optional) DtoTransFormer.as(clazz).apply(o)).get();
+            if (Modifier.isFinal(fieldClazz.getModifiers()) || fieldClazz.isPrimitive()) {
+                if (fieldClazz.isArray()) {
+                    Class valueClazz = fieldClazz.getComponentType();
+                    if (!Modifier.isFinal(valueClazz.getModifiers())) {
+                        Object[] values = (Object[]) value;
+                        BookDto[] dtoValues = new BookDto[values.length];
+                        for (int i = 0; i < values.length; i++) {
+                            dtoValues[i] = ((Optional<BookDto>) DtoTransFormer.as(valueClazz).apply(values[i])).get();
+                        }
+                        value = dtoValues;
+                    }
                 }
-                try {
-                    writeMethod.invoke(dest, dtoValues);
-                } catch (IllegalAccessException | InvocationTargetException e) {
-                    e.printStackTrace();
-                }
+            } else if (Collection.class.isAssignableFrom(fieldClazz)) {
+                Collection sourceCollection = (Collection) value;
+                ParameterizedType pt = (ParameterizedType) field.getGenericType();
+                Class actualType = (Class) pt.getActualTypeArguments()[0];
+                value = DtoTransFormer.asList(actualType).apply(sourceCollection);
             } else {
-                try {
-                    writeMethod.invoke(dest, value);
-                } catch (IllegalAccessException | InvocationTargetException e) {
-                    e.printStackTrace();
-                }
+                value = ((Optional) DtoTransFormer.as(fieldClazz).apply(value)).get();
             }
-        } else if (Collection.class.isAssignableFrom(fieldClazz)) {
-            Collection sourceCollection = (Collection) value;
-            ParameterizedType pt = (ParameterizedType) field.getGenericType();
-            Class actualType = (Class) pt.getActualTypeArguments()[0];
-            List<?> destCollection = DtoTransFormer.asList(actualType).apply(sourceCollection);
-            try {
-                writeMethod.invoke(dest, destCollection);
-            } catch (IllegalAccessException | InvocationTargetException e) {
-                e.printStackTrace();
-            }
-        } else if (fieldClazz.isArray()) {
-            Type type = field.getGenericType();
-            String t = null;
+            writeMethod.invoke(dest, value);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
