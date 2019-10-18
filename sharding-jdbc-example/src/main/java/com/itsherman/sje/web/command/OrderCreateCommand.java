@@ -17,9 +17,6 @@ import java.util.List;
 @ApiModel
 public class OrderCreateCommand {
 
-    @ApiModelProperty("订单号")
-    private Long orderId;
-
     @ApiModelProperty("买家名字")
     private String buyerName;
 
