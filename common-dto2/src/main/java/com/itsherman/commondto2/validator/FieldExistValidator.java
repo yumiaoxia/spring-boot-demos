@@ -26,7 +26,7 @@ public class FieldExistValidator implements DtoValidator {
     public Set<ValidMessage> validate(DtoDefinition dtoDefinition,Class<?> dtoClass, Class[] fromClasses) {
         Set<ValidMessage> validMessages = new HashSet<>();
         Field[] fields = dtoClass.getDeclaredFields();
-        Method[] methods = dtoClass.getMethods();
+        Method[] methods = dtoClass.getDeclaredMethods();
         boolean hasGetter = false;
         for (Field field : fields) {
             Class<?> fieldClass = field.getType();

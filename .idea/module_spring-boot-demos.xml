@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_spring-boot-demos" default="compile.module.spring-boot-demos">
+  <dirname property="module.spring-boot-demos.basedir" file="${ant.file.module_spring-boot-demos}"/>
+  
+  <property name="module.jdk.home.spring-boot-demos" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.spring-boot-demos" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.spring-boot-demos" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.spring-boot-demos" value="-encoding UTF-8 -source 12 -target 8 ${compiler.args}"/>
+  
+  <property name="spring-boot-demos.output.dir" value="undefined"/>
+  <property name="spring-boot-demos.testoutput.dir" value="undefined"/>
+  
+  <path id="spring-boot-demos.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="spring-boot-demos.module.production.classpath"/>
+  
+  <path id="spring-boot-demos.runtime.production.module.classpath"/>
+  
+  <path id="spring-boot-demos.module.classpath"/>
+  
+  <path id="spring-boot-demos.runtime.module.classpath"/>
+  
+  
+  <patternset id="excluded.from.module.spring-boot-demos">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.spring-boot-demos">
+    <patternset refid="excluded.from.module.spring-boot-demos"/>
+  </patternset>
+  
+  
+  <target name="compile.module.spring-boot-demos" depends="compile.module.spring-boot-demos.production,compile.module.spring-boot-demos.tests" description="Compile module spring-boot-demos"/>
+  
+  <target name="compile.module.spring-boot-demos.production" depends="register.custom.compilers" description="Compile module spring-boot-demos; production classes"/>
+  
+  <target name="compile.module.spring-boot-demos.tests" depends="register.custom.compilers,compile.module.spring-boot-demos.production" description="compile module spring-boot-demos; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.spring-boot-demos" description="cleanup module">
+    <delete dir="${spring-boot-demos.output.dir}"/>
+    <delete dir="${spring-boot-demos.testoutput.dir}"/>
+  </target>
+</project>

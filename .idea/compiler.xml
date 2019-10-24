@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="common-dto2" />
+        <module name="common-email" />
+        <module name="common-dto" />
+        <module name="common-web" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel target="8">
+      <module name="common-dto" target="1.8" />
+      <module name="common-dto2" target="1.8" />
+      <module name="common-email" target="1.8" />
+      <module name="common-web" target="1.8" />
+      <module name="sharding-jdbc-example" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="common-dto" options="-parameters" />
+      <module name="common-dto2" options="-parameters" />
+      <module name="common-email" options="-parameters" />
+      <module name="common-web" options="-parameters" />
+      <module name="sharding-jdbc-example" options="-parameters" />
+    </option>
+  </component>
+</project>

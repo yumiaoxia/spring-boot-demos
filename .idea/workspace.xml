@@ -1,0 +1,1422 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="8d5f4839-1877-48f7-8818-45a84800b60a" name="Default Changelist" comment="发送">
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__ch_qos_logback_logback_classic_1_2_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__ch_qos_logback_logback_core_1_2_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_jayway_jsonpath_json_path_2_4_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_sun_mail_javax_mail_1_6_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_vaadin_external_google_android_json_0_0_20131108_vaadin1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_activation_activation_1_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_activation_javax_activation_api_1_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_annotation_javax_annotation_api_1_3_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_mail_mail_1_4_7.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_xml_bind_jaxb_api_2_3_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_12.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_bytebuddy_byte_buddy_1_9_16.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_bytebuddy_byte_buddy_agent_1_9_16.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_minidev_accessors_smart_1_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_minidev_json_smart_2_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_api_2_11_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_to_slf4j_2_11_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_assertj_assertj_core_3_11_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_library_1_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mockito_mockito_core_2_23_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_objenesis_objenesis_2_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_ow2_asm_asm_5_0_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_projectlombok_lombok_1_18_8.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_skyscreamer_jsonassert_1_5_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_jul_to_slf4j_1_7_26.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_26.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_2_1_7_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_autoconfigure_2_1_7_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_configuration_processor_2_1_7_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_2_1_7_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_logging_2_1_7_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_test_2_1_7_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_test_2_1_7_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_test_autoconfigure_2_1_7_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_aop_5_1_9_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_beans_5_1_9_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_5_1_9_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_core_5_1_9_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_expression_5_1_9_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_jcl_5_1_9_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_test_5_1_9_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_xmlunit_xmlunit_core_2_6_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_yaml_snakeyaml_1_23.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/module_spring-boot-demos.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/spring-boot-demos.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common-dto/.mvn/wrapper/MavenWrapperDownloader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common-dto/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common-dto/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-dto2/src/main/java/com/itsherman/commondto2/validator/FieldExistValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-dto2/src/main/java/com/itsherman/commondto2/validator/FieldExistValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-web/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common-web/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sharding-jdbc-example/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sharding-jdbc-example/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/SharddingJdbcExampleApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/dao/BaseRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/dao/OrderItemRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/dao/OrderRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/model/BaseEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/model/Order.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/model/OrderItem.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/service/OrderItemService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/service/OrderService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/service/impl/OrderItemServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/service/impl/OrderServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/web/command/OrderCreateCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/web/command/OrderItemCreateCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/web/controller/IndexController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/web/controller/OrderController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/web/controller/OrderItemController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/web/dto/OrderDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/web/dto/OrderItemDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/web/service/OrderApplicationService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/web/service/OrderItemApplicationService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sharding-jdbc-example/src/main/resources/application.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sharding-jdbc-example/src/test/java/com/itsherman/sje/SharddingJdbcExampleApplicationTests.java" beforeDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/common-email/target/" />
+    <ignored path="$PROJECT_DIR$/common-web/target/" />
+    <ignored path="$PROJECT_DIR$/common-dto/target/" />
+    <ignored path="$PROJECT_DIR$/common-dto2/target/" />
+    <ignored path="$PROJECT_DIR$/shardding-jdbc-example/target/" />
+    <ignored path="$PROJECT_DIR$/sharding-jdbc-example/target/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="DefaultGradleProjectSettings">
+    <option name="isMigrated" value="true" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/common-dto2/src/main/java/com/itsherman/commondto2/core/DtoDefinitionHolder.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="108">
+              <caret line="29" selection-start-line="29" selection-end-line="29" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/common-dto2/src/main/java/com/itsherman/commondto2/validator/FieldExistValidator.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="63">
+              <caret line="29" selection-start-line="29" selection-end-line="29" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/common-dto2/src/main/java/com/itsherman/commondto2/manage/DtoAssembler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="98">
+              <caret line="39" selection-start-line="39" selection-end-line="39" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://F:/maven/repository/org/apache/shardingsphere/sharding-jdbc-core/4.0.0-RC2/sharding-jdbc-core-4.0.0-RC2.jar!/org/apache/shardingsphere/shardingjdbc/api/ShardingDataSourceFactory.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="19">
+              <caret line="15" column="19" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="XML Properties File" />
+        <option value="Kotlin File" />
+        <option value="AnnotationType" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>@ExceptionHandler</find>
+      <find>configurationProperties</find>
+      <find>spring.messages</find>
+      <find>MessageSourceProperties</find>
+      <find>ApiModelProperty</find>
+      <find>pattern</find>
+      <find>ComponentScan</find>
+      <find>ClassUtils</find>
+      <find>componentScan</find>
+      <find>componentScanBeanNameGenerator</find>
+      <find>doScan</find>
+      <find>EnableSwagger</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/common-dto2/src/main/java/com/itsherman/commondto2/scanner/ClassPathDtoScanner.java" />
+        <option value="$PROJECT_DIR$/common-dto2/src/main/java/com/itsherman/commondto2/core/DtoValidator.java" />
+        <option value="$PROJECT_DIR$/common-dto2/src/main/java/com/itsherman/commondto2/core/DtoDefiniation.java" />
+        <option value="$PROJECT_DIR$/common-dto2/src/main/java/com/itsherman/commondto2/core/ValidMessage.java" />
+        <option value="$PROJECT_DIR$/common-dto2/src/main/java/com/itsherman/commondto2/core/FieldValidator.java" />
+        <option value="$PROJECT_DIR$/common-dto2/src/main/java/com/itsherman/commondto2/core/FieldSourceValidator.java" />
+        <option value="$PROJECT_DIR$/common-dto2/src/main/java/com/itsherman/commondto2/core/DtoPropertyDefinition.java" />
+        <option value="$PROJECT_DIR$/common-dto2/src/main/java/com/itsherman/commondto2/validator/DtoValidator.java" />
+        <option value="$PROJECT_DIR$/common-dto2/src/main/java/com/itsherman/commondto2/validator/FieldSourceValidator.java" />
+        <option value="$PROJECT_DIR$/common-dto2/src/main/java/com/itsherman/commondto2/validator/ValidatorHolder.java" />
+        <option value="$PROJECT_DIR$/common-dto2/src/main/java/com/itsherman/commondto2/manage/Selector.java" />
+        <option value="$PROJECT_DIR$/common-dto2/src/main/java/com/itsherman/commondto2/manage/Collector.java" />
+        <option value="$PROJECT_DIR$/common-dto2/src/main/java/com/itsherman/commondto2/manage/Frommer.java" />
+        <option value="$PROJECT_DIR$/common-dto2/pom.xml" />
+        <option value="$PROJECT_DIR$/common-dto2/src/main/java/com/itsherman/commondto2/core/DtoDefinitionHolder.java" />
+        <option value="$PROJECT_DIR$/common-dto2/src/main/java/com/itsherman/commondto2/core/DtoDefinition.java" />
+        <option value="$PROJECT_DIR$/common-dto2/src/main/java/com/itsherman/commondto2/example/model/Book.java" />
+        <option value="$PROJECT_DIR$/common-dto2/src/main/java/com/itsherman/commondto2/example/dto/dto2/BookDto.java" />
+        <option value="$PROJECT_DIR$/common-dto2/src/main/resources/application.yaml" />
+        <option value="$PROJECT_DIR$/common-dto2/src/main/java/com/itsherman/commondto2/manage/DtoTransFormer.java" />
+        <option value="$PROJECT_DIR$/common-dto2/src/main/java/com/itsherman/commondto2/example/model/Person.java" />
+        <option value="$PROJECT_DIR$/common-dto2/src/main/java/com/itsherman/commondto2/example/DtoAccembleExample.java" />
+        <option value="$PROJECT_DIR$/common-dto2/src/main/java/com/itsherman/commondto2/example/dto/PersonDto.java" />
+        <option value="$PROJECT_DIR$/common-dto2/src/main/java/com/itsherman/commondto2/manage/DtoAssembler.java" />
+        <option value="$PROJECT_DIR$/common-dto2/src/test/java/com/itsherman/commondto2/CommonDto2ApplicationTests.java" />
+        <option value="$PROJECT_DIR$/shardding-jdbc-example/pom.xml" />
+        <option value="$PROJECT_DIR$/sharding-jdbc-example/pom.xml" />
+        <option value="$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/SharddingJdbcExampleApplication.java" />
+        <option value="$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/web/controller/IndexController.java" />
+        <option value="$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/model/BaseEntity.java" />
+        <option value="$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/dao/BaseRepository.java" />
+        <option value="$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/dao/OrderRepository.java" />
+        <option value="$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/dao/OrderItemRepository.java" />
+        <option value="$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/service/OrderItemService.java" />
+        <option value="$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/service/impl/OrderItemServiceImpl.java" />
+        <option value="$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/web/service/OrderItemApplicationService.java" />
+        <option value="$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/web/controller/OrderItemController.java" />
+        <option value="$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/model/OrderItem.java" />
+        <option value="$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/service/impl/OrderServiceImpl.java" />
+        <option value="$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/service/OrderService.java" />
+        <option value="$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/web/controller/OrderController.java" />
+        <option value="$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/web/command/OrderItemCreateCommand.java" />
+        <option value="$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/web/command/OrderCreateCommand.java" />
+        <option value="$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/model/Order.java" />
+        <option value="$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/web/dto/OrderDto.java" />
+        <option value="$PROJECT_DIR$/common-dto2/src/main/java/com/itsherman/commondto2/validator/FieldExistValidator.java" />
+        <option value="$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/web/dto/OrderItemDto.java" />
+        <option value="$PROJECT_DIR$/common-web/pom.xml" />
+        <option value="$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/web/service/OrderApplicationService.java" />
+        <option value="$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/JdbcConfig.java" />
+        <option value="$PROJECT_DIR$/sharding-jdbc-example/src/main/resources/application.yaml" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="F:\maven\repository" />
+        <option name="mavenHome" value="F:/maven/apache-maven-3.6.0" />
+        <option name="userSettingsFile" value="F:\maven\apache-maven-3.6.0\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="sharding-jdbc-example" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="sharding-jdbc-example" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Dependencies" type="f4be9f2a:MavenProjectsStructure$DependenciesNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="sharding-jdbc-example" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Dependencies" type="f4be9f2a:MavenProjectsStructure$DependenciesNode" />
+          <item name="org.apache.shardingsphere:sharding-jdbc-core:4.0.0-RC2" type="c0821a7e:MavenProjectsStructure$DependencyNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="sharding-jdbc-example" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Dependencies" type="f4be9f2a:MavenProjectsStructure$DependenciesNode" />
+          <item name="org.apache.shardingsphere:sharding-jdbc-core:4.0.0-RC2" type="c0821a7e:MavenProjectsStructure$DependencyNode" />
+          <item name="org.apache.shardingsphere:sharding-core-entry:4.0.0-RC2" type="c0821a7e:MavenProjectsStructure$DependencyNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="sharding-jdbc-example" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Dependencies" type="f4be9f2a:MavenProjectsStructure$DependenciesNode" />
+          <item name="org.apache.shardingsphere:sharding-jdbc-core:4.0.0-RC2" type="c0821a7e:MavenProjectsStructure$DependencyNode" />
+          <item name="org.apache.shardingsphere:sharding-core-entry:4.0.0-RC2" type="c0821a7e:MavenProjectsStructure$DependencyNode" />
+          <item name="org.apache.shardingsphere:sharding-core-common:4.0.0-RC2" type="c0821a7e:MavenProjectsStructure$DependencyNode" />
+        </path>
+      </expand>
+      <select />
+    </treeState>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="62" />
+    <option name="width" value="1318" />
+    <option name="height" value="775" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <hideEmptyPackages ProjectPane="true" />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="spring-boot-demos" type="b2602c69:ProjectViewProjectNode" />
+              <item name="spring-boot-demos" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring-boot-demos" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="GenerateAntBuildDialog.backupFiles" value="true" />
+    <property name="GenerateAntBuildDialog.enableUiFormCompile" value="true" />
+    <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
+    <property name="GenerateAntBuildDialog.outputFileNameProperty" value="spring-boot-demos" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="jdk.selected.JAVA_MODULE" value="1.8" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/sharding-jdbc-example/pom.xml" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\epProject\spring-boot-demos\common-web\src\main\resources\static" />
+      <recent name="F:\epProject\spring-boot-demos\common-email\src\test\resources\static" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.itsherman.common.email.constants" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\epProject\spring-boot-demos\common-dto2\src\main\java\com\itsherman\commondto2\annotations" />
+      <recent name="F:\epProject\spring-boot-demos\common-email\src\test\resources" />
+      <recent name="F:\epProject\spring-boot-demos\common-email\src\main\java\com\itsherman\common\email\example" />
+      <recent name="F:\epProject\spring-boot-demos\common-email\src\test" />
+      <recent name="F:\epProject\spring-boot-demos\common-email\src\main\resources" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.SharddingJdbcExampleApplication">
+    <configuration name="CommonDto2ApplicationTests.contextLoads" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="common-dto2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.itsherman.commondto2.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.itsherman.commondto2" />
+      <option name="MAIN_CLASS_NAME" value="com.itsherman.commondto2.CommonDto2ApplicationTests" />
+      <option name="METHOD_NAME" value="contextLoads" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CommonDto2ApplicationTests.otherTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="common-dto2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.itsherman.commondto2.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.itsherman.commondto2" />
+      <option name="MAIN_CLASS_NAME" value="com.itsherman.commondto2.CommonDto2ApplicationTests" />
+      <option name="METHOD_NAME" value="otherTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CommonDto2ApplicationTests.testDtoInvoke" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="common-dto2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.itsherman.commondto2.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.itsherman.commondto2" />
+      <option name="MAIN_CLASS_NAME" value="com.itsherman.commondto2.CommonDto2ApplicationTests" />
+      <option name="METHOD_NAME" value="testDtoInvoke" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CommonDtoApplicationTests.contextLoads" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="common-dto" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.itsherman.common.dto.manage.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.itsherman.common.dto" />
+      <option name="MAIN_CLASS_NAME" value="com.itsherman.common.dto.CommonDtoApplicationTests" />
+      <option name="METHOD_NAME" value="contextLoads" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CommonEmailApplicationTests.LoadUndeleted" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="common-email" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.itsherman.common.email.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.itsherman.common.email" />
+      <option name="MAIN_CLASS_NAME" value="com.itsherman.common.email.CommonEmailApplicationTests" />
+      <option name="METHOD_NAME" value="LoadUndeleted" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CommonDto2Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="common-dto2" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.itsherman.commondto2.CommonDto2Application" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CommonDtoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="common-dto" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.itsherman.common.dto.CommonDtoApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CommonEmailApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="common-email" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.itsherman.common.email.CommonEmailApplication" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CommonWebApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="common-web" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.itsherman.commonweb.CommonWebApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SharddingJdbcExampleApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="sharding-jdbc-example" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.itsherman.sje.SharddingJdbcExampleApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="JUnit.CommonEmailApplicationTests.LoadUndeleted" />
+      <item itemvalue="JUnit.CommonDtoApplicationTests.contextLoads" />
+      <item itemvalue="JUnit.CommonDto2ApplicationTests.contextLoads" />
+      <item itemvalue="JUnit.CommonDto2ApplicationTests.testDtoInvoke" />
+      <item itemvalue="JUnit.CommonDto2ApplicationTests.otherTest" />
+      <item itemvalue="Spring Boot.CommonEmailApplication" />
+      <item itemvalue="Spring Boot.CommonWebApplication" />
+      <item itemvalue="Spring Boot.CommonDtoApplication" />
+      <item itemvalue="Spring Boot.CommonDto2Application" />
+      <item itemvalue="Spring Boot.SharddingJdbcExampleApplication" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.CommonDto2ApplicationTests.otherTest" />
+        <item itemvalue="JUnit.CommonDto2ApplicationTests.contextLoads" />
+        <item itemvalue="JUnit.CommonDto2ApplicationTests.testDtoInvoke" />
+        <item itemvalue="JUnit.CommonDtoApplicationTests.contextLoads" />
+        <item itemvalue="JUnit.CommonEmailApplicationTests.LoadUndeleted" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8d5f4839-1877-48f7-8818-45a84800b60a" name="Default Changelist" comment="" />
+      <created>1566541064016</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1566541064016</updated>
+      <workItem from="1566541066137" duration="25004000" />
+      <workItem from="1566636463336" duration="3602000" />
+      <workItem from="1566783056012" duration="36300000" />
+      <workItem from="1567392233646" duration="30352000" />
+      <workItem from="1567683187399" duration="115631000" />
+      <workItem from="1568787541078" duration="8140000" />
+      <workItem from="1569305372465" duration="19662000" />
+      <workItem from="1569550106718" duration="70995000" />
+      <workItem from="1570606137838" duration="12444000" />
+      <workItem from="1570783459622" duration="4445000" />
+      <workItem from="1571108832019" duration="582000" />
+      <workItem from="1571385160034" duration="8887000" />
+      <workItem from="1571724600394" duration="5098000" />
+    </task>
+    <task id="LOCAL-00001" summary="一般邮件发送">
+      <created>1566563327665</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1566563327665</updated>
+    </task>
+    <task id="LOCAL-00002" summary="一般邮件发送">
+      <created>1566564155683</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1566564155683</updated>
+    </task>
+    <task id="LOCAL-00003" summary="moban邮件发送">
+      <created>1566565526311</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1566565526311</updated>
+    </task>
+    <task id="LOCAL-00004" summary="发送带附件邮件">
+      <created>1566612732551</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1566612732551</updated>
+    </task>
+    <task id="LOCAL-00005" summary="实力乱码问题">
+      <created>1566637971940</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1566637971940</updated>
+    </task>
+    <task id="LOCAL-00006" summary="精简连接属性配置">
+      <created>1566640842995</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1566640842995</updated>
+    </task>
+    <task id="LOCAL-00007" summary="统一格式验证">
+      <created>1566789339065</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1566789339065</updated>
+    </task>
+    <task id="LOCAL-00008" summary="连接会话兼容改造">
+      <created>1566792083636</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1566792083636</updated>
+    </task>
+    <task id="LOCAL-00009" summary="发送带附件邮件">
+      <created>1567246601284</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1567246601284</updated>
+    </task>
+    <task id="LOCAL-00010" summary="解析邮件">
+      <created>1567391786720</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1567391786720</updated>
+    </task>
+    <task id="LOCAL-00011" summary="多文本邮件">
+      <created>1567403839441</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1567403839442</updated>
+    </task>
+    <task id="LOCAL-00012" summary="配置文件">
+      <created>1567403985486</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1567403985486</updated>
+    </task>
+    <task id="LOCAL-00013" summary="发送">
+      <created>1567404722786</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1567404722786</updated>
+    </task>
+    <task id="LOCAL-00014" summary="request &amp; response">
+      <created>1567515799774</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1567515799775</updated>
+    </task>
+    <task id="LOCAL-00015" summary="web公共组件">
+      <created>1567687741912</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1567687741913</updated>
+    </task>
+    <task id="LOCAL-00016" summary="web公共组件">
+      <created>1567775104875</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1567775104875</updated>
+    </task>
+    <task id="LOCAL-00017" summary="参数记录">
+      <created>1567837261021</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1567837261022</updated>
+    </task>
+    <task id="LOCAL-00018" summary="错误日志记录真实的ip">
+      <created>1567850126245</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1567850126245</updated>
+    </task>
+    <task id="LOCAL-00019" summary="发送">
+      <created>1567851089235</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1567851089235</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Dto转换初步，基本">
+      <created>1568113482109</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1568113482109</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Dto对象转换">
+      <created>1568187385668</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1568187385668</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Dto">
+      <created>1569836432420</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1569836432420</updated>
+    </task>
+    <task id="LOCAL-00023" summary="集合编集">
+      <created>1570531565915</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1570531565915</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Dto2集合">
+      <created>1570616844581</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1570616844581</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Dto2基本完成">
+      <created>1570846356996</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1570846356996</updated>
+    </task>
+    <task id="LOCAL-00026" summary="sharding-jdbc实例初建">
+      <created>1571394317848</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1571394317848</updated>
+    </task>
+    <task id="LOCAL-00027" summary="sharding-jdbc 初建">
+      <created>1571394438039</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1571394438039</updated>
+    </task>
+    <task id="LOCAL-00028" summary="发送">
+      <created>1571394622765</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1571394622765</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
+    <servers />
+  </component>
+  <component name="TestHistory">
+    <history-entry file="CommonDto2ApplicationTests_contextLoads - 2019.10.10 at 18h 35m 35s.xml">
+      <configuration name="CommonDto2ApplicationTests.contextLoads" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CommonDto2ApplicationTests_contextLoads - 2019.10.10 at 18h 35m 53s.xml">
+      <configuration name="CommonDto2ApplicationTests.contextLoads" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CommonDto2ApplicationTests_contextLoads - 2019.10.10 at 18h 37m 18s.xml">
+      <configuration name="CommonDto2ApplicationTests.contextLoads" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CommonDto2ApplicationTests_contextLoads - 2019.10.10 at 18h 38m 35s.xml">
+      <configuration name="CommonDto2ApplicationTests.contextLoads" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CommonDto2ApplicationTests_otherTest - 2019.10.11 at 17h 05m 32s.xml">
+      <configuration name="CommonDto2ApplicationTests.otherTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CommonDto2ApplicationTests_otherTest - 2019.10.11 at 17h 06m 08s.xml">
+      <configuration name="CommonDto2ApplicationTests.otherTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CommonDto2ApplicationTests_otherTest - 2019.10.11 at 17h 06m 53s.xml">
+      <configuration name="CommonDto2ApplicationTests.otherTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CommonDto2ApplicationTests_otherTest - 2019.10.11 at 17h 07m 56s.xml">
+      <configuration name="CommonDto2ApplicationTests.otherTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CommonDto2ApplicationTests_otherTest - 2019.10.11 at 17h 08m 27s.xml">
+      <configuration name="CommonDto2ApplicationTests.otherTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CommonDto2ApplicationTests_otherTest - 2019.10.11 at 17h 11m 01s.xml">
+      <configuration name="CommonDto2ApplicationTests.otherTest" configurationId="JUnit" />
+    </history-entry>
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="341142000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="62" y="0" width="1318" height="775" extended-state="0" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4964539" visible="true" weight="0.34260732" />
+      <window_info id="Structure" order="1" sideWeight="0.5035461" side_tool="true" weight="0.32591414" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="Capture Tool" order="4" />
+      <window_info id="UI Designer" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info id="Web" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3290735" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49924242" weight="0.44293016" />
+      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.24797407" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32991454" />
+      <window_info anchor="bottom" id="Spring" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32991454" />
+      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5007576" side_tool="true" weight="0.33504274" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.48040885" />
+      <window_info anchor="bottom" id="Database Changes" order="12" />
+      <window_info anchor="bottom" id="Java Enterprise" order="13" />
+      <window_info anchor="bottom" id="Version Control" order="14" weight="0.38841566" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Maven" order="3" weight="0.3282989" />
+      <window_info anchor="right" id="Palette" order="4" />
+      <window_info anchor="right" id="Capture Analysis" order="5" />
+      <window_info anchor="right" id="Mybatis datasource" order="6" side_tool="true" />
+      <window_info anchor="right" id="Database" order="7" />
+      <window_info anchor="right" id="Palette&#9;" order="8" />
+      <window_info anchor="right" id="Theme Preview" order="9" />
+      <window_info anchor="right" id="Bean Validation" order="10" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="一般邮件发送" />
+    <MESSAGE value="moban邮件发送" />
+    <MESSAGE value="实力乱码问题" />
+    <MESSAGE value="精简连接属性配置" />
+    <MESSAGE value="统一格式验证" />
+    <MESSAGE value="连接会话兼容改造" />
+    <MESSAGE value="发送带附件邮件" />
+    <MESSAGE value="解析邮件" />
+    <MESSAGE value="多文本邮件" />
+    <MESSAGE value="配置文件" />
+    <MESSAGE value="request &amp; response" />
+    <MESSAGE value="web公共组件" />
+    <MESSAGE value="参数记录" />
+    <MESSAGE value="错误日志记录真实的ip" />
+    <MESSAGE value="Dto转换初步，基本" />
+    <MESSAGE value="Dto对象转换" />
+    <MESSAGE value="Dto" />
+    <MESSAGE value="集合编集" />
+    <MESSAGE value="Dto2集合" />
+    <MESSAGE value="Dto2基本完成" />
+    <MESSAGE value="sharding-jdbc实例初建" />
+    <MESSAGE value="sharding-jdbc 初建" />
+    <MESSAGE value="发送" />
+    <option name="LAST_COMMIT_MESSAGE" value="发送" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/common-web/src/main/java/com/itsherman/commonweb/interceptor/LocaleMessageInterceptor.java</url>
+          <line>33</line>
+          <properties />
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/common-web/src/main/java/com/itsherman/commonweb/example/domain/Person.java</url>
+          <line>45</line>
+          <properties />
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/common-dto2/src/main/java/com/itsherman/commondto2/manage/DtoAssembler.java</url>
+          <line>39</line>
+          <properties />
+          <option name="timeStamp" value="107" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="JUnit">
+        <watch expression="((FLAGS)((IMAPMessage)message).flags).system_flags" custom="com.sun.mail.imap.protocol.FLAGS,com.sun.mail.imap.IMAPMessage" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="setValue">
+      <expression>
+        <expression-string>&quot;email.163.smtp.port&quot;</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>&quot;email.163.smtp.host&quot;</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/common-dto2/src/main/java/com/itsherman/commondto2/core/DtoPropertyDefinition.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="93">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#319#320#0" expanded="true" />
+            <element signature="e#347#348#0" expanded="true" />
+            <element signature="e#388#389#0" expanded="true" />
+            <element signature="e#422#423#0" expanded="true" />
+            <element signature="e#460#461#0" expanded="true" />
+            <element signature="e#494#495#0" expanded="true" />
+            <element signature="e#548#549#0" expanded="true" />
+            <element signature="e#594#595#0" expanded="true" />
+            <element signature="e#631#632#0" expanded="true" />
+            <element signature="e#664#665#0" expanded="true" />
+            <element signature="e#716#717#0" expanded="true" />
+            <element signature="e#760#761#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12-sources.jar!/org/junit/internal/runners/model/ReflectiveCallable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="13" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_172/src.zip!/java/lang/reflect/Method.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-55">
+          <caret line="483" column="18" selection-start-line="483" selection-start-column="18" selection-end-line="483" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common-dto2/src/main/java/com/itsherman/commondto2/example/dto/dto2/BookDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="12" column="28" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-test/5.1.9.RELEASE/spring-test-5.1.9.RELEASE.jar!/org/springframework/test/context/junit4/statements/RunBeforeTestExecutionCallbacks.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="26" selection-start-line="26" selection-end-line="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_172/src.zip!/java/util/function/Function.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="24">
+          <caret line="40" column="17" selection-start-line="40" selection-start-column="17" selection-end-line="40" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common-dto2/src/main/java/com/itsherman/commondto2/example/dto/PersonDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="624">
+          <caret line="35" selection-start-line="35" selection-end-line="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common-dto2/src/main/java/com/itsherman/commondto2/example/model/Person.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="22" column="30" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
+          <folding>
+            <element signature="e#371#372#0" expanded="true" />
+            <element signature="e#413#414#0" expanded="true" />
+            <element signature="e#447#448#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common-web/src/main/java/com/itsherman/commonweb/response/ResponseBodyHandlerAdvice.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common-web/src/main/java/com/itsherman/commonweb/example/controller/IndexController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common-dto2/src/main/java/com/itsherman/commondto2/example/DtoAccembleExample.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="576">
+          <caret line="30" column="25" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common-dto2/src/test/java/com/itsherman/commondto2/CommonDto2ApplicationTests.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="23" column="16" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_172/src.zip!/java/lang/Number.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="744">
+          <caret line="54" column="22" selection-start-line="54" selection-start-column="22" selection-end-line="54" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common-dto2/src/main/java/com/itsherman/commondto2/example/model/Book.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="29" column="1" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common-dto2/src/main/java/com/itsherman/commondto2/manage/DtoTransFormer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="21" column="5" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shardding-jdbc-example/mvnw" />
+    <entry file="file://$PROJECT_DIR$/shardding-jdbc-example/mvnw.cmd" />
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_172/src.zip!/java/lang/Long.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="47">
+          <caret line="1537" column="25" selection-start-line="1537" selection-start-column="25" selection-end-line="1537" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common-web/src/main/java/com/itsherman/commonweb/config/SwaggerConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common-web/src/main/java/com/itsherman/commonweb/CommonWebApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="6" selection-start-line="6" selection-end-line="6" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/SharddingJdbcExampleApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/model/BaseEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/dao/BaseRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/dao/OrderRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/dao/OrderItemRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/service/OrderItemService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/service/impl/OrderItemServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/web/service/OrderItemApplicationService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="17" column="49" selection-start-line="17" selection-start-column="49" selection-end-line="17" selection-end-column="49" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#383#384#0" expanded="true" />
+            <element signature="e#439#440#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/web/controller/IndexController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="15" selection-start-line="15" selection-end-line="17" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/web/controller/OrderItemController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="232">
+          <caret line="21" column="71" selection-start-line="21" selection-start-column="71" selection-end-line="21" selection-end-column="71" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/service/OrderService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="12" column="12" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/service/impl/OrderServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/web/command/OrderItemCreateCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/web/command/OrderCreateCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="79">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/web/dto/OrderDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="33" column="16" selection-start-line="33" selection-start-column="16" selection-end-line="33" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common-dto2/src/main/java/com/itsherman/commondto2/validator/DtoValidator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="15" column="22" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common-dto2/src/main/java/com/itsherman/commondto2/validator/FieldSourceValidator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common-dto2/src/main/resources/application.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common-web/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="27" column="21" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/model/OrderItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="537">
+          <caret line="33" column="14" selection-start-line="33" selection-start-column="14" selection-end-line="33" selection-end-column="14" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/web/dto/OrderItemDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="16" column="27" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common-dto2/src/main/java/com/itsherman/commondto2/validator/FieldExistValidator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="29" selection-start-line="29" selection-end-line="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common-dto2/src/main/java/com/itsherman/commondto2/core/DtoDefinitionHolder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="29" selection-start-line="29" selection-end-line="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/web/controller/OrderController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="39">
+          <caret line="35" column="51" selection-start-line="35" selection-start-column="51" selection-end-line="35" selection-end-column="51" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/web/service/OrderApplicationService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="134">
+          <caret line="46" column="76" selection-start-line="46" selection-start-column="76" selection-end-line="46" selection-end-column="76" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://F:/maven/repository/org/apache/shardingsphere/sharding-jdbc-core/4.0.0-RC2/sharding-jdbc-core-4.0.0-RC2.jar!/org/apache/shardingsphere/shardingjdbc/api/ShardingDataSourceFactory.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="15" column="19" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/JdbcConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9">
+          <caret line="18" column="35" selection-start-line="18" selection-start-column="35" selection-end-line="18" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sharding-jdbc-example/src/main/resources/application.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="33">
+          <caret line="47" selection-start-line="47" selection-end-line="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sharding-jdbc-example/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="507">
+          <caret line="38" column="20" selection-start-line="38" selection-start-column="20" selection-end-line="38" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sharding-jdbc-example/src/main/java/com/itsherman/sje/model/Order.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-86">
+          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common-dto2/src/main/java/com/itsherman/commondto2/manage/DtoAssembler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="98">
+          <caret line="39" selection-start-line="39" selection-end-line="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <last-edited>common-email:jar</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>Spring</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>common-dto</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Maven: antlr:antlr:2.7.7</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
