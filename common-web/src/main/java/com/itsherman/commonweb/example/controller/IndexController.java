@@ -7,7 +7,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 /**
  * <p> </p>
@@ -26,7 +26,7 @@ public class IndexController {
         Person person = new Person();
         person.setId(id);
         person.setAge(28);
-        person.setBirthday(LocalDateTime.now());
+        person.setBirthday(ZonedDateTime.now());
         person.setName("Sherman");
         return ApiResponse.createSuccess(person);
     }

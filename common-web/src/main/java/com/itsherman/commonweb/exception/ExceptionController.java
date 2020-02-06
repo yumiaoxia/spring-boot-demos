@@ -38,6 +38,13 @@ public class ExceptionController {
         return ApiResponse.createError();
     }
 
+    @ResponseBody
+    @ExceptionHandler(ServiceException.class)
+    public ApiResponse handleServiceException(HttpServletRequest request, ServiceException ex) {
+        log.error("\nException Occurred! \nrequestURL: {},\nheaders:{}, \nparams: {}, \nuserIP: {}", request.getRequestURL(), getRequestHeaders(request), getRequestParams(request), IPUtil.getUserIP(request), ex);
+        return ApiResponse.createError(ex.getErrorCode());
+    }
+
 
     protected String getRequestParams(HttpServletRequest request) {
         StringBuilder result = new StringBuilder();

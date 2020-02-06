@@ -1,6 +1,5 @@
 package com.itsherman.commonweb.response;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.itsherman.commonweb.constants.CommonConstants;
 import io.swagger.annotations.ApiModel;
@@ -22,7 +21,6 @@ public class ApiResponse<T> implements Serializable {
 
     @ApiModelProperty(value = "响应时间", example = CommonConstants.DATETIME_NOW)
     @JsonProperty
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime responseTime = LocalDateTime.now();
 
     @ApiModelProperty("请求是否成功")

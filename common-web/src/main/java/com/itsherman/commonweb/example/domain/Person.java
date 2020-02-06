@@ -1,10 +1,9 @@
 package com.itsherman.commonweb.example.domain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 /**
  * <p> </p>
@@ -22,9 +21,8 @@ public class Person {
     @ApiModelProperty
     private Integer age;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     @ApiModelProperty
-    private LocalDateTime birthday;
+    private ZonedDateTime birthday;
 
     public String getId() {
         return id;
@@ -50,11 +48,11 @@ public class Person {
         this.age = age;
     }
 
-    public LocalDateTime getBirthday() {
+    public ZonedDateTime getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(LocalDateTime birthday) {
+    public void setBirthday(ZonedDateTime birthday) {
         this.birthday = birthday;
     }
 
