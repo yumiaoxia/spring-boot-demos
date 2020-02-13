@@ -1,9 +1,5 @@
-spring:
-  jackson:
-    date-format: yyyy-MM-dd HH:mm:ss
-  application:
-    name: localeApp
-  messages:
-    encoding: UTF-8
-    basename: example/i18n/messages
 
+spring:
+    messages:
+      encoding: UTF-8
+      basename: classpath:template/i18n/messages

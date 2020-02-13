@@ -1,11 +1,11 @@
 package com.itsherman.web.common.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.itsherman.web.common.exception.CommonErrorCode;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
 /**
  * <p> </p>
@@ -17,10 +17,6 @@ import java.time.LocalDateTime;
 public class ApiResponse<T> implements Serializable {
 
     private static final long serialVersionUID = -7416528189137018359L;
-
-    @ApiModelProperty(value = "响应时间")
-    @JsonProperty
-    private LocalDateTime responseTime = LocalDateTime.now();
 
     @ApiModelProperty("请求是否成功")
     @JsonProperty(defaultValue = "true")
@@ -43,7 +39,7 @@ public class ApiResponse<T> implements Serializable {
     }
 
     public static <T> ApiResponse<T> createSuccess(T t) {
-        return createSuccess("0", t);
+        return createSuccess(CommonErrorCode.SUCCESS, t);
     }
 
     public static <T> ApiResponse<T> createSuccess(String code, T t) {
@@ -55,7 +51,7 @@ public class ApiResponse<T> implements Serializable {
     }
 
     public static <T> ApiResponse<T> createError() {
-        return createError("9999");
+        return createError(CommonErrorCode.SYSTEM_EXCEPTION);
     }
 
     public static <T> ApiResponse<T> createError(String code) {
@@ -65,13 +61,6 @@ public class ApiResponse<T> implements Serializable {
         return apiResponse;
     }
 
-    public LocalDateTime getResponseTime() {
-        return responseTime;
-    }
-
-    public void setResponseTime(LocalDateTime responseTime) {
-        this.responseTime = responseTime;
-    }
 
     public Boolean getSuccess() {
         return success;
@@ -108,7 +97,6 @@ public class ApiResponse<T> implements Serializable {
     @Override
     public String toString() {
         return "ApiResponse{" +
-                "responseTime=" + responseTime +
                 ", success=" + success +
                 ", message='" + message + '\'' +
                 ", data=" + data +

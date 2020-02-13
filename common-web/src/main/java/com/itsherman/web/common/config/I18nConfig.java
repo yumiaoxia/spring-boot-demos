@@ -5,7 +5,8 @@ import com.itsherman.web.common.locale.MyLocaleResolver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -15,7 +16,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * @author 俞淼霞
  * @since 2019-09-04
  */
-//@Configuration
+@Configuration
 public class I18nConfig implements WebMvcConfigurer {
 
     @Autowired
@@ -28,9 +29,10 @@ public class I18nConfig implements WebMvcConfigurer {
 
     @Bean
     public MessageSource messageSource() {
-        ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
+        ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
         messageSource.setDefaultEncoding(bundleMessageProperties.getEncoding().name());
         messageSource.setBasename(bundleMessageProperties.getBasename());
+        messageSource.setCacheSeconds(3);
         return messageSource;
     }
 }
