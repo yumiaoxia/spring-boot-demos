@@ -127,10 +127,12 @@ spring 的 maven-plugin 插件会将其打包成两个jar包,一个以`.jar`结�
    ~~~~
    
  
- 4. 统一日期,时间序列化格式
+ 4. 统一全局日期,时间序列化格式
  
-   引入该组件后，目标项目的请求参数，响应参数中如果有LocalDate,LocalDateTime,ZonedDateTime类型的字段，则会按
+   引入该组件后，目标项目的请求参数，响应参数中如果有LocalDate,LocalDateTime,ZonedDateTime,Date类型的字段，则会按
    指定的序列化格式序列化，序列化格式在application.yaml或application.properties文件中指定，如：
+   
+   如果对于某部分日期时间字段需要另一种序列化格式，则可以通过注解`@JsonFormat`指定
    
   ~~~
   spring:
@@ -139,6 +141,7 @@ spring 的 maven-plugin 插件会将其打包成两个jar包,一个以`.jar`结�
           pattern:
             date: yyyy-MM-dd
             date-time: yyyy-MM-dd HH:mm:ss
-            zone: GMT+8
+            zone: Asia/Shanghai
+            time-zone: GMT+8
   ~~~
    

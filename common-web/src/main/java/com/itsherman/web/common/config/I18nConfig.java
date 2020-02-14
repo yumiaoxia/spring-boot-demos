@@ -2,6 +2,7 @@ package com.itsherman.web.common.config;
 
 import com.itsherman.web.common.locale.BundleMessageProperties;
 import com.itsherman.web.common.locale.MyLocaleResolver;
+import com.itsherman.web.common.response.ResponseBodyHandlerAdvice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.MessageSource;
@@ -27,6 +28,11 @@ public class I18nConfig implements WebMvcConfigurer {
     @Bean
     public LocaleResolver localeResolver() {
         return new MyLocaleResolver();
+    }
+
+    @Bean
+    public ResponseBodyHandlerAdvice responseBodyHandlerAdvice() {
+        return new ResponseBodyHandlerAdvice();
     }
 
     @Bean

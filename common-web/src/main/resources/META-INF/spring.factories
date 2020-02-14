@@ -1,1 +1,5 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.itsherman.web.common.config.CommonWebAutoConfiguration
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.itsherman.web.common.config.CommonWebAutoConfiguration,\
+com.itsherman.web.common.config.DateTimeSerializerConfig,\
+com.itsherman.web.common.config.I18nConfig,\
+com.itsherman.web.common.config.SwaggerConfig
