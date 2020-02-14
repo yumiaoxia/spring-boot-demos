@@ -87,10 +87,10 @@ spring 的 maven-plugin 插件会将其打包成两个jar包,一个以`.jar`结�
 3. 统一异常处理和国际化
     开发项目处理异常不可避免，组件根据spring的异常处理机制进一步简化
     
-    *检查异常*： 通常指的是业务逻辑错误,组件定义为 ServiceException 的实例, 并指明具体的异常编号, 组件国际化会根据编号
+    *业务异常*： 通常指的是业务逻辑错误,组件定义为 ServiceException 的实例, 并指明具体的异常编号, 组件国际化会根据编号
     返回具体异常信息
     
-    *非检查异常*： 程序代码异常(空指针，数据类型...),统一界定为系统异常, 没有具体异常信息
+    *非业务异常*： 程序代码异常(空指针，数据类型...),统一界定为系统异常, 没有具体异常信息，使用时应尽量避免这种异常或转为业务异常抛出
 
     组件提供国际化支持，默认根据浏览器设置提示。
     
@@ -101,12 +101,12 @@ spring 的 maven-plugin 插件会将其打包成两个jar包,一个以`.jar`结�
     spring:
         common-web:
             messages:
-                encoding: UTF-8
-                basename: classpath:example/i18n/mess
+                encoding: UTF-8 #制定国际化文件编码
+                basename: classpath:example/i18n/messages  # 指定国际化文件路径
     ~~~~
    
     3.2 创建一个业务异常编号接口文件，继承于组件的 CommonErrorCode,假设一个业务异常
-    编号设定为 9999
+    编号设定为 10001
     
     ~~~java
    public interface ErrorCode extends CommonErrorCode {
@@ -115,15 +115,21 @@ spring 的 maven-plugin 插件会将其打包成两个jar包,一个以`.jar`结�
    ~~~~
 
     3.3 在发生业务异常时主动抛出
-    
    ~~~~java
-   throw new ServiceException(ErrorCode.DEMO_EXCEPTION);
+   // 不带错误关键字
+   throw ServiceException.of(ErrorCode.DEMO_EXCEPTION);
+   // 携带错误关键字列表
+   throw ServiceException.of(ErrorCode.DEMO_EXCEPTION,errorKeyWord)
    ~~~~
+   注意，这里业务异常分为有错误关键字列表的和无错误关键字列表的，有错误关键字列表的异常能够提示更加
+   准确的错误信息，注意两者的不同
    
    3.4 编辑国际化文件
-   
    ~~~properties
+   # 无参数
    10001=示例业务异常
+   # 有参数
+   10001=示例业务异常，参数{0}
    ~~~~
    
  
