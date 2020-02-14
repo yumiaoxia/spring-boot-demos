@@ -4,7 +4,9 @@ web 公共组件
 
 该组件主要为简化 spring-boot 的 web 项目开发
 
-该组件使用spring-boot框架，默认2.1.7版本,为避免出现其他问题，请确保目标项目spring-boot版本2.0以上，而且只兼容spring-boot的项目使用
+该组件使用spring-boot框架，默认2.2.4版本,为避免出现其他问题，请确保目标项目spring-boot版本2.0以上，而且只兼容spring-boot的项目使用.
+
+该组件采用自动化配置，只要引入该组件依赖，则会扫描到组件所有相关配置
 
 #### 支持功能
 - 统一请求体，响应体封装
@@ -40,8 +42,8 @@ spring 的 maven-plugin 插件会将其打包成两个jar包,一个以`.jar`结�
    ~~~
    <dependency>
        <groupId>com.itsherman</groupId>
-       <artifactId>common-web</artifactId>
-       <version>0.0.1</version>
+       <artifactId>common-web-spring-boot-starter</artifactId>
+       <version>{版本号}</version>
    </dependency>
    ~~~
 
@@ -50,7 +52,7 @@ spring 的 maven-plugin 插件会将其打包成两个jar包,一个以`.jar`结�
 1. 使用 swagger2 步骤
     组件已经引入了swagger2 相关依赖并做了简单配置，默认所有以`/api/`开头的接口将会被识别，当然
     不满意，也可以自定义自己的swagger2。
-    1) 在spring boot 配置类上使用注解 `@EnableSwagger2`
+    1) 在目标项目的配置类上使用注解 `@EnableSwagger2`
     2) 在 controller 层使用 swagger 相关注解标注接口
 
 2. 请求体和响应体封装
@@ -94,12 +96,13 @@ spring 的 maven-plugin 插件会将其打包成两个jar包,一个以`.jar`结�
     
     使用步骤：
     
-    3.1 在项目配置文件配置 i18n 文件的路径,以`spring.message`开头，如在 yaml 文件中：
+    3.1 在项目配置文件配置 i18n 文件的路径,以`spring.common-web.messages`开头，如在 yaml 文件中：
     ~~~
     spring:
-      messages:
-        encoding: UTF-8
-        basename: example/i18n/mess
+        common-web:
+            messages:
+                encoding: UTF-8
+                basename: classpath:example/i18n/mess
     ~~~~
    
     3.2 创建一个业务异常编号接口文件，继承于组件的 CommonErrorCode,假设一个业务异常
@@ -122,4 +125,20 @@ spring 的 maven-plugin 插件会将其打包成两个jar包,一个以`.jar`结�
    ~~~properties
    10001=示例业务异常
    ~~~~
+   
+ 
+ 4. 统一日期,时间序列化格式
+ 
+   引入该组件后，目标项目的请求参数，响应参数中如果有LocalDate,LocalDateTime,ZonedDateTime类型的字段，则会按
+   指定的序列化格式序列化，序列化格式在application.yaml或application.properties文件中指定，如：
+   
+  ~~~
+  spring:
+    common-web:
+       format:
+          pattern:
+            date: yyyy-MM-dd
+            date-time: yyyy-MM-dd HH:mm:ss
+            zone: GMT+8
+  ~~~
    

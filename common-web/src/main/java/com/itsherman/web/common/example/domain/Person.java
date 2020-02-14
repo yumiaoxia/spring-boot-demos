@@ -1,6 +1,5 @@
 package com.itsherman.web.common.example.domain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -23,7 +22,6 @@ public class Person {
     private Integer age;
 
     @ApiModelProperty
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime birthday;
 
     public String getId() {

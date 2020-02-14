@@ -1,7 +1,6 @@
 package com.itsherman.web.common.filter;
 
 import com.itsherman.web.common.request.RequestWrapper;
-import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -14,7 +13,6 @@ import java.io.IOException;
  * @author 俞淼霞
  * @since 2019-09-07
  */
-@Component
 @WebFilter
 public class ChanelFilter implements Filter {
 
