@@ -8,7 +8,7 @@ public class ServiceException extends RuntimeException {
 
 
     private ServiceException(String errorCode, Throwable cause, Object... variables) {
-        super(cause);
+        super(errorCode, cause);
         this.errorCode = errorCode;
         this.variables = variables;
     }
