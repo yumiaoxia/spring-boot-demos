@@ -7,6 +7,8 @@ import com.itsherman.web.common.utils.IPUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -45,6 +47,9 @@ public class ResponseBodyHandlerAdvice implements ResponseBodyAdvice<ApiResponse
     @Autowired
     private ApiLogProperties apiLogProperties;
 
+    @Autowired
+    private MessageSource messageSource;
+
     @Override
     public boolean supports(MethodParameter methodParameter, Class<? extends HttpMessageConverter<?>> aClass) {
         return true;
@@ -54,10 +59,14 @@ public class ResponseBodyHandlerAdvice implements ResponseBodyAdvice<ApiResponse
     public ApiResponse beforeBodyWrite(ApiResponse apiResponse, MethodParameter methodParameter, MediaType mediaType, Class<? extends HttpMessageConverter<?>> aClass, ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse) {
         if (apiResponse != null) {
             HttpServletRequest request = ((ServletServerHttpRequest) serverHttpRequest).getServletRequest();
-            if (apiResponse.getSuccess().equals(true) && apiLogProperties.getApiLogEnum().equals(ApiLogEnum.ALL)) {
-                log.info("\nException Occurred! \nrequestURL: {},\nheaders:{}, \nparams: {}, \nuserIP: {}, \nerrorMessage: {}", request.getRequestURL(), getRequestHeaders(request), getRequestParams(request), IPUtil.getUserIP(request), apiResponse.getMessage());
+            if (apiResponse.getSuccess().equals(true)) {
+                apiResponse.setMessage(messageSource.getMessage(apiResponse.getCode(), null, LocaleContextHolder.getLocale()));
+                if (apiLogProperties.getType().equals(ApiLogEnum.ALL)) {
+                    log.info("\nrequestURL: {},\nheaders:{}, \nparams: {}, \nuserIP: {}, \ndata: {}", request.getRequestURL(), getRequestHeaders(request), getRequestParams(request), IPUtil.getUserIP(request), apiResponse.getData());
+                }
             }
-            if (apiResponse.getSuccess().equals(false)) {
+
+            if (apiResponse.getSuccess().equals(false) && !apiLogProperties.getType().equals(ApiLogEnum.NONE)) {
                 log.error("\nException Occurred! \nrequestURL: {},\nheaders:{}, \nparams: {}, \nuserIP: {}, \nerrorMessage: {}", request.getRequestURL(), getRequestHeaders(request), getRequestParams(request), IPUtil.getUserIP(request), apiResponse.getMessage());
             }
         }
@@ -67,7 +76,7 @@ public class ResponseBodyHandlerAdvice implements ResponseBodyAdvice<ApiResponse
 
     protected String getRequestParams(HttpServletRequest request) {
         StringBuilder result = new StringBuilder();
-        if (request.getContentType().equalsIgnoreCase(APPLICATION_JSON)) {
+        if (request.getContentType() != null && request.getContentType().equalsIgnoreCase(APPLICATION_JSON)) {
             HttpServletRequestWrapper requestWrapper = new RequestWrapper(request);
             ServletInputStream inputStream = null;
             InputStreamReader reader = null;

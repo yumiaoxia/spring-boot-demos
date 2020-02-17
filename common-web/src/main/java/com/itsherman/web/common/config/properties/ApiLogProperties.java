@@ -6,13 +6,13 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "spring.common-web.api-log")
 public class ApiLogProperties {
 
-    private ApiLogEnum apiLogEnum = ApiLogEnum.EXCEPTION;
+    private ApiLogEnum type = ApiLogEnum.EXCEPTION;
 
-    public ApiLogEnum getApiLogEnum() {
-        return apiLogEnum;
+    public ApiLogEnum getType() {
+        return type;
     }
 
-    public void setApiLogEnum(ApiLogEnum apiLogEnum) {
-        this.apiLogEnum = apiLogEnum;
+    public void setType(ApiLogEnum type) {
+        this.type = type;
     }
 }

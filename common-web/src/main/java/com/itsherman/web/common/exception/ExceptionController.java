@@ -1,6 +1,8 @@
 package com.itsherman.web.common.exception;
 
 import com.itsherman.web.common.response.ApiResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -19,6 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 @ControllerAdvice
 public class ExceptionController {
 
+    private static final Logger log = LoggerFactory.getLogger(ExceptionController.class);
 
     @Resource
     private MessageSource messageSource;
@@ -26,6 +29,7 @@ public class ExceptionController {
     @ResponseBody
     @ExceptionHandler(Exception.class)
     public ApiResponse handleException(HttpServletRequest request, Exception ex) {
+        log.error(ex.getMessage(), ex);
         return ApiResponse.createError();
     }
 
@@ -38,6 +42,7 @@ public class ExceptionController {
         } catch (Exception e) {
             apiResponse.setMessage(ex.getMessage());
         }
+        log.error(apiResponse.getMessage(), ex);
         return apiResponse;
     }
 
