@@ -59,13 +59,12 @@ public class ResponseBodyHandlerAdvice implements ResponseBodyAdvice<ApiResponse
     public ApiResponse beforeBodyWrite(ApiResponse apiResponse, MethodParameter methodParameter, MediaType mediaType, Class<? extends HttpMessageConverter<?>> aClass, ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse) {
         if (apiResponse != null) {
             HttpServletRequest request = ((ServletServerHttpRequest) serverHttpRequest).getServletRequest();
+            apiResponse.setMessage(messageSource.getMessage(apiResponse.getCode(), null, LocaleContextHolder.getLocale()));
             if (apiResponse.getSuccess().equals(true)) {
-                apiResponse.setMessage(messageSource.getMessage(apiResponse.getCode(), null, LocaleContextHolder.getLocale()));
                 if (apiLogProperties.getType().equals(ApiLogEnum.ALL)) {
                     log.info("\nrequestURL: {},\nheaders:{}, \nparams: {}, \nuserIP: {}, \ndata: {}", request.getRequestURL(), getRequestHeaders(request), getRequestParams(request), IPUtil.getUserIP(request), apiResponse.getData());
                 }
             }
-
             if (apiResponse.getSuccess().equals(false) && !apiLogProperties.getType().equals(ApiLogEnum.NONE)) {
                 log.error("\nException Occurred! \nrequestURL: {},\nheaders:{}, \nparams: {}, \nuserIP: {}, \nerrorMessage: {}", request.getRequestURL(), getRequestHeaders(request), getRequestParams(request), IPUtil.getUserIP(request), apiResponse.getMessage());
             }
