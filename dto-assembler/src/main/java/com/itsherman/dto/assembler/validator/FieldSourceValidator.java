@@ -42,7 +42,7 @@ public class FieldSourceValidator implements DtoValidator {
             }
         } else if (dtoClass.isInterface()) {
             Set<Method> readMethods = Arrays.stream(dtoClass.getDeclaredMethods())
-                    .filter(method -> method.getName().startsWith(Commonconstants.GETTER_PREFIX) || Modifier.isPublic(method.getModifiers()))
+                    .filter(method -> method.getName().startsWith(Commonconstants.GETTER_PREFIX) && Modifier.isPublic(method.getModifiers()))
                     .collect(Collectors.toSet());
             for (Method readMethod : readMethods) {
                 validMessages.addAll(collectValidMessages(readMethod.getAnnotation(DtoProperty.class), fromClasses, readMethod.getName(), dtoClass.getName()));
@@ -56,8 +56,10 @@ public class FieldSourceValidator implements DtoValidator {
         if (dtoProperty != null) {
             Class sourceClass = dtoProperty.sourceClass();
             if (sourceClass != Void.class) {
-                Optional<Class> flag = Arrays.stream(fromClasses).filter(sourceClass::isAssignableFrom).findFirst();
-                if (flag.isPresent()) {
+                Optional<Class> flag = Arrays.stream(fromClasses)
+                        .filter(fromClass -> fromClass.isAssignableFrom(sourceClass))
+                        .findFirst();
+                if (!flag.isPresent()) {
                     validMessages.add(new ValidMessage(false, String.format("Annotation named 'DtoProperty' on member %s of type %s has error property sourceClass,it can not suit the property 'fromClasses' of annotation 'DtoMapping' on Type", memberName, className)));
                 }
             }

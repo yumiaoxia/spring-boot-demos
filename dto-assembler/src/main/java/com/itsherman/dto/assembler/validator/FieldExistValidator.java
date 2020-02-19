@@ -108,7 +108,10 @@ public class FieldExistValidator implements DtoValidator {
     private boolean checkReadMethodInFormClass(Class[] fromClasses, String methodName, DtoPropertyDefinition dpd) {
         boolean flag = false;
         for (Class fromClass : fromClasses) {
-            flag = checkContainReadMethod(fromClass, methodName, dpd);
+            if (checkContainReadMethod(fromClass, methodName, dpd)) {
+                flag = true;
+                break;
+            }
         }
         return flag;
     }
