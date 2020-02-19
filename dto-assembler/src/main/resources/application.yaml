@@ -1,0 +1,5 @@
+spring:
+  common-web:
+    messages:
+      basename: classpath:i18n/messages
+      encoding: UTF-8

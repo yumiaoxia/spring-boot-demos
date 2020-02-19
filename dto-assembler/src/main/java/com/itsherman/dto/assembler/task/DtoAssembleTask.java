@@ -1,6 +1,10 @@
 package com.itsherman.dto.assembler.task;
 
+import com.itsherman.dto.assembler.core.DtoDefinition;
+
+import java.util.Optional;
+
 public interface DtoAssembleTask<T,R> {
 
-    R assemble(Class<R> rClass, T... t);
+    Optional<R> assemble(DtoDefinition dtoDefinition, T... ts);
 }

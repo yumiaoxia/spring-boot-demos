@@ -67,7 +67,7 @@ public class FieldExistValidator implements DtoValidator {
                     .collect(Collectors.toSet());
             for (Method method : methods) {
                 if (!method.isDefault()) {
-                    DtoPropertyDefinition dpd = new DtoPropertyDefinition(dtoDefinition);
+                    DtoPropertyDefinition dpd = new InterfaceDtoPropertyDefinition(dtoDefinition, method);
                     DtoProperty dtoProperty = method.getAnnotation(DtoProperty.class);
                     boolean flag;
                     if (dtoProperty != null) {
@@ -84,7 +84,7 @@ public class FieldExistValidator implements DtoValidator {
                     }
                     dtoDefinition.getValidPropertyDefinition().add(dpd);
                 } else {
-                    dtoDefinition.getValidPropertyDefinition().add(new InterfaceDtoPropertyDefinition(dtoDefinition));
+                    dtoDefinition.getValidPropertyDefinition().add(new InterfaceDtoPropertyDefinition(dtoDefinition, method));
                 }
             }
         }

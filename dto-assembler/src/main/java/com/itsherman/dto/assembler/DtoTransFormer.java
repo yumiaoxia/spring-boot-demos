@@ -1,8 +1,8 @@
 package com.itsherman.dto.assembler;
 
-import com.itsherman.dto.assembler.task.ClassDtoAssembleTask;
-import com.itsherman.dto.assembler.task.DtoAssembleTask;
+import com.itsherman.dto.assembler.utils.DtoAssembleUtils;
 
+import java.util.Optional;
 import java.util.function.Function;
 
 /**
@@ -13,19 +13,11 @@ import java.util.function.Function;
  */
 public class DtoTransFormer {
 
-    public static <T,R> Function to(Class<R> dtoClass){
-
-        return  new Function<T[],R>() {
-            @Override
-            public R apply(T... t) {
-                DtoAssembleTask<T,R> dtoAssembleTask = new ClassDtoAssembleTask<>();
-                return dtoAssembleTask.assemble(dtoClass,t);
-            }
+    public static <T, R> Function<T[], Optional<R>> to(Class<R> dtoClass) {
+        return ts -> {
+            return DtoAssembleUtils.assemble(dtoClass, ts);
         };
     }
 
-    private static class ToBuilder{
-
-    }
 
 }

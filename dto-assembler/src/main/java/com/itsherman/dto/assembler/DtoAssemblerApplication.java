@@ -1,8 +1,13 @@
 package com.itsherman.dto.assembler;
 
+import com.itsherman.dto.assembler.annotations.DtoMapping;
+import com.itsherman.dto.assembler.annotations.EnableDtoMapping;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+@EnableDtoMapping(mappings = {@DtoMapping(basePackage = "com.itsherman.dto.assembler.example.dto")})
+@EnableSwagger2
 @SpringBootApplication
 public class DtoAssemblerApplication {
 
