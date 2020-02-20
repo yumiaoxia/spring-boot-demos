@@ -18,6 +18,5 @@ import java.lang.annotation.*;
 @Import(DtoMappingScannerRegister.class)
 public @interface EnableDtoMapping {
 
-
-    DtoMapping[] mappings() default {};
+    DtoMapping[] mappings();
 }

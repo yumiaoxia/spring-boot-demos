@@ -13,5 +13,6 @@ import java.lang.annotation.*;
 @Documented
 @Inherited
 public @interface DtoModel {
-    Class[] from() default {};
+
+    Class[] from();
 }

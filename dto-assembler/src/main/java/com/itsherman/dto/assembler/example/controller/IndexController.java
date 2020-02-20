@@ -1,6 +1,8 @@
 package com.itsherman.dto.assembler.example.controller;
 
 import com.itsherman.dto.assembler.DtoTransFormer;
+import com.itsherman.dto.assembler.example.domain.Book;
+import com.itsherman.dto.assembler.example.domain.Car;
 import com.itsherman.dto.assembler.example.domain.Company;
 import com.itsherman.dto.assembler.example.domain.Person;
 import com.itsherman.dto.assembler.example.dto.PersonCompanyDto;
@@ -33,6 +35,18 @@ public class IndexController {
         person.setId(id);
         person.setBirthday(LocalDateTime.now().minusYears(26));
         person.setName("Sherman");
+        person.setHobbies(new String[]{"乒乓球，篮球"});
+
+        Car car = new Car();
+        car.setCarName("路虎");
+        person.setCar(car);
+
+        Book book = new Book();
+        book.setBookName("Java 实战");
+
+        Book book2 = new Book();
+        book2.setBookName("Python 入门");
+        person.setBooks(new Book[]{book, book2});
         PersonDto personDto = DtoTransFormer.to(PersonDto.class).apply(new Person[]{person}).orElse(null);
         return ApiResponse.createSuccess(personDto);
     }

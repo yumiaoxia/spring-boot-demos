@@ -22,6 +22,36 @@ public class Person {
     @ApiModelProperty
     private LocalDateTime birthday;
 
+    private Book[] books;
+
+    private String[] hobbies;
+
+    private Car car;
+
+    public Car getCar() {
+        return car;
+    }
+
+    public void setCar(Car car) {
+        this.car = car;
+    }
+
+    public String[] getHobbies() {
+        return hobbies;
+    }
+
+    public void setHobbies(String[] hobbies) {
+        this.hobbies = hobbies;
+    }
+
+    public Book[] getBooks() {
+        return books;
+    }
+
+    public void setBooks(Book[] books) {
+        this.books = books;
+    }
+
     public Long getId() {
         return id;
     }

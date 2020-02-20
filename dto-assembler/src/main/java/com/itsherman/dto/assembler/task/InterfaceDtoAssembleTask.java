@@ -10,10 +10,7 @@ import com.itsherman.dto.assembler.exception.TypeCastException;
 import com.itsherman.dto.assembler.utils.DtoAssembleUtils;
 
 import java.lang.invoke.MethodHandles;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
-import java.lang.reflect.Proxy;
+import java.lang.reflect.*;
 import java.util.*;
 
 public class InterfaceDtoAssembleTask<T, R> implements DtoAssembleTask<T, R> {
@@ -47,12 +44,17 @@ public class InterfaceDtoAssembleTask<T, R> implements DtoAssembleTask<T, R> {
                             } else {
                                 throw new DtoAssembleException(String.format("Illegal Source Object,it required sourceClass '%s',but not found", propertyDefinition.getSourceClass()));
                             }
-                            Class<?> returnType = propertyDefinition.getDtoMethod().getReturnType();
-                            try {
-                                result = doAssemble(returnType, propertyDefinition.getReadMethod().getReturnType(), readMethodValue);
-                            } catch (RuntimeException e) {
-                                throw new DtoAssembleException(String.format("无法编集 %s 到 %s。 目标类型：%s, 原因：%s", readMethod.getName(), propertyDefinition.getDtoMethod().getName(), dtoClass.getSimpleName(), e.getMessage()), e);
+                            if (readMethodValue != null) {
+                                Class<?> returnType = propertyDefinition.getDtoMethod().getReturnType();
+                                try {
+                                    result = doAssemble(returnType, propertyDefinition.getReadMethod().getReturnType(), readMethodValue);
+                                } catch (RuntimeException e) {
+                                    throw new DtoAssembleException(String.format("无法编集 %s 到 %s。 目标类型：%s, 原因：%s", readMethod.getName(), propertyDefinition.getDtoMethod().getName(), dtoClass.getSimpleName(), e.getMessage()), e);
+                                }
+                            } else {
+                                continue;
                             }
+
                         }
                     }
                 }
@@ -74,21 +76,24 @@ public class InterfaceDtoAssembleTask<T, R> implements DtoAssembleTask<T, R> {
         } else if (dtoReturnType.isPrimitive() && sourceReturnType.equals(dtoReturnType)) {
             return sourceReturnValue;
         } else if (DtoDefinitionHolder.getDtoDefinitions().get(dtoReturnType) != null) {
-            return DtoAssembleUtils.assemble(dtoReturnType, sourceReturnValue);
+            return DtoAssembleUtils.assemble(dtoReturnType, sourceReturnValue).orElse(null);
         } else if (dtoReturnType.isArray()) {
-            Object[] arrayValues = (Object[]) sourceReturnValue;
+            Object[] sourceArray = (Object[]) sourceReturnValue;
             Class<?> componentType = dtoReturnType.getComponentType();
-            Object[] dtoValues = new Object[arrayValues.length];
-            for (int i = 0; i < arrayValues.length; i++) {
-                dtoValues[i] = doAssemble(componentType, sourceReturnType.getComponentType(), arrayValues[i]);
+            Object dtoArray = Array.newInstance(componentType, sourceArray.length);
+            for (int i = 0; i < sourceArray.length; i++) {
+                Object sourceValue = sourceArray[i];
+                Array.set(dtoArray, i, sourceValue == null ? null : doAssemble(componentType, sourceReturnType.getComponentType(), sourceValue));
             }
-            return dtoValues;
+            return dtoArray;
         } else if (dtoReturnType.isAssignableFrom(Collection.class)) {
             Collection<Object> collectionValues = (Collection<Object>) sourceReturnValue;
             Collection<Object> dtoValues = Collections.emptyList();
             for (Object collectionValue : collectionValues) {
                 System.out.println(dtoReturnType.getTypeParameters()[0].getGenericDeclaration());
-                dtoValues.add(doAssemble(dtoReturnType.getTypeParameters()[0].getGenericDeclaration(), collectionValue.getClass(), collectionValue));
+                if (collectionValue != null) {
+                    dtoValues.add(doAssemble(dtoReturnType.getTypeParameters()[0].getGenericDeclaration(), collectionValue.getClass(), collectionValue));
+                }
             }
             return dtoValues;
         } else {

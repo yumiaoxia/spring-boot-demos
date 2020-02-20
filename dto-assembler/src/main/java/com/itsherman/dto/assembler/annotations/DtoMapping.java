@@ -19,7 +19,7 @@ public @interface DtoMapping {
      *
      * @return
      */
-    String basePackage() default "";
+    String basePackage();
 
     /**
      * 是否扫描子包
