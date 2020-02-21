@@ -4,6 +4,7 @@ import com.itsherman.dto.assembler.annotations.DtoModel;
 import com.itsherman.dto.assembler.example.domain.Person;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @DtoModel(from = Person.class)
 public interface PersonDto {
@@ -14,7 +15,7 @@ public interface PersonDto {
 
     BookDto[] getBooks();
 
-    CarDto getCar();
+    Set<CarDto> getCars();
 
     String[] getHobbies();
 

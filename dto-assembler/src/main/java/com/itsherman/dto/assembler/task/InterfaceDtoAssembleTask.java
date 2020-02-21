@@ -7,11 +7,15 @@ import com.itsherman.dto.assembler.core.DtoPropertyDefinition;
 import com.itsherman.dto.assembler.core.InterfaceDtoPropertyDefinition;
 import com.itsherman.dto.assembler.exception.DtoAssembleException;
 import com.itsherman.dto.assembler.exception.TypeCastException;
+import com.itsherman.dto.assembler.utils.CollectionUtils;
 import com.itsherman.dto.assembler.utils.DtoAssembleUtils;
 
 import java.lang.invoke.MethodHandles;
 import java.lang.reflect.*;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Optional;
+import java.util.Set;
 
 public class InterfaceDtoAssembleTask<T, R> implements DtoAssembleTask<T, R> {
 
@@ -45,9 +49,9 @@ public class InterfaceDtoAssembleTask<T, R> implements DtoAssembleTask<T, R> {
                                 throw new DtoAssembleException(String.format("Illegal Source Object,it required sourceClass '%s',but not found", propertyDefinition.getSourceClass()));
                             }
                             if (readMethodValue != null) {
-                                Class<?> returnType = propertyDefinition.getDtoMethod().getReturnType();
+                                Type returnType = propertyDefinition.getDtoMethod().getGenericReturnType();
                                 try {
-                                    result = doAssemble(returnType, propertyDefinition.getReadMethod().getReturnType(), readMethodValue);
+                                    result = doAssemble(returnType, readMethodValue);
                                 } catch (RuntimeException e) {
                                     throw new DtoAssembleException(String.format("无法编集 %s 到 %s。 目标类型：%s, 原因：%s", readMethod.getName(), propertyDefinition.getDtoMethod().getName(), dtoClass.getSimpleName(), e.getMessage()), e);
                                 }
@@ -69,35 +73,43 @@ public class InterfaceDtoAssembleTask<T, R> implements DtoAssembleTask<T, R> {
     }
 
 
-    private Object doAssemble(Class<?> dtoReturnType, Class<?> sourceReturnType, Object sourceReturnValue) {
-        // 判断返回类型
-        if (sourceReturnType.equals(dtoReturnType) && Modifier.isFinal(dtoReturnType.getModifiers())) {
-            return sourceReturnValue;
-        } else if (dtoReturnType.isPrimitive() && sourceReturnType.equals(dtoReturnType)) {
-            return sourceReturnValue;
-        } else if (DtoDefinitionHolder.getDtoDefinitions().get(dtoReturnType) != null) {
-            return DtoAssembleUtils.assemble(dtoReturnType, sourceReturnValue).orElse(null);
-        } else if (dtoReturnType.isArray()) {
-            Object[] sourceArray = (Object[]) sourceReturnValue;
-            Class<?> componentType = dtoReturnType.getComponentType();
-            Object dtoArray = Array.newInstance(componentType, sourceArray.length);
-            for (int i = 0; i < sourceArray.length; i++) {
-                Object sourceValue = sourceArray[i];
-                Array.set(dtoArray, i, sourceValue == null ? null : doAssemble(componentType, sourceReturnType.getComponentType(), sourceValue));
-            }
-            return dtoArray;
-        } else if (dtoReturnType.isAssignableFrom(Collection.class)) {
-            Collection<Object> collectionValues = (Collection<Object>) sourceReturnValue;
-            Collection<Object> dtoValues = Collections.emptyList();
-            for (Object collectionValue : collectionValues) {
-                System.out.println(dtoReturnType.getTypeParameters()[0].getGenericDeclaration());
-                if (collectionValue != null) {
-                    dtoValues.add(doAssemble(dtoReturnType.getTypeParameters()[0].getGenericDeclaration(), collectionValue.getClass(), collectionValue));
+    private Object doAssemble(Type dtoReturnType, Object sourceReturnValue) {
+        if (dtoReturnType instanceof Class) {
+            Class dtoReturnClass = (Class) dtoReturnType;
+            // 判断返回类型
+            if (Modifier.isFinal(dtoReturnClass.getModifiers())) {
+                return sourceReturnValue;
+            } else if (dtoReturnClass.isPrimitive()) {
+                return sourceReturnValue;
+            } else if (DtoDefinitionHolder.getDtoDefinitions().get(dtoReturnType) != null) {
+                return DtoAssembleUtils.assemble(dtoReturnClass, sourceReturnValue).orElse(null);
+            } else if (dtoReturnClass.isArray()) {
+                Object[] sourceArray = (Object[]) sourceReturnValue;
+                Class<?> componentType = dtoReturnClass.getComponentType();
+                Object dtoArray = Array.newInstance(componentType, sourceArray.length);
+                for (int i = 0; i < sourceArray.length; i++) {
+                    Object sourceValue = sourceArray[i];
+                    Array.set(dtoArray, i, sourceValue == null ? null : doAssemble(componentType, sourceValue));
                 }
+                return dtoArray;
+            } else {
+                throw new TypeCastException(String.format("Type match Error,target type '%s'", dtoReturnType));
             }
-            return dtoValues;
+        } else if (dtoReturnType instanceof ParameterizedType) {
+            ParameterizedType parameterizedReturnType = (ParameterizedType) dtoReturnType;
+            Type[] actualTypeArguments = parameterizedReturnType.getActualTypeArguments();
+            if (Collection.class.isAssignableFrom((Class) parameterizedReturnType.getRawType())) {
+                Collection<?> sourceReturnValues = (Collection<?>) sourceReturnValue;
+                Collection<Object> dtoReturnValues = CollectionUtils.emptyCollection(parameterizedReturnType);
+                for (Object returnValue : sourceReturnValues) {
+                    Object o = doAssemble(actualTypeArguments[0], returnValue);
+                    dtoReturnValues.add(o);
+                }
+                return dtoReturnValues;
+            }
+            return null;
         } else {
-            throw new TypeCastException(String.format("Type match Error,target type '%s',source type '%s'", dtoReturnType, sourceReturnType));
+            throw new TypeCastException(String.format("Type match Error,target type '%s'", dtoReturnType));
         }
     }
 }

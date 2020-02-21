@@ -4,6 +4,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
 /**
  * <p> </p>
@@ -26,14 +27,14 @@ public class Person {
 
     private String[] hobbies;
 
-    private Car car;
+    private Set<Car> cars;
 
-    public Car getCar() {
-        return car;
+    public Set<Car> getCars() {
+        return cars;
     }
 
-    public void setCar(Car car) {
-        this.car = car;
+    public void setCars(Set<Car> cars) {
+        this.cars = cars;
     }
 
     public String[] getHobbies() {
