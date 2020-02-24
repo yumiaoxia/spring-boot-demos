@@ -5,16 +5,15 @@ import com.itsherman.dto.assembler.exception.DtoAssembleException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class PropertyAssembleManager {
 
     private List<PropertyAssembleTask> propertyAssembleTasks = new ArrayList<>();
 
-    public <T, R> Optional<R> doAssemble(Type targetType, T sourceValue) {
-        for (PropertyAssembleTask propertyAssembleTask : this.propertyAssembleTasks) {
+    public <T, R> R doAssemble(Type targetType, T sourceValue) {
+        for (PropertyAssembleTask<T, R> propertyAssembleTask : this.propertyAssembleTasks) {
             if (propertyAssembleTask.check(targetType)) {
-                return propertyAssembleTask.assemble(sourceValue);
+                return (R) propertyAssembleTask.assemble(sourceValue);
             }
         }
         throw new DtoAssembleException(String.format("No propertyAssembleTask found,targetType: %s, sourceValue: %s", targetType, sourceValue));

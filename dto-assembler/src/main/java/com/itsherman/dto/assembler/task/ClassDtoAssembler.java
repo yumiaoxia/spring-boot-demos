@@ -11,7 +11,7 @@ import com.itsherman.dto.assembler.utils.DtoAssembleUtils;
 import java.lang.reflect.*;
 import java.util.*;
 
-public class ClassDtoAssembleTask<T,R> implements DtoAssembleTask<T,R>{
+public class ClassDtoAssembler<T, R> implements DtoAssembleTask<T, R> {
 
     @SafeVarargs
     @Override
@@ -23,7 +23,7 @@ public class ClassDtoAssembleTask<T,R> implements DtoAssembleTask<T,R>{
             throw new DtoAssembleException();
         }
 
-        Set<DtoPropertyDefinition> validPropertyDefinitions = definition.getValidPropertyDefinition();
+        Set<DtoPropertyDefinition> validPropertyDefinitions = definition.getValidPropertyDefinitions();
         for (DtoPropertyDefinition validPropertyDefinition : validPropertyDefinitions) {
             ClassDtoPropertyDefinition propertyDefinition = (ClassDtoPropertyDefinition) validPropertyDefinition;
             Optional<T> first = Arrays.stream(ts).filter(t -> t.getClass().isAssignableFrom(propertyDefinition.getSourceClass())).findFirst();

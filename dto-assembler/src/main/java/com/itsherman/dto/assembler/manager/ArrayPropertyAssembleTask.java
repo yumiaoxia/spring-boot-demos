@@ -1,16 +1,14 @@
 package com.itsherman.dto.assembler.manager;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
+import javax.annotation.Resource;
 import java.lang.reflect.Array;
 import java.lang.reflect.Type;
-import java.util.Optional;
 
 public class ArrayPropertyAssembleTask<T, R> implements PropertyAssembleTask<T, R> {
 
     private Class<R> targetClass;
 
-    @Autowired
+    @Resource
     private PropertyAssembleManager propertyAssembleManager;
 
     @Override
@@ -23,7 +21,7 @@ public class ArrayPropertyAssembleTask<T, R> implements PropertyAssembleTask<T, 
     }
 
     @Override
-    public Optional<R> assemble(T sourceValue) {
+    public R assemble(T sourceValue) {
         Object[] sourceArray = (Object[]) sourceValue;
         Class<?> componentType = targetClass.getComponentType();
         Object targetArray = Array.newInstance(componentType, sourceArray.length);
@@ -31,6 +29,6 @@ public class ArrayPropertyAssembleTask<T, R> implements PropertyAssembleTask<T, 
             Object source = sourceArray[i];
             Array.set(targetArray, i, source == null ? null : propertyAssembleManager.doAssemble(componentType, source));
         }
-        return Optional < targetArray >;
+        return (R) targetArray;
     }
 }

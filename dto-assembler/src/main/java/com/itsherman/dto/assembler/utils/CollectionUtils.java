@@ -5,7 +5,7 @@ import java.util.*;
 
 public class CollectionUtils {
 
-    public static Collection<Object> emptyCollection(ParameterizedType type) {
+    public static <R> Collection<R> emptyCollection(ParameterizedType type) {
         Collection<Object> collection;
         if (Set.class.isAssignableFrom((Class) type.getRawType())) {
             collection = new HashSet<>();
@@ -14,7 +14,7 @@ public class CollectionUtils {
         } else {
             throw new ClassCastException();
         }
-        return collection;
+        return (Collection<R>) collection;
     }
 
     public static <K, V> Map<K, V> emptyMap(Class<Map<K, V>> clazz) {

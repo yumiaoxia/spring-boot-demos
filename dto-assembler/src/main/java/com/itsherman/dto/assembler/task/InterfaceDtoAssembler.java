@@ -7,9 +7,11 @@ import com.itsherman.dto.assembler.core.DtoPropertyDefinition;
 import com.itsherman.dto.assembler.core.InterfaceDtoPropertyDefinition;
 import com.itsherman.dto.assembler.exception.DtoAssembleException;
 import com.itsherman.dto.assembler.exception.TypeCastException;
+import com.itsherman.dto.assembler.manager.PropertyAssembleManager;
 import com.itsherman.dto.assembler.utils.CollectionUtils;
 import com.itsherman.dto.assembler.utils.DtoAssembleUtils;
 
+import javax.annotation.Resource;
 import java.lang.invoke.MethodHandles;
 import java.lang.reflect.*;
 import java.util.Arrays;
@@ -17,8 +19,10 @@ import java.util.Collection;
 import java.util.Optional;
 import java.util.Set;
 
-public class InterfaceDtoAssembleTask<T, R> implements DtoAssembleTask<T, R> {
+public class InterfaceDtoAssembler<T, R> implements DtoAssembleTask<T, R> {
 
+    @Resource
+    private PropertyAssembleManager propertyAssembleManager;
 
     @Override
     public Optional<R> assemble(DtoDefinition dtoDefinition, T... ts) {
@@ -26,7 +30,7 @@ public class InterfaceDtoAssembleTask<T, R> implements DtoAssembleTask<T, R> {
         return (Optional<R>) Optional.of(Proxy.newProxyInstance(dtoClass.getClassLoader(), new Class[]{dtoClass}, (proxy, method, args) -> {
             Object result = null;
             if (method.getName().startsWith(Commonconstants.GETTER_PREFIX)) {
-                Set<DtoPropertyDefinition> validPropertyDefinitions = dtoDefinition.getValidPropertyDefinition();
+                Set<DtoPropertyDefinition> validPropertyDefinitions = dtoDefinition.getValidPropertyDefinitions();
                 for (DtoPropertyDefinition validPropertyDefinition : validPropertyDefinitions) {
                     InterfaceDtoPropertyDefinition propertyDefinition = (InterfaceDtoPropertyDefinition) validPropertyDefinition;
                     if (propertyDefinition.getDtoMethod().equals(method)) {
@@ -51,7 +55,7 @@ public class InterfaceDtoAssembleTask<T, R> implements DtoAssembleTask<T, R> {
                             if (readMethodValue != null) {
                                 Type returnType = propertyDefinition.getDtoMethod().getGenericReturnType();
                                 try {
-                                    result = doAssemble(returnType, readMethodValue);
+                                    result = propertyAssembleManager.doAssemble(returnType, readMethodValue);
                                 } catch (RuntimeException e) {
                                     throw new DtoAssembleException(String.format("无法编集 %s 到 %s。 目标类型：%s, 原因：%s", readMethod.getName(), propertyDefinition.getDtoMethod().getName(), dtoClass.getSimpleName(), e.getMessage()), e);
                                 }

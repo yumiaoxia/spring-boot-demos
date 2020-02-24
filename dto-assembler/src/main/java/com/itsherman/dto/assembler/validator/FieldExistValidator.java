@@ -59,7 +59,7 @@ public class FieldExistValidator implements DtoValidator {
                 if (!flag) {
                     validMessages.add(new ValidMessage(false, String.format("Field %s can not found readMethod", field.getName())));
                 }
-                dtoDefinition.getValidPropertyDefinition().add(dpd);
+                dtoDefinition.getValidPropertyDefinitions().add(dpd);
             }
         } else if (dtoClass.isInterface()) {
             Set<Method> methods = Arrays.stream(dtoClass.getDeclaredMethods())
@@ -82,9 +82,9 @@ public class FieldExistValidator implements DtoValidator {
                     if (!flag) {
                         validMessages.add(new ValidMessage(false, String.format("DtoClass %s can not found readMethod %s in sourceClass", dtoDefinition.getDtoClass().getName(), method.getName())));
                     }
-                    dtoDefinition.getValidPropertyDefinition().add(dpd);
+                    dtoDefinition.getValidPropertyDefinitions().add(dpd);
                 } else {
-                    dtoDefinition.getValidPropertyDefinition().add(new InterfaceDtoPropertyDefinition(dtoDefinition, method));
+                    dtoDefinition.getValidPropertyDefinitions().add(new InterfaceDtoPropertyDefinition(dtoDefinition, method));
                 }
             }
         }

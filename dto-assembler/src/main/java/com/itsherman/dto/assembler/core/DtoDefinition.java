@@ -17,7 +17,7 @@ public class DtoDefinition {
 
     private Class<?> dtoClass;
 
-    private Set<DtoPropertyDefinition> validPropertyDefinition = new HashSet<>();
+    private Set<DtoPropertyDefinition> validPropertyDefinitions = new HashSet<>();
 
     private Class<?>[] fromClass;
 
@@ -57,11 +57,11 @@ public class DtoDefinition {
         this.fromClass = fromClass;
     }
 
-    public Set<DtoPropertyDefinition> getValidPropertyDefinition() {
-        return validPropertyDefinition;
+    public Set<DtoPropertyDefinition> getValidPropertyDefinitions() {
+        return validPropertyDefinitions;
     }
 
-    public void setValidPropertyDefinition(Set<DtoPropertyDefinition> validPropertyDefinition) {
-        this.validPropertyDefinition = validPropertyDefinition;
+    public void setValidPropertyDefinition(Set<DtoPropertyDefinition> validPropertyDefinitions) {
+        this.validPropertyDefinitions = validPropertyDefinitions;
     }
 }

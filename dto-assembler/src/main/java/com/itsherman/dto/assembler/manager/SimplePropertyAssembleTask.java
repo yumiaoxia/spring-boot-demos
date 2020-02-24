@@ -2,7 +2,6 @@ package com.itsherman.dto.assembler.manager;
 
 import java.lang.reflect.Modifier;
 import java.lang.reflect.Type;
-import java.util.Optional;
 
 public class SimplePropertyAssembleTask<T, R> implements PropertyAssembleTask<T, R> {
 
@@ -20,7 +19,7 @@ public class SimplePropertyAssembleTask<T, R> implements PropertyAssembleTask<T,
     }
 
     @Override
-    public Optional<R> assemble(T sourceValue) {
-        return Optional.of((R) sourceValue);
+    public R assemble(T sourceValue) {
+        return (R) sourceValue;
     }
 }
