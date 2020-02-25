@@ -3,14 +3,10 @@ package com.itsherman.dto.assembler.example.dto;
 import com.itsherman.dto.assembler.annotations.DtoModel;
 import com.itsherman.dto.assembler.example.domain.Person;
 
-import java.time.LocalDateTime;
+import java.util.Set;
 
 @DtoModel(from = Person.class)
-public interface PersonDto {
+public interface PersonWithCollectionDto {
 
-    Long getId();
-
-    String getName();
-
-    LocalDateTime getBirthday();
+    Set<HouseDto> getHouses();
 }

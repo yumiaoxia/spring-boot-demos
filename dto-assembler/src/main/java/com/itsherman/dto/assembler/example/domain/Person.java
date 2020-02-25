@@ -17,23 +17,34 @@ public class Person {
 
     @ApiModelProperty
     private Long id;
+
     @ApiModelProperty
     private String name;
 
     @ApiModelProperty
     private LocalDateTime birthday;
 
-    private Book[] books;
+    private Book book;
+
+    private Car[] cars;
 
     private String[] hobbies;
 
-    private Set<Car> cars;
+    private Set<House> houses;
 
-    public Set<Car> getCars() {
+    public Set<House> getHouses() {
+        return houses;
+    }
+
+    public void setHouses(Set<House> houses) {
+        this.houses = houses;
+    }
+
+    public Car[] getCars() {
         return cars;
     }
 
-    public void setCars(Set<Car> cars) {
+    public void setCars(Car[] cars) {
         this.cars = cars;
     }
 
@@ -43,14 +54,6 @@ public class Person {
 
     public void setHobbies(String[] hobbies) {
         this.hobbies = hobbies;
-    }
-
-    public Book[] getBooks() {
-        return books;
-    }
-
-    public void setBooks(Book[] books) {
-        this.books = books;
     }
 
     public Long getId() {
@@ -77,12 +80,11 @@ public class Person {
         this.birthday = birthday;
     }
 
-    @Override
-    public String toString() {
-        return "Person{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", birthday=" + birthday +
-                '}';
+    public Book getBook() {
+        return book;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
     }
 }

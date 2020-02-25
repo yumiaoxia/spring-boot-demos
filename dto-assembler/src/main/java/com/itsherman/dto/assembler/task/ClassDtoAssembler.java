@@ -11,11 +11,11 @@ import com.itsherman.dto.assembler.utils.DtoAssembleUtils;
 import java.lang.reflect.*;
 import java.util.*;
 
-public class ClassDtoAssembler<T, R> implements DtoAssembleTask<T, R> {
+public class ClassDtoAssembler<T, R> implements DtoAssembler<T, R> {
 
     @SafeVarargs
     @Override
-    public final Optional<R> assemble(DtoDefinition definition, T... ts) {
+    public final R assemble(DtoDefinition definition, T... ts) {
         R r;
         try {
             r = (R) definition.getDtoClass().newInstance();
@@ -54,7 +54,7 @@ public class ClassDtoAssembler<T, R> implements DtoAssembleTask<T, R> {
                 throw new DtoAssembleException(e);
             }
         }
-        return Optional.of(r);
+        return r;
     }
 
     private Object doAssemble(Class<?> writeMethodParameterType, Object sourceReturnValue) {
@@ -63,7 +63,7 @@ public class ClassDtoAssembler<T, R> implements DtoAssembleTask<T, R> {
             if (writeMethodParameterType.isPrimitive() || Modifier.isFinal(writeMethodParameterType.getModifiers())) {
                 writeMethodValue = sourceReturnValue;
             } else if (DtoDefinitionHolder.getDtoDefinitions().get(writeMethodParameterType) != null) {
-                writeMethodValue = sourceReturnValue == null ? null : DtoAssembleUtils.assemble(writeMethodParameterType, sourceReturnValue).orElse(null);
+                writeMethodValue = sourceReturnValue == null ? null : DtoAssembleUtils.assemble(writeMethodParameterType, sourceReturnValue);
             } else if (writeMethodParameterType.isArray()) {
                 Class<?> componentType = writeMethodParameterType.getComponentType();
                 Object[] readMethodValues = (Object[]) sourceReturnValue;

@@ -62,7 +62,7 @@ public class FieldExistValidator implements DtoValidator {
                 dtoDefinition.getValidPropertyDefinitions().add(dpd);
             }
         } else if (dtoClass.isInterface()) {
-            Set<Method> methods = Arrays.stream(dtoClass.getDeclaredMethods())
+            Set<Method> methods = Arrays.stream(dtoClass.getMethods())
                     .filter(method -> method.getName().startsWith(Commonconstants.GETTER_PREFIX))
                     .collect(Collectors.toSet());
             for (Method method : methods) {
