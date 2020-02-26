@@ -9,7 +9,7 @@ import com.itsherman.dto.assembler.task.InterfaceDtoAssembler;
 
 public class DtoAssembleUtils {
 
-    public static <T, R> R assemble(Class<R> dtoClass, T... ts) {
+    public static <T, R> R assemble(Class<R> dtoClass, T ts) {
         DtoDefinition dtoDefinition = DtoDefinitionHolder.getDtoDefinitions().get(dtoClass);
         if (dtoDefinition == null) {
             throw new DtoAssembleException(String.format("can not found an 'dtodefinition' for %s", dtoClass));

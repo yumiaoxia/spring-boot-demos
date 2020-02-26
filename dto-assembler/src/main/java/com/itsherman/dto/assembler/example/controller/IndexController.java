@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -134,5 +136,23 @@ public class IndexController {
 
         PersonDto personDto = DtoTransFormer.to(PersonWithEnumDto.class).apply(new Person[]{person});
         return ApiResponse.createSuccess(personDto);
+    }
+
+    @ApiOperation("测试集合转换")
+    public ApiResponse<PersonDto> personList() {
+        List<Person> persons = new ArrayList<>();
+
+        Person person1 = new Person();
+        person1.setId(1L);
+        person1.setName("张三");
+
+        Person person2 = new Person();
+        person1.setId(2L);
+        person1.setName("李四");
+
+        persons.add(person1);
+        persons.add(person2);
+        return ApiResponse.createSuccess(DtoTransFormer.toList(PersonDto.class).apply(persons));
+
     }
 }
