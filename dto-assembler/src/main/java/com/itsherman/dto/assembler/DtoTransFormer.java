@@ -2,7 +2,6 @@ package com.itsherman.dto.assembler;
 
 import com.itsherman.dto.assembler.utils.DtoAssembleUtils;
 
-import java.util.Optional;
 import java.util.function.Function;
 
 /**
@@ -13,7 +12,7 @@ import java.util.function.Function;
  */
 public class DtoTransFormer {
 
-    public static <T, R> Function<T[], Optional<R>> to(Class<R> dtoClass) {
+    public static <T, R> Function<T[], R> to(Class<R> dtoClass) {
         return ts -> {
             return DtoAssembleUtils.assemble(dtoClass, ts);
         };

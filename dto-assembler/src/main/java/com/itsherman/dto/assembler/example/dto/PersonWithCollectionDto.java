@@ -6,7 +6,11 @@ import com.itsherman.dto.assembler.example.domain.Person;
 import java.util.Set;
 
 @DtoModel(from = Person.class)
-public interface PersonWithCollectionDto {
+public interface PersonWithCollectionDto extends PersonDto {
 
     Set<HouseDto> getHouses();
+
+    Set<String> getTabs();
+
+
 }

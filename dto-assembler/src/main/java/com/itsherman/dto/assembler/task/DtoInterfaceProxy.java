@@ -20,9 +20,8 @@ public class DtoInterfaceProxy<T, R> implements InvocationHandler {
 
     private T[] sources;
 
-    private R target;
 
-    public Object getInstance(R target, DtoDefinition dtoDefinition, T... sources) {
+    public Object getInstance(DtoDefinition dtoDefinition, T... sources) {
         Class<?> dtoClass = dtoDefinition.getDtoClass();
         Class<?>[] interfaces = dtoClass.getInterfaces();
         Class<?>[] finalInterfaces = new Class[interfaces.length + 1];
@@ -32,7 +31,6 @@ public class DtoInterfaceProxy<T, R> implements InvocationHandler {
         }
         this.dtoDefinition = dtoDefinition;
         this.sources = sources;
-        this.target = target;
         return Proxy.newProxyInstance(dtoDefinition.getDtoClass().getClassLoader(), finalInterfaces, this);
     }
 
@@ -75,6 +73,10 @@ public class DtoInterfaceProxy<T, R> implements InvocationHandler {
                     }
                 }
             }
+        }
+
+        if (method.getDeclaringClass().isAssignableFrom(Object.class)) {
+            return method.invoke(this, args);
         }
         if (result == null) {
             if (method.getReturnType().isAssignableFrom(Void.class)) {

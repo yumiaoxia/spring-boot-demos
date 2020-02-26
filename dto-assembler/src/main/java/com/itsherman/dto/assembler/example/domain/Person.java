@@ -32,6 +32,16 @@ public class Person {
 
     private Set<House> houses;
 
+    private Set<String> tabs;
+
+    public Set<String> getTabs() {
+        return tabs;
+    }
+
+    public void setTabs(Set<String> tabs) {
+        this.tabs = tabs;
+    }
+
     public Set<House> getHouses() {
         return houses;
     }

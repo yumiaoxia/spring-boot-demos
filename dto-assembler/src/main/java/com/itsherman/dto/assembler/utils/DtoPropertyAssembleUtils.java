@@ -41,19 +41,6 @@ public class DtoPropertyAssembleUtils {
                 for (Object returnValue : sourceReturnValues) {
                     Object proxy = doAssemble(actualTypeArguments[0], returnValue);
                     Collections.addAll(dtoReturnValues, proxy);
-//                   if(Proxy.isProxyClass(proxy.getClass())){
-//                       try {
-//                          Field h =  proxy.getClass().getSuperclass().getDeclaredField("h");
-//                          h.setAccessible(true);
-//                          DtoInterfaceProxy interfaceProxy = (DtoInterfaceProxy)h.get(proxy);
-//                          Field obj = interfaceProxy.getClass().getDeclaredField("target");
-//                          obj.setAccessible(true);
-//                          Object o = obj.get(interfaceProxy);
-//                          dtoReturnValues.add(o);
-//                       } catch (Exception e) {
-//                           e.printStackTrace();
-//                       }
-//                   }
                 }
                 return dtoReturnValues;
             }

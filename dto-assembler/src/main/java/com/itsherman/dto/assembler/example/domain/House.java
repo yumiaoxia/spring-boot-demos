@@ -4,7 +4,6 @@ public class House {
 
     String houseName;
 
-
     public String getHouseName() {
         return houseName;
     }

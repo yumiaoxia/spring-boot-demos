@@ -7,4 +7,6 @@ import com.itsherman.dto.assembler.example.domain.House;
 public interface HouseDto {
 
     String getHouseName();
+
+
 }

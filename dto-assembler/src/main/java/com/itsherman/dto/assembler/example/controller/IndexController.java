@@ -112,6 +112,11 @@ public class IndexController {
         house.setHouseName("B - 601");
         houses.add(house);
 
+        Set<String> tabs = new HashSet<>();
+        tabs.add("腼腆");
+        tabs.add("粗心");
+
+        person.setTabs(tabs);
         person.setHouses(houses);
 
         return ApiResponse.createSuccess(DtoTransFormer.to(PersonWithCollectionDto.class).apply(new Person[]{person}));
