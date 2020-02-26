@@ -123,4 +123,16 @@ public class IndexController {
     }
 
 
+    @ApiOperation("测试转换enum属性")
+    @GetMapping("/person/withEnum/{id}")
+    public ApiResponse<PersonDto> withEnum(@PathVariable Long id) {
+        Person person = new Person();
+        person.setId(id);
+        person.setBirthday(LocalDateTime.now().minusYears(26));
+        person.setName("Sherman");
+        person.setGender(Gender.MALE);
+
+        PersonDto personDto = DtoTransFormer.to(PersonWithEnumDto.class).apply(new Person[]{person});
+        return ApiResponse.createSuccess(personDto);
+    }
 }

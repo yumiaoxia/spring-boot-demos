@@ -34,6 +34,16 @@ public class Person {
 
     private Set<String> tabs;
 
+    private Gender gender;
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
     public Set<String> getTabs() {
         return tabs;
     }
