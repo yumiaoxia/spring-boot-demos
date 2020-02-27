@@ -2,6 +2,7 @@ package com.itsherman.dto.assembler.task;
 
 import com.itsherman.dto.assembler.constants.Commonconstants;
 import com.itsherman.dto.assembler.core.DtoDefinition;
+import com.itsherman.dto.assembler.core.DtoDefinitionHolder;
 import com.itsherman.dto.assembler.core.DtoPropertyDefinition;
 import com.itsherman.dto.assembler.core.InterfaceDtoPropertyDefinition;
 import com.itsherman.dto.assembler.exception.DtoAssembleException;
@@ -21,17 +22,20 @@ public class DtoInterfaceProxy<T, R> implements InvocationHandler {
     private T[] sources;
 
 
-    public Object getInstance(DtoDefinition dtoDefinition, T... sources) {
-        Class<?> dtoClass = dtoDefinition.getDtoClass();
+    public R getInstance(Class<R> dtoClass, T... sources) {
         Class<?>[] interfaces = dtoClass.getInterfaces();
         Class<?>[] finalInterfaces = new Class[interfaces.length + 1];
         finalInterfaces[0] = dtoClass;
         for (int i = 0; i < interfaces.length; i++) {
             finalInterfaces[i + 1] = interfaces[i];
         }
+        DtoDefinition dtoDefinition = DtoDefinitionHolder.getDtoDefinitions().get(dtoClass);
+        if (dtoDefinition == null) {
+            throw new DtoAssembleException(String.format("Can not found any dtoDefinition for dtoClass '%s'", dtoClass.getName()));
+        }
         this.dtoDefinition = dtoDefinition;
         this.sources = sources;
-        return Proxy.newProxyInstance(dtoDefinition.getDtoClass().getClassLoader(), finalInterfaces, this);
+        return (R) Proxy.newProxyInstance(dtoClass.getClassLoader(), finalInterfaces, this);
     }
 
     @Override

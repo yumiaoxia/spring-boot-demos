@@ -7,10 +7,7 @@ import com.itsherman.dto.assembler.core.*;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -25,7 +22,7 @@ public class FieldExistValidator implements DtoValidator {
     public Set<ValidMessage> validate(DtoDefinition dtoDefinition, Class<?> dtoClass, Class[] fromClasses) {
         Set<ValidMessage> validMessages = new HashSet<>();
         if (dtoClass.getSuperclass() != null) {
-            Set<Field> fieldSet = Arrays.stream(dtoClass.getDeclaredFields())
+            Set<Field> fieldSet = listAllFields(dtoClass).stream()
                     .filter(field -> !Modifier.isStatic(field.getModifiers()))
                     .collect(Collectors.toSet());
 
@@ -36,7 +33,7 @@ public class FieldExistValidator implements DtoValidator {
                 String methodSuffix = field.getName().substring(0, 1).toUpperCase() + field.getName().substring(1);
                 Method writeMethod;
                 try {
-                    writeMethod = dtoClass.getDeclaredMethod(Commonconstants.GETTER_PREFIX + methodSuffix);
+                    writeMethod = dtoClass.getMethod(Commonconstants.SETTER_PREFIX + methodSuffix, field.getType());
                     dpd.setWriteMethod(writeMethod);
                 } catch (NoSuchMethodException ex) {
                     validMessages.add(new ValidMessage(false, String.format("Field %s can not found writeMethod", field.getName())));
@@ -94,7 +91,7 @@ public class FieldExistValidator implements DtoValidator {
     private boolean checkContainReadMethod(Class sourceClass, String methodName, DtoPropertyDefinition dpd) {
         boolean flag = false;
         try {
-            Method method = sourceClass.getDeclaredMethod(methodName);
+            Method method = sourceClass.getMethod(methodName);
             if (method != null && Modifier.isPublic(method.getModifiers())) {
                 dpd.setReadMethod(method);
                 dpd.setSourceClass(sourceClass);
@@ -114,5 +111,16 @@ public class FieldExistValidator implements DtoValidator {
             }
         }
         return flag;
+    }
+
+
+    private List<Field> listAllFields(Class<?> clazz) {
+        List<Field> fields = new ArrayList<>();
+        Collections.addAll(fields, clazz.getDeclaredFields());
+        Class<?> superClass = clazz.getSuperclass();
+        if (superClass != null && !Object.class.equals(superClass)) {
+            fields.addAll(listAllFields(superClass));
+        }
+        return fields;
     }
 }

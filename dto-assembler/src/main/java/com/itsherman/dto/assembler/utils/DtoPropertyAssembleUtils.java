@@ -16,21 +16,19 @@ public class DtoPropertyAssembleUtils {
         if (dtoReturnType instanceof Class) {
             Class<?> dtoReturnClass = (Class) dtoReturnType;
             // 判断返回类型
-            if (((Class) dtoReturnType).isArray()) {
+            if (dtoReturnClass.isArray()) {
                 Object[] sourceArray = (Object[]) sourceReturnValue;
                 Class<?> componentType = dtoReturnClass.getComponentType();
                 Object dtoArray = Array.newInstance(componentType, sourceArray.length);
                 for (int i = 0; i < sourceArray.length; i++) {
                     Object sourceValue = sourceArray[i];
-                    Array.set(dtoArray, i, sourceValue == null ? null : doAssemble(componentType, sourceValue));
+                    Array.set(dtoArray, i, sourceValue == null ? null : sourceValue == null ? null : doAssemble(componentType, sourceValue));
                 }
                 return dtoArray;
             } else if (DtoDefinitionHolder.getDtoDefinitions().get(dtoReturnType) != null) {
                 return DtoAssembleUtils.assemble(dtoReturnClass, sourceReturnValue);
             } else if (Modifier.isFinal(dtoReturnClass.getModifiers()) || dtoReturnClass.isPrimitive()) {
                 return sourceReturnValue;
-            } else {
-                throw new TypeCastException(String.format("Type match Error,target type '%s'", dtoReturnType));
             }
         } else if (dtoReturnType instanceof ParameterizedType) {
             ParameterizedType parameterizedReturnType = (ParameterizedType) dtoReturnType;
@@ -39,14 +37,14 @@ public class DtoPropertyAssembleUtils {
                 Collection<?> sourceReturnValues = (Collection<?>) sourceReturnValue;
                 Collection<Object> dtoReturnValues = CollectionUtils.emptyCollection(parameterizedReturnType);
                 for (Object returnValue : sourceReturnValues) {
-                    Object proxy = doAssemble(actualTypeArguments[0], returnValue);
-                    Collections.addAll(dtoReturnValues, proxy);
+                    if (returnValue != null) {
+                        Object proxy = doAssemble(actualTypeArguments[0], returnValue);
+                        Collections.addAll(dtoReturnValues, proxy);
+                    }
                 }
                 return dtoReturnValues;
             }
-            return null;
-        } else {
-            throw new TypeCastException(String.format("Type match Error,target type '%s'", dtoReturnType));
         }
+        throw new TypeCastException(String.format("Type match Error,target type '%s'", dtoReturnType));
     }
 }

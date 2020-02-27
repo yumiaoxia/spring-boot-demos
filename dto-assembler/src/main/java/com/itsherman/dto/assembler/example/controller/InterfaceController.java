@@ -23,10 +23,10 @@ import java.util.Set;
  * @author 俞淼霞
  * @since 2019-09-04
  */
-@Api(tags = "测试接口")
-@RequestMapping("/api")
+@Api(tags = "测试Dto接口")
+@RequestMapping("/api/interfaces")
 @RestController
-public class IndexController {
+public class InterfaceController {
 
     @ApiOperation("person简单信息")
     @GetMapping("/person/detail/simple/{id}")
@@ -36,7 +36,7 @@ public class IndexController {
         person.setBirthday(LocalDateTime.now().minusYears(26));
         person.setName("Sherman");
 
-        PersonDto personDto = DtoTransFormer.to(PersonDto.class).apply(new Person[]{person});
+        PersonDto personDto = DtoTransFormer.to(PersonDto.class).apply(person);
         return ApiResponse.createSuccess(personDto);
     }
 
@@ -51,7 +51,7 @@ public class IndexController {
 
         Company company = new Company();
         company.setTitle("道本");
-        PersonCompanyDto personCompanyDto = DtoTransFormer.to(PersonCompanyDto.class).apply(new Object[]{person, company});
+        PersonCompanyDto personCompanyDto = DtoTransFormer.to(PersonCompanyDto.class).apply(person, company);
         return ApiResponse.createSuccess(personCompanyDto);
     }
 
@@ -64,7 +64,7 @@ public class IndexController {
         person.setBook(book);
         person.setId(id);
         person.setName("Sherman");
-        return ApiResponse.createSuccess(DtoTransFormer.to(PersonWithRawDto.class).apply(new Person[]{person}));
+        return ApiResponse.createSuccess(DtoTransFormer.to(PersonWithRawDto.class).apply(person));
     }
 
     @ApiOperation("测试默认方法")
@@ -77,7 +77,7 @@ public class IndexController {
         person.setId(id);
         person.setName("Sherman");
         person.setBirthday(LocalDateTime.now().minusYears(26));
-        return ApiResponse.createSuccess(DtoTransFormer.to(PersonWithDefaultDto.class).apply(new Person[]{person}));
+        return ApiResponse.createSuccess(DtoTransFormer.to(PersonWithDefaultDto.class).apply(person));
     }
 
     @ApiOperation("测试数组")
@@ -99,7 +99,7 @@ public class IndexController {
 
         person.setCars(new Car[]{car1, car2});
 
-        return ApiResponse.createSuccess(DtoTransFormer.to(PersonWithArrayDto.class).apply(new Person[]{person}));
+        return ApiResponse.createSuccess(DtoTransFormer.to(PersonWithArrayDto.class).apply(person));
     }
 
     @ApiOperation("测试集合")
@@ -121,7 +121,7 @@ public class IndexController {
         person.setTabs(tabs);
         person.setHouses(houses);
 
-        return ApiResponse.createSuccess(DtoTransFormer.to(PersonWithCollectionDto.class).apply(new Person[]{person}));
+        return ApiResponse.createSuccess(DtoTransFormer.to(PersonWithCollectionDto.class).apply(person));
     }
 
 
@@ -134,12 +134,13 @@ public class IndexController {
         person.setName("Sherman");
         person.setGender(Gender.MALE);
 
-        PersonDto personDto = DtoTransFormer.to(PersonWithEnumDto.class).apply(new Person[]{person});
+        PersonDto personDto = DtoTransFormer.to(PersonWithEnumDto.class).apply(person);
         return ApiResponse.createSuccess(personDto);
     }
 
     @ApiOperation("测试集合转换")
-    public ApiResponse<PersonDto> personList() {
+    @GetMapping("/person/asList")
+    public ApiResponse<List<PersonDto>> personList() {
         List<Person> persons = new ArrayList<>();
 
         Person person1 = new Person();
@@ -147,8 +148,8 @@ public class IndexController {
         person1.setName("张三");
 
         Person person2 = new Person();
-        person1.setId(2L);
-        person1.setName("李四");
+        person2.setId(2L);
+        person2.setName("李四");
 
         persons.add(person1);
         persons.add(person2);

@@ -1,13 +1,12 @@
 package com.itsherman.dto.assembler.task;
 
-import com.itsherman.dto.assembler.core.DtoDefinition;
-
 public class InterfaceDtoAssembler<T, R> implements DtoAssembler<T, R> {
 
 
+    @SafeVarargs
     @Override
-    public R assemble(DtoDefinition dtoDefinition, T... ts) {
-        return (R) new DtoInterfaceProxy<T, R>().getInstance(dtoDefinition, ts);
+    public final R assemble(Class<R> dtoClass, T... ts) {
+        return (R) new DtoInterfaceProxy<T, R>().getInstance(dtoClass, ts);
     }
 
 
