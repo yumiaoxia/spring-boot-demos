@@ -1,8 +1,8 @@
-package com.itsherman.dto.assembler.example.controller;
+package com.itsherman.dto.assembler.example.web.controller;
 
 import com.itsherman.dto.assembler.DtoTransFormer;
 import com.itsherman.dto.assembler.example.domain.*;
-import com.itsherman.dto.assembler.example.dto.*;
+import com.itsherman.dto.assembler.example.web.dto.*;
 import com.itsherman.web.common.response.ApiResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

@@ -1,4 +1,4 @@
-package com.itsherman.dto.assembler.example.dto;
+package com.itsherman.dto.assembler.example.web.dto;
 
 import com.itsherman.dto.assembler.annotations.DtoModel;
 import com.itsherman.dto.assembler.annotations.DtoProperty;

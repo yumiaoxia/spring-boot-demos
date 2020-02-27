@@ -1,12 +1,12 @@
-package com.itsherman.dto.assembler.example.controller;
+package com.itsherman.dto.assembler.example.web.controller;
 
 import com.itsherman.dto.assembler.DtoTransFormer;
 import com.itsherman.dto.assembler.example.domain.Book;
 import com.itsherman.dto.assembler.example.domain.House;
 import com.itsherman.dto.assembler.example.domain.Person;
-import com.itsherman.dto.assembler.example.dto.PersonWithClassCollectionDto;
-import com.itsherman.dto.assembler.example.dto.PersonWithInterfaceCollectionDO;
-import com.itsherman.dto.assembler.example.dto.PersonWithInterfaceDO;
+import com.itsherman.dto.assembler.example.web.dto.PersonWithClassCollectionDto;
+import com.itsherman.dto.assembler.example.web.dto.PersonWithInterfaceCollectionDO;
+import com.itsherman.dto.assembler.example.web.dto.PersonWithInterfaceDO;
 import com.itsherman.web.common.response.ApiResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

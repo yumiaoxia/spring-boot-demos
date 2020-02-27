@@ -6,7 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-@EnableDtoMapping(mappings = {@DtoMapping(basePackage = "com.itsherman.dto.assembler.example.dto")})
+@EnableDtoMapping(mappings = {@DtoMapping(basePackage = "com.itsherman.dto.assembler.example.web.dto")})
 @EnableSwagger2
 @SpringBootApplication
 public class DtoAssemblerApplication {

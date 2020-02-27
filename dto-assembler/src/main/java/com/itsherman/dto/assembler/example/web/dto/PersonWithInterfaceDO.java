@@ -1,18 +1,18 @@
-package com.itsherman.dto.assembler.example.dto;
+package com.itsherman.dto.assembler.example.web.dto;
 
 import com.itsherman.dto.assembler.annotations.DtoModel;
 import com.itsherman.dto.assembler.example.domain.Person;
 
 @DtoModel(from = Person.class)
-public class PersonWithRawDO extends PersonDO {
+public class PersonWithInterfaceDO extends PersonDO {
 
-    private BookDO book;
+    private BookDto book;
 
-    public BookDO getBook() {
+    public BookDto getBook() {
         return book;
     }
 
-    public void setBook(BookDO book) {
+    public void setBook(BookDto book) {
         this.book = book;
     }
 }
