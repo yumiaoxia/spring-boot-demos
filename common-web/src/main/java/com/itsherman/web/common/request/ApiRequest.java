@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
+import javax.validation.Valid;
 import java.io.Serializable;
 
 /**
@@ -22,6 +23,7 @@ public class ApiRequest<T> implements Serializable {
      */
     @ApiModelProperty("请求参数体，载荷")
     @JsonProperty("data")
+    @Valid
     private T command;
 
 

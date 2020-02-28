@@ -13,7 +13,7 @@ import java.util.List;
  * @since 2019-09-03
  */
 @ApiModel
-public class ApiPageResponse<T> extends ApiResponse<List<T>> {
+public class ApiPageResponse<T> extends ApiResponse<T> {
 
     @ApiModelProperty("总记录数")
     private Long totalSize;
@@ -27,22 +27,23 @@ public class ApiPageResponse<T> extends ApiResponse<List<T>> {
     @ApiModelProperty("每页记录记录数")
     private Integer pageSize;
 
-    public static <T> ApiPageResponse createPageSuccess(Page<T> t) {
+    public static <T> ApiPageResponse<List<T>> createPageSuccess(Page<T> t) {
         return createPageSuccess("0", t);
     }
 
-    public static <T> ApiPageResponse createPageSuccess(String code, Page<T> t) {
+    public static <T> ApiPageResponse<List<T>> createPageSuccess(String code, Page<T> t) {
         if (t == null) {
             throw new NullPointerException("t must be not null!");
         }
         createSuccess(code, t.getContent());
-        ApiPageResponse<T> apiPageResponse = new ApiPageResponse<>();
+        ApiPageResponse<List<T>> apiPageResponse = new ApiPageResponse<>();
         apiPageResponse.setSuccess(true);
         apiPageResponse.setCode(code);
         apiPageResponse.setTotalSize(t.getTotalElements());
         apiPageResponse.setTotalPage(t.getTotalPages());
         apiPageResponse.setPageNo(t.getNumber());
         apiPageResponse.setPageSize(t.getSize());
+        apiPageResponse.setData(t.getContent());
         return apiPageResponse;
     }
 

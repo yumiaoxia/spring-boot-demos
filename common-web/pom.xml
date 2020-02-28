@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.itsherman</groupId>
     <artifactId>common-web-spring-boot-starter</artifactId>
-    <version>1.3</version>
+    <version>1.9</version>
     <name>common-web-spring-boot-starter</name>
     <description>Common artifact for Spring Boot</description>
 

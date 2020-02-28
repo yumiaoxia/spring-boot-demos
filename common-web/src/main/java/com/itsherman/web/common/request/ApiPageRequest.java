@@ -1,5 +1,6 @@
 package com.itsherman.web.common.request;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
 import org.springframework.data.domain.PageRequest;
@@ -21,20 +22,22 @@ public class ApiPageRequest<T> extends ApiRequest<T> {
 
     @Min(0)
     @JsonProperty
-    @ApiModelProperty("页码")
+    @ApiModelProperty(value = "页码", example = "0")
     private Integer pageNo;
 
     @Min(0)
     @JsonProperty
     @NotNull
-    @ApiModelProperty("每页记录数")
+    @ApiModelProperty(value = "每页记录数", example = "20")
     private Integer pageSize;
 
     @JsonProperty
-    private List<Sort.Direction> directions;
+    @ApiModelProperty(value = "排序类型,1——升序，2——降序。顺序跟sortProperties中的字段的顺序一一对应")
+    private Integer[] directions;
 
     @JsonProperty
-    private List<String> sortProperties;
+    @ApiModelProperty(value = "排序字段,顺序跟directions中的排序类型的顺序一一对应")
+    private String[] sortProperties;
 
     public void setPageNo(Integer pageNo) {
         this.pageNo = pageNo;
@@ -44,14 +47,15 @@ public class ApiPageRequest<T> extends ApiRequest<T> {
         this.pageSize = pageSize;
     }
 
-    public void setDirections(List<Sort.Direction> directions) {
+    public void setDirections(Integer[] directions) {
         this.directions = directions;
     }
 
-    public void setSortProperties(List<String> sortProperties) {
+    public void setSortProperties(String[] sortProperties) {
         this.sortProperties = sortProperties;
     }
 
+    @JsonIgnore
     public Pageable getPageable() {
         Sort sort = getSort();
         Pageable pageable = null;
@@ -67,16 +71,21 @@ public class ApiPageRequest<T> extends ApiRequest<T> {
     private Sort getSort() {
         Sort sort = null;
         if (directions != null && sortProperties != null) {
-            if (directions.size() != sortProperties.size()) {
+            if (directions.length != sortProperties.length) {
                 throw new IllegalArgumentException("排序字段必须和排序方式一一对应");
             } else {
-                List<Sort.Order> orders = new ArrayList<>(sortProperties.size());
-                for (int i = sortProperties.size() - 1; i >= 0; i--) {
+                List<Sort.Order> orders = new ArrayList<>(sortProperties.length);
+                for (int i = sortProperties.length - 1; i >= 0; i--) {
                     Sort.Order order = null;
-                    if (Sort.Direction.ASC == directions.get(i)) {
-                        order = Sort.Order.asc(sortProperties.get(i));
-                    } else {
-                        order = Sort.Order.desc(sortProperties.get(i));
+                    switch (directions[i]) {
+                        case 1:
+                            order = Sort.Order.asc(sortProperties[i]);
+                            break;
+                        case 2:
+                            order = Sort.Order.desc(sortProperties[i]);
+                            break;
+                        default:
+                            continue;
                     }
                     orders.add(order);
                 }
