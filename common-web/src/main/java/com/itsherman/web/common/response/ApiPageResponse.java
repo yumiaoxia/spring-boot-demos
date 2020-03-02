@@ -35,7 +35,6 @@ public class ApiPageResponse<T> extends ApiResponse<T> {
         if (t == null) {
             throw new NullPointerException("t must be not null!");
         }
-        createSuccess(code, t.getContent());
         ApiPageResponse<List<T>> apiPageResponse = new ApiPageResponse<>();
         apiPageResponse.setSuccess(true);
         apiPageResponse.setCode(code);
