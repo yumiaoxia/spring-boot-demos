@@ -9,7 +9,6 @@ import com.itsherman.dto.assembler.exception.DtoAssembleException;
 import com.itsherman.dto.assembler.utils.DtoPropertyAssembleUtils;
 
 import java.lang.invoke.MethodHandles;
-import java.lang.reflect.*;
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.Set;
@@ -56,7 +55,7 @@ public class DtoInterfaceProxy<T, R> implements InvocationHandler {
                                 .bindTo(proxy)
                                 .invokeWithArguments(args);
                     } else {
-                        Optional<?> sourceOptional = Arrays.stream(sources).filter(t -> t.getClass().isAssignableFrom(propertyDefinition.getSourceClass())).findFirst();
+                        Optional<?> sourceOptional = Arrays.stream(sources).filter(t -> propertyDefinition.getSourceClass().isAssignableFrom(t.getClass())).findFirst();
                         Method readMethod = propertyDefinition.getReadMethod();
                         Object readMethodValue;
                         if (sourceOptional.isPresent()) {

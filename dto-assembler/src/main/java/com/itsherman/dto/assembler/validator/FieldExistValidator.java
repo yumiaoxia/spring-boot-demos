@@ -2,12 +2,10 @@ package com.itsherman.dto.assembler.validator;
 
 import com.itsherman.dto.assembler.annotations.DtoProperty;
 import com.itsherman.dto.assembler.constants.Commonconstants;
-import com.itsherman.dto.assembler.core.*;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -68,10 +66,14 @@ public class FieldExistValidator implements DtoValidator {
                     DtoProperty dtoProperty = method.getAnnotation(DtoProperty.class);
                     boolean flag;
                     if (dtoProperty != null) {
+                        String methodName = method.getName();
+                        if (!dtoProperty.value().trim().equals("")) {
+                            methodName = Commonconstants.GETTER_PREFIX + dtoProperty.value().substring(0, 1).toUpperCase() + dtoProperty.value().substring(1);
+                        }
                         if (dtoProperty.sourceClass().equals(Void.class)) {
-                            flag = checkReadMethodInFormClass(fromClasses, method.getName(), dpd);
+                            flag = checkReadMethodInFormClass(fromClasses, methodName, dpd);
                         } else {
-                            flag = checkContainReadMethod(dtoProperty.sourceClass(), method.getName(), dpd);
+                            flag = checkContainReadMethod(dtoProperty.sourceClass(), methodName, dpd);
                         }
                     } else {
                         flag = checkReadMethodInFormClass(fromClasses, method.getName(), dpd);
