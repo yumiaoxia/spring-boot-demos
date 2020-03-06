@@ -1,10 +1,16 @@
 package com.itsherman.web.common.request;
 
+import org.springframework.util.StreamUtils;
+
 import javax.servlet.ReadListener;
 import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 
 /**
  * <p> </p>
@@ -13,50 +19,33 @@ import java.io.*;
  * @since 2019-09-07
  */
 public class RequestWrapper extends HttpServletRequestWrapper {
-
-    private final String body;
+    private String body;
+    private Charset charSet;
 
     public RequestWrapper(HttpServletRequest request) {
         super(request);
-        StringBuilder stringBuilder = new StringBuilder();
-        BufferedReader bufferedReader = null;
-        InputStream inputStream = null;
         try {
-            inputStream = request.getInputStream();
-            if (inputStream != null) {
-                bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-                char[] charBuffer = new char[128];
-                int bytesRead = -1;
-                while ((bytesRead = bufferedReader.read(charBuffer)) > 0) {
-                    stringBuilder.append(charBuffer, 0, bytesRead);
-                }
-            } else {
-                stringBuilder.append("");
-            }
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        } finally {
-            if (inputStream != null) {
-                try {
-                    inputStream.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (bufferedReader != null) {
-                try {
-                    bufferedReader.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
+            body = getRequestPostStr(request);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        body = stringBuilder.toString();
+        System.out.println(body);
+
+    }
+
+    public String getRequestPostStr(HttpServletRequest request)
+            throws IOException {
+        String charSetStr = request.getCharacterEncoding();
+        if (charSetStr == null) {
+            charSetStr = "UTF-8";
+        }
+        charSet = Charset.forName(charSetStr);
+        return StreamUtils.copyToString(request.getInputStream(), charSet);
     }
 
     @Override
     public ServletInputStream getInputStream() throws IOException {
-        final ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(body.getBytes());
+        final ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(body.getBytes(charSet));
         ServletInputStream servletInputStream = new ServletInputStream() {
             @Override
             public boolean isFinished() {
