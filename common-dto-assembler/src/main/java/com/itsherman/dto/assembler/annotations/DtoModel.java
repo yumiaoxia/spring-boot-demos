@@ -1,4 +1,4 @@
-package com.itsherman.commondto2.annotations;
+package com.itsherman.dto.assembler.annotations;
 
 import java.lang.annotation.*;
 
@@ -13,5 +13,6 @@ import java.lang.annotation.*;
 @Documented
 @Inherited
 public @interface DtoModel {
-    Class[] from() default {};
+
+    Class[] from();
 }

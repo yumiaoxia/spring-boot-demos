@@ -1,8 +1,8 @@
-package com.itsherman.commondto2.core;
+package com.itsherman.dto.assembler.core;
 
-import com.itsherman.commondto2.annotations.DtoModel;
-import com.itsherman.commondto2.validator.DtoValidator;
-import com.itsherman.commondto2.validator.ValidatorHolder;
+import com.itsherman.dto.assembler.annotations.DtoModel;
+import com.itsherman.dto.assembler.validator.DtoValidator;
+import com.itsherman.dto.assembler.validator.ValidatorHolder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,7 +18,7 @@ public class DtoDefinitionHolder {
 
     private static final Logger log = LoggerFactory.getLogger(DtoDefinitionHolder.class);
 
-    public static Map<Class, DtoDefinition> dtoDefinitions = new HashMap<>();
+    public static Map<Class<?>, DtoDefinition> dtoDefinitions = new HashMap<>();
 
     public DtoDefinitionHolder() {
     }
@@ -42,13 +42,14 @@ public class DtoDefinitionHolder {
                     for (ValidMessage validMessage : validMessages) {
                         log.error(validMessage.getMessage());
                     }
+                } else {
+                    dtoDefinitions.put(clazz, dd);
                 }
-                dtoDefinitions.put(clazz, dd);
             }
         }
     }
 
-    public static Map<Class, DtoDefinition> getDtoDefinitions() {
+    public static Map<Class<?>, DtoDefinition> getDtoDefinitions() {
         return dtoDefinitions;
     }
 }

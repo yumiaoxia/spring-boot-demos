@@ -1,4 +1,4 @@
-package com.itsherman.commondto2.validator;
+package com.itsherman.dto.assembler.validator;
 
 import java.util.ArrayList;
 import java.util.List;

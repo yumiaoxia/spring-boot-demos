@@ -1,7 +1,7 @@
-package com.itsherman.commondto2.validator;
+package com.itsherman.dto.assembler.validator;
 
-import com.itsherman.commondto2.core.DtoDefinition;
-import com.itsherman.commondto2.core.ValidMessage;
+import com.itsherman.dto.assembler.core.DtoDefinition;
+import com.itsherman.dto.assembler.core.ValidMessage;
 
 import java.util.Set;
 

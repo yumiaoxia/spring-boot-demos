@@ -1,4 +1,4 @@
-package com.itsherman.commondto2.annotations;
+package com.itsherman.dto.assembler.annotations;
 
 import java.lang.annotation.*;
 

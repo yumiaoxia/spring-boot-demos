@@ -1,8 +1,4 @@
-package com.itsherman.dto.assembler;
-
-import com.itsherman.dto.assembler.utils.DtoAssembleUtils;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
+package com.itsherman.dto.assembler.utils;
 
 import java.util.Collection;
 import java.util.List;
@@ -24,23 +20,6 @@ public class DtoTransFormer {
         return new ListHelper<>(dtoClass);
     }
 
-    public static <R> PageHelper<R> toPage(Class<R> dtoClass) {
-        return new PageHelper<>(dtoClass);
-    }
-
-    public static class PageHelper<R> {
-        private final Class<R> dtoClass;
-
-        public PageHelper(Class<R> dtoClass) {
-            this.dtoClass = dtoClass;
-        }
-
-        public final <T> Page<R> apply(Page<T> tPage) {
-            List<T> contents = tPage.getContent();
-            List<R> resultContents = contents.stream().map(content -> DtoAssembleUtils.assemble(dtoClass, content)).collect(Collectors.toList());
-            return new PageImpl<>(resultContents, tPage.getPageable(), tPage.getTotalElements());
-        }
-    }
 
     public static class Helper<R> {
 

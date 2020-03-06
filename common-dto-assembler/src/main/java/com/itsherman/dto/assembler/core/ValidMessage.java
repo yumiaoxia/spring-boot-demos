@@ -1,4 +1,4 @@
-package com.itsherman.commondto2.core;
+package com.itsherman.dto.assembler.core;
 
 /**
  * <p> </p>
