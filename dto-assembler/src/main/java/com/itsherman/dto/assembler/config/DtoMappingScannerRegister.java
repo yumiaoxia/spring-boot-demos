@@ -68,7 +68,8 @@ public class DtoMappingScannerRegister implements ImportBeanDefinitionRegistrar 
                     e.printStackTrace();
                 }
                 if (jarFile != null) {
-                    getClassNameFromJar(jarFile.entries(), basePackage, true);
+                    Set<String> dirClassNames = getClassNameFromJar(jarFile.entries(), basePackage, true);
+                    classNames.addAll(dirClassNames);
                 }
             }
             Set<Class> dtoClasses = filterByAnnotation(classNames);
