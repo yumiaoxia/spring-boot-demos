@@ -31,9 +31,9 @@
 
     <repositories>
         <repository>
-            <id>itsherman</id>
-            <name>Itsherman</name>
-            <url>http://134.175.164.205:8081/repository/maven-public/</url>
+            <id>Itsherman</id>
+            <name>Itsherman1994</name>
+            <url>http://192.168.42.108:8081/repository/maven-public/</url>
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
@@ -62,7 +62,7 @@
     <distributionManagement>
         <repository>
             <id>nexus-releases</id>
-            <url>http://134.175.164.205:8081/repository/maven-releases/</url>
+            <url>http://192.168.42.108:8081/repository/maven-releases/</url>
         </repository>
     </distributionManagement>
 

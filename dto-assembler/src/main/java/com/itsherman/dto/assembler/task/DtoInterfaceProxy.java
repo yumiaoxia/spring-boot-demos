@@ -9,6 +9,7 @@ import com.itsherman.dto.assembler.exception.DtoAssembleException;
 import com.itsherman.dto.assembler.utils.DtoPropertyAssembleUtils;
 
 import java.lang.invoke.MethodHandles;
+import java.lang.reflect.*;
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.Set;

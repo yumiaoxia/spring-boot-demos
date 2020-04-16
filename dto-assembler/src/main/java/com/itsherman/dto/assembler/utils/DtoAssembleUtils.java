@@ -4,6 +4,8 @@ import com.itsherman.dto.assembler.exception.DtoAssembleException;
 import com.itsherman.dto.assembler.task.ClassDtoAssembler;
 import com.itsherman.dto.assembler.task.DtoAssembler;
 import com.itsherman.dto.assembler.task.InterfaceDtoAssembler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class DtoAssembleUtils {
     private static final Logger log = LoggerFactory.getLogger(DtoAssembleUtils.class);
